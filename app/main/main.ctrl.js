@@ -180,11 +180,13 @@
                 }
 
                 $scope.logout = function() {
-                    userServices.logout()
-                        .then(function() {
-                            sessionStorage.clear();
+                    sessionStorage.clear();
                             $window.location.href = $rootScope.clientAdd;
-                        })
+                    // userServices.logout()
+                    //     .then(function() {
+                    //         sessionStorage.clear();
+                    //         $window.location.href = $rootScope.clientAdd;
+                    //     })
                 }
 
                 $scope.alertDanger = function(error, danger) {
