@@ -60,7 +60,7 @@
                             console.log(error);
                             $scope.alertDanger(error.data.message, '');
                         })
-                }
+                } 
 
                 $scope.confirmDelete = function(id, name){
                     $scope.confirmDeleteName = name;
