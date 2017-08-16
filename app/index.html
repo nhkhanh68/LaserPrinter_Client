@@ -2,42 +2,371 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quản Lý Thư viện</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link href="bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="bower_components/gentelella/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="bower_components/gentelella/build/css/custom.min.css" rel="stylesheet">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app.js"></script>
+    <script src="main/main.ctrl.js"></script>
+    <script src="main/service.js"></script>
+    <style>
+    .cursor {
+        cursor: pointer;
+    }
+    </style>
 </head>
-<body>
-  <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
-    <li><a href="#!/view2">view2</a></li>
-  </ul>
+<div ng-view ng-if="loggedIn != true"></div>
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="view2/view2.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+<body class="nav-md" ng-controller="mainCtrl" ng-cloak>
+    <div class="container body" ng-show="loggedIn">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a class="site_title"><span>Quản Lý Thư viện</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <!-- <h3>General</h3> -->
+                            <ul class="nav side-menu">
+                                <li ng-click="show = false" class="cursor"><a><i class="fa fa-gear"></i> Thiết đặt </a></li>
+                                <li ng-click="show = true" class="cursor"><a><i class="fa fa-book"></i> Sách </a></li>
+                                <!-- <li class="active"><a>Đối tác <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: block;">
+                                        <li ng-class="{active : currentUrl == '/contract'}" ng-click="currentUrl = '/contract'"><a href="/#/partner/contract"><i class="fa fa-archive"></i> Hợp Đồng </a></li>
+                                        <li ng-class="{active : currentUrl == '/activity'}" ng-click="currentUrl = '/activity'"><a href="/#/partner/activity"><i class="fa fa-university"></i> Hoạt động </a></li>
+                                        <li ng-class="{active : currentUrl == '/information'}" ng-click="currentUrl = '/information'"><a href="/#/partner/information"><i class="fa fa-group"></i> Danh sách đối Tác </a></li>
+                                    </ul>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a ng-click="logout()" class="cursor"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="right_col" role="main" ng-init="getAllBook()">
+                <div class="" ng-show="show == true">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="col-md-6 col-sm-6 col-xs-6" ng-init="getAllBookStudent()">
+                                    <div class="x_panel">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>MSSV</th>
+                                                    <th>Tên sách</th>
+                                                    <th>Ngày mượn</th>
+                                                    <th>Ngày hết hạn</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in allBookStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
+                                                    <td id="email_{{contact.id}}">{{data.student.studentCode}}</td>
+                                                    <td>{{data.book.bookName}}</td>
+                                                    <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                    <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="x_panel">
+                                        <div class="alert alert-success" ng-if="success">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-danger" ng-if="danger">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
+                                        <form class="form-horizontal form-label-left" id="add_follow_student">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sinh viên:
+                                                </label>
+                                                <div class="col-md-9 col-sm-12 col-xs-12">
+                                                    <label class="btn btn-default" ng-if="student != undefined">
+                                                        {{student.fullName}}
+                                                        <span id="span_{{student.id}}" ng-show="student.show">x</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên sách:</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select class="form-control" ng-model="input.bookId">
+                                                        <option ng-repeat="book in allBook" value="{{book.id}}">
+                                                            {{book.bookName}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày hết hạn: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="date" class="form-control col-md-7 col-xs-12" ng-model="input.expiryDate" value="{{input.expiryDate}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                    <button type="submit" class="btn btn-success" ng-click="borrowBook()">Thêm</button>
+                                                </div>
+                                            </div>
+                                            <div class="divider-dashed"></div>
+                                        </form>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>MSSV</th>
+                                                    <th>Thời gian</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td id="contactName_{{contact.id}}">{{data.fullName}}</td>
+                                                    <td id="email_{{contact.id}}">{{data.studentCode}}</td>
+                                                    <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                    <td ng-if="data.address != 'NF'">
+                                                        <input type="radio" name="tich" ng-click="selectStudent(data)">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" ng-show="show == false">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="col-md6 col-sm6 col-xs-6">
+                                    <div class="x_panel">
+                                        <div class="alert alert-success" ng-if="successStudent">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-danger" ng-if="dangerStudent">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
+                                        <form class="form-horizontal form-label-left" id="add_follow_student">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.fullName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số sinh viên: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.studentCode">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                    <button type="submit" class="btn btn-success" ng-click="addStudent()">Thêm</button>
+                                                </div>
+                                            </div>
+                                            <div class="divider-dashed"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md6 col-sm6 col-xs-6">
+                                    <div class="x_panel">
+                                        <div class="alert alert-success" ng-if="successBook">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-danger" ng-if="dangerBook">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
+                                        <form class="form-horizontal form-label-left">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên sách: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputBook.bookName">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                    <button type="submit" class="btn btn-success" ng-click="addBook()">Thêm</button>
+                                                </div>
+                                            </div>
+                                            <div class="divider-dashed"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_content">
+                                <div class="col-md6 col-sm6 col-xs-6" ng-init="getAllStudent()">
+                                    <div class="x_panel">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>MSSV</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="student in allStudent | orderBy:'-id'">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td id="contactName_{{contact.id}}">{{student.fullName}}</td>
+                                                    <td id="email_{{contact.id}}">{{student.studentCode}}</td>
+                                                    <td class=" ">
+                                                        <a class="cursor" ng-click="confirmDelete(student.id, student.fullName)" data-toggle="modal" data-target="#delete_student"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md6 col-sm6 col-xs-6">
+                                    <div class="x_panel">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên sách</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="book in allBook | orderBy:'-id'">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td id="contactName_{{contact.id}}">{{book.bookName}}</td>
+                                                    <td class=" ">
+                                                        <a class="cursor" ng-click="confirmDelete(book.id, book.bookName)" data-toggle="modal" data-target="#delete_book"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="delete_student">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_modal_delete_student"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel2">Bạn có chắc muốn sinh vien {{confirmDeleteName}}</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteStudent(confirmDeleteId)">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="delete_book">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_modal_delete_book"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel2">Bạn có chắc muốn xóa sách {{confirmDeleteName}}</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteBook(confirmDeleteId)">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!-- services -->
+    <!-- jQuery -->
+    <script src="bower_components/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="bower_components/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="bower_components/gentelella/vendors/nprogress/nprogress.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="bower_components/gentelella/build/js/custom.min.js"></script>
+    <!-- ui bootstrap -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- angular md5 -->
+    <script src="bower_components/angular-md5/angular-md5.js"></script>
+    <!-- sockjs stom js -->
+    <script src="bower_components/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="main/stomp.min.js"></script>
 </body>
+
 </html>
