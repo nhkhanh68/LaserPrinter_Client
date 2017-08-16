@@ -2,8 +2,8 @@
     angular.module('myApp')
         .controller('mainCtrl', ['$scope', '$rootScope', '$location', '$window', 'userServices', '$state', 'md5', '$timeout',
             function($scope, $rootScope, $location, $window, userServices, $state, md5, $timeout) {
-                $rootScope.serverAdd = "http://localhost:8180";
-                $rootScope.clientAdd = "http://localhost:8000";
+                $rootScope.serverAdd = "http://112.137.130.47:8180";
+                $rootScope.clientAdd = "http://112.137.130.47:8000";
                 $rootScope.response = [];
                 $scope.socket = [];
                 $scope.count = 0;
