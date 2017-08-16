@@ -36,7 +36,7 @@
 </head>
 <div ng-view ng-if="loggedIn != true"></div>
 
-<body class="nav-md" ng-controller="mainCtrl" ng-cloak>
+<body class="nav-sm" ng-controller="mainCtrl" ng-cloak>
     <div class="container body" ng-show="loggedIn">
         <div class="main_container">
             <div class="col-md-3 left_col">
@@ -98,6 +98,12 @@
                             <div class="x_content">
                                 <div class="col-md-6 col-sm-6 col-xs-6" ng-init="getAllBookStudent()">
                                     <div class="x_panel">
+                                        <div class="alert alert-success" ng-if="successBS">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-danger" ng-if="dangerBS">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -118,6 +124,9 @@
                                                     <td>{{data.book.bookName}}</td>
                                                     <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
                                                     <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                                    <td class=" ">
+                                                        <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -334,6 +343,21 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                                 <button type="button" class="btn btn-primary" ng-click="deleteBook(confirmDeleteId)">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="delete_book_student">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_modal_delete_book_student"><span aria-hidden="true">×</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel2">Bạn có chắc muốn xóa</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-primary" ng-click="deleteBookStudent(confirmDeleteId)">Xóa</button>
                             </div>
                         </div>
                     </div>

@@ -17,9 +17,16 @@
             addBook: addBook,
             addStudent: addStudent,
             deleteStudent: deleteStudent,
-            deleteBook: deleteBook
+            deleteBook: deleteBook,
+            deleteBookStudent: deleteBookStudent
         };
 
+        function deleteBookStudent(id) {
+            return $http({
+                url: $rootScope.serverAdd + '/bookStudent/' + id + '/delete',
+                method: 'DELETE'
+            })
+        }
 
         function deleteStudent(studentId) {
             return $http({
