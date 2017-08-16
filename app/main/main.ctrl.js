@@ -95,6 +95,19 @@
                         })
                 }
 
+                $scope.deleteBookStudent = function(id) {
+                    $('#close_modal_delete_book_student').trigger('click');
+                    userServices.deleteBookStudent(id)
+                        .then(function() {
+                            var index = $scope.allBookStudent.findIndex(x => x.id === id)
+                            if (index != -1) {
+                                $scope.allBookStudent.splice(index, 1);
+                            }
+                        }, function() {
+                            $scope.alertDanger("Không xóa được", "dangerBS");
+                        })
+                }
+
                 $scope.addBook = function() {
                     if ($scope.inputBook.bookName != undefined || $scope.inputBook.bookName != "") {
                         userServices.addBook($scope.inputBook)
