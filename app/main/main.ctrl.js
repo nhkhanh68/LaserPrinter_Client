@@ -39,115 +39,117 @@
                     $location.path('/login');
                 }
 
-                $scope.borrowBook = function(){
+                $scope.borrowBook = function() {
                     $scope.req = {};
                     $scope.req.studentId = $scope.student.id;
                     $scope.req.bookId = $scope.input.bookId;
                     $scope.req.expiryDate = $scope.input.expiryDate;
                     userServices.borrowBook($scope.req)
-                        .then(function(response){
+                        .then(function(response) {
                             console.log(response.data);
                             $scope.alertSuccess("Thêm thành công!", '');
-                            var index = $scope.response.findIndex(x => x.count === $scope.student.count);
-                            if(index != -1){
+                            var index = $scope.response.findIndex(x => x.index === $scope.student.index);
+                            if (index != -1) {
                                 $scope.response.splice(index, 1);
 
                             }
                             $scope.allBookStudent.push(response.data);
                             // $scope.$apply();
+                            $scope.input.bookId = undefined;
+                            $scope.input.expiryDate = undefined;
                             $scope.student = undefined;
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                             $scope.alertDanger(error.data.message, '');
                         })
-                } 
+                }
 
-                $scope.confirmDelete = function(id, name){
+                $scope.confirmDelete = function(id, name) {
                     $scope.confirmDeleteName = name;
                     $scope.confirmDeleteId = id;
                 }
 
-                $scope.deleteStudent = function(id){
+                $scope.deleteStudent = function(id) {
                     $('#close_modal_delete_student').trigger('click');
                     userServices.deleteStudent(id)
-                        .then(function(){
+                        .then(function() {
                             var index = $scope.allStudent.findIndex(x => x.id === id)
-                            if(index != -1){
+                            if (index != -1) {
                                 $scope.allStudent.splice(index, 1);
                             }
-                        }, function(){
+                        }, function() {
                             $scope.alertDanger("Không xóa được", "dangerStudent");
                         })
                 }
 
-                $scope.deleteBook = function(id){
+                $scope.deleteBook = function(id) {
                     $('#close_modal_delete_book').trigger('click');
                     userServices.deleteBook(id)
-                        .then(function(){
+                        .then(function() {
                             var index = $scope.allBook.findIndex(x => x.id === id)
-                            if(index != -1){
+                            if (index != -1) {
                                 $scope.allBook.splice(index, 1);
                             }
-                        }, function(){
+                        }, function() {
                             $scope.alertDanger("Không xóa được", "dangerBook");
                         })
                 }
 
-                $scope.addBook = function(){
-                    if($scope.inputBook.bookName != undefined || $scope.inputBook.bookName != ""){
+                $scope.addBook = function() {
+                    if ($scope.inputBook.bookName != undefined || $scope.inputBook.bookName != "") {
                         userServices.addBook($scope.inputBook)
-                            .then(function(response){
+                            .then(function(response) {
                                 $scope.allBook.push(response.data);
                                 $scope.inputBook = {};
-                            }, function(error){
+                            }, function(error) {
                                 console.log(error);
                             })
                     }
                 }
 
-                $scope.addStudent = function(){
-                    if($scope.inputStudent.fullName != undefined || $scope.inputStudent.fullName != "" || $scope.inputStudent.studentCode != undefined || $scope.inputStudent.studentCode != ""){
+                $scope.addStudent = function() {
+                    if ($scope.inputStudent.fullName != undefined || $scope.inputStudent.fullName != "" || $scope.inputStudent.studentCode != undefined || $scope.inputStudent.studentCode != "") {
                         userServices.addStudent($scope.inputStudent)
-                            .then(function(response){
+                            .then(function(response) {
                                 $scope.allStudent.push(response.data);
                                 $scope.inputStudent = {};
-                            }, function(error){
+                            }, function(error) {
                                 console.log(error);
                                 $scope.alertDanger(error.data.message, "dangerStudent");
                             })
                     }
                 }
 
-                $scope.getAllStudent = function(){
+                $scope.getAllStudent = function() {
                     userServices.getAllStudent()
-                        .then(function(response){
+                        .then(function(response) {
                             $scope.allStudent = response.data;
                             console.log(response.data);
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                         })
                 }
 
-                $scope.getAllBookStudent = function(){
+                $scope.getAllBookStudent = function() {
                     userServices.getAllBookStudent()
-                        .then(function(response){
+                        .then(function(response) {
                             $scope.allBookStudent = response.data;
                             console.log(response.data);
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                         })
                 }
 
-                $scope.selectStudent = function(student){
+                $scope.selectStudent = function(student) {
                     $scope.student = student;
                 }
 
-                $scope.getAllBook = function(){
+                $scope.getAllBook = function() {
                     userServices.getAllBook()
-                        .then(function(response){
+                        .then(function(response) {
                             $scope.allBook = response.data;
                             console.log(response.data);
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                         })
                 }
@@ -194,7 +196,7 @@
                                 $scope.danger_edit = false;
                             });
                         }, 6000);
-                    } else if(danger == 'dangerStudent'){
+                    } else if (danger == 'dangerStudent') {
                         $scope.dangerStudent = true;
                         $timeout(function() {
                             // 
