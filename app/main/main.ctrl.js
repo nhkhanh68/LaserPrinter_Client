@@ -6,8 +6,14 @@
                 $rootScope.clientAdd = "http://localhost:8000";
                 $rootScope.response = [];
                 $scope.socket = [];
+                $scope.inputHealth = {};
+                // $scope.inputPatient = {
+                //     name: '1',
+                //     patientCode: '1',
+                //     address: '1',
+                //     date: '1'
+                // };
                 $scope.count = 0;
-                $scope.show = true;
                 console.log(1);
                 $scope.reconnect = function() {
                     setTimeout($scope.initSockets, 10000);
@@ -16,7 +22,7 @@
                     $scope.socket.client = new SockJS($rootScope.serverAdd + '/uet');
                     $scope.socket.stomp = Stomp.over($scope.socket.client);
                     $scope.socket.stomp.connect({}, function() {
-                        $scope.socket.stomp.subscribe("/user/khanh/**", function(message) {
+                        $scope.socket.stomp.subscribe("/user/" + $scope.name + "/**", function(message) {
                             var response = JSON.parse(message.body);
                             response.time = new Date().getTime();
                             response.index = $scope.count;
@@ -32,11 +38,129 @@
                     $rootScope.loggedIn = true;
                     $rootScope.userName = sessionStorage["userName"];
                     $rootScope.id = sessionStorage["id"];
-                    $scope.initSockets();
+                    $rootScope.role = sessionStorage["role"];
+                    if ($rootScope.role == 'client-student') {
+                        $scope.name = 'student';
+                        $scope.initSockets();
+                    } else if ($rootScope.role == 'client-patient') {
+                        $scope.name = 'patient';
+                        $scope.initSockets();
+                    } else {
+                        // $scope.name = "student";
+                        console.log($scope.show)
+                    }
+                    $scope.show = $rootScope.role;
+
                 } else {
 
                     $rootScope.loggedIn = false;
                     $location.path('/login');
+                }
+
+                $scope.deleteHealth = function(id) {
+                    $('#close_modal_delete_health').trigger('click');
+                    userServices.deleteHealth(id)
+                        .then(function() {
+                            var index = $scope.allHealthRecords.findIndex(x => x.id === id)
+                            if (index != -1) {
+                                $scope.allHealthRecords.splice(index, 1);
+                            }
+                        })
+                }
+
+                $scope.deletePatient = function(id) {
+                    $('#close_modal_delete_patient').trigger('click');
+                    userServices.deletePatient(id)
+                        .then(function() {
+                            var index = $scope.allPatient.findIndex(x => x.id === id)
+                            if (index != -1) {
+                                $scope.allPatient.splice(index, 1);
+                            }
+                        })
+                }
+
+                $scope.clearAll = function() {
+                    $scope.response = [];
+                }
+
+                $scope.selectPatient = function(data) {
+                    $scope.patient = data;
+                    $scope.inputHealth.patientId = data.patientId;
+                }
+
+                $scope.createHealthRecords = function() {
+                    // $scope.inputHealth.patientId = $scope.patient.id;
+                    if ($scope.inputHealth.content != undefined && $scope.inputHealth.patientId != undefined && $scope.inputHealth.ppDieuTri != undefined && $scope.inputHealth.lyDoKham != undefined) {
+                        $scope.inputHealth.content = $scope.inputHealth.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $scope.inputHealth.ppDieuTri = $scope.inputHealth.ppDieuTri.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $scope.inputHealth.lyDoKham = $scope.inputHealth.lyDoKham.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        var date = new Date();
+                        var curr_date = date.getDate();
+                        var curr_month = date.getMonth() + 1; //Months are zero based
+                        var curr_year = date.getFullYear();
+                        $scope.inputHealth.date = curr_date + "-" + curr_month + "-" + curr_year;
+                        console.log($scope.inputHealth.ngayKhamLai);
+                        if ($scope.inputHealth.ngayKhamLai != undefined || $scope.inputHealth.ngayKhamLai != null) {
+                            var date = $scope.inputHealth.ngayKhamLai;
+                            var curr_date = date.getDate();
+                            var curr_month = date.getMonth() + 1; //Months are zero based
+                            var curr_year = date.getFullYear();
+                            $scope.inputHealth.ngayKhamLai = curr_date + "-" + curr_month + "-" + curr_year;
+                        }
+                        console.log($scope.inputHealth);
+                        userServices.createHealthRecords($scope.inputHealth)
+                            .then(function(response) {
+                                $scope.allHealthRecords.push(response.data);
+                                var index = $scope.response.findIndex(x => x.index === $scope.patient.index);
+                                if (index != -1) {
+                                    $scope.response.splice(index, 1);
+
+                                }
+                                $scope.inputHealth = {};
+                                $scope.patient = undefined;
+                            }, function(error) {
+                                console.log(error);
+                            })
+                    }
+                }
+
+                $scope.getAllHealthRecords = function() {
+                    userServices.getAllHealthRecords()
+                        .then(function(response) {
+                            $scope.allHealthRecords = response.data;
+                        }, function(error) {
+                            console.log(error);
+                        })
+                }
+
+                $scope.addPatient = function() {
+                    console.log($scope.inputPatient);
+                    if ($scope.inputPatient.name != undefined && $scope.inputPatient.patientCode != undefined && $scope.inputPatient.dateOfBirth != undefined && $scope.inputPatient.address != undefined) {
+                        // var date = $scope.inputPatient.date
+                        // var curr_date = date.getDate();
+                        // var curr_month = date.getMonth() + 1; //Months are zero based
+                        // var curr_year = date.getFullYear();
+                        // $scope.inputPatient.dateOfBirth = curr_date + "-" + curr_month + "-" + curr_year;
+                        // console.log($scope.inputPatient.dateOfBirth);
+                        userServices.createPatient($scope.inputPatient)
+                            .then(function(response) {
+                                $scope.allPatient.push(response.data);
+                                $scope.inputPatient = {};
+                            }, function(error) {
+                                // $scope.alertDanger(e)
+                                console.log(error);
+                            })
+                    }
+                }
+
+                $scope.getAllPatient = function() {
+                    userServices.getAllPatient()
+                        .then(function(response) {
+                            $scope.allPatient = response.data;
+                            $scope.inputPatient = {};
+                        }, function(error) {
+                            console.log(error);
+                        })
                 }
 
                 $scope.borrowBook = function() {
@@ -177,27 +301,26 @@
                             sessionStorage.setItem("User-Data", response.data.token);
                             sessionStorage.setItem("id", response.data.id);
                             sessionStorage.setItem("userName", response.data.userName);
+                            sessionStorage.setItem("role", response.data.role);
                             $window.location.href = $rootScope.clientAdd;
                         }, function(error) {
                             console.log(error);
-                            if (error.data.indexOf("Wrong password") != -1) {
-                                $scope.alertDanger("Wrong password!", "");
-                            } else if (error.data.indexOf("Worng username") != -1) {
-                                $scope.alertDanger("Worng username!", "");
-                            } else {
-                                $scope.alertDanger("Error", "");
-                            }
+                            $scope.alertDanger(error.data.message, "");
+                            // if (error.data.message("Wrong password") != -1) {
+
+                            // } else if (error.data.message("Worng username") != -1) {
+                            //     $scope.alertDanger("Worng username!", "");
+                            // } else {
+                            //     $scope.alertDanger("Error", "");
+                            // }
                         })
                     // sessionStorage.setItem("User-Data", "hoangkhanh");
                     // $window.location.href = $rootScope.clientAdd;
                 }
 
                 $scope.logout = function() {
-                    userServices.logout()
-                        .then(function() {
-                            sessionStorage.clear();
-                            $window.location.href = $rootScope.clientAdd;
-                        })
+                    sessionStorage.clear();
+                    $window.location.href = $rootScope.clientAdd;
                 }
 
                 $scope.alertDanger = function(error, danger) {

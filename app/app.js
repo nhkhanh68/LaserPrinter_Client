@@ -7,7 +7,8 @@ angular.module('myApp', [
     'ui.bootstrap',
     'ngRoute',
     'services',
-    'angular-md5'
+    'angular-md5',
+    'ngSanitize'
 ]).
 config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.hashPrefix('');
