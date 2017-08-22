@@ -18,8 +18,58 @@
             addStudent: addStudent,
             deleteStudent: deleteStudent,
             deleteBook: deleteBook,
-            deleteBookStudent: deleteBookStudent
+            deleteBookStudent: deleteBookStudent,
+            getAllPatient: getAllPatient,
+            createPatient: createPatient,
+            getAllHealthRecords: getAllHealthRecords,
+            createHealthRecords : createHealthRecords,
+            deletePatient: deletePatient,
+            deleteHealth: deleteHealth
         };
+
+        function deleteHealth(id){
+            return $http({
+                url: $rootScope.serverAdd + '/healthrecords/' + id + '/delete',
+                method: 'DELETE'
+            })
+        }
+
+        function deletePatient(id){
+            return $http({
+                url: $rootScope.serverAdd + '/patient/' + id + '/delete',
+                method: 'DELETE'
+            })
+        }
+
+        function createHealthRecords(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/healthRecords/create',
+                method: 'POST',
+                data: data
+            })
+        }
+
+        function getAllHealthRecords() {
+            return $http({
+                url: $rootScope.serverAdd + '/healthRecords',
+                method: 'GET'
+            })
+        }
+
+        function getAllPatient() {
+            return $http({
+                url: $rootScope.serverAdd + '/patient',
+                method: 'GET'
+            })
+        }
+
+        function createPatient(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/patient/create',
+                method: 'POST',
+                data: data
+            })
+        }
 
         function deleteBookStudent(id) {
             return $http({
