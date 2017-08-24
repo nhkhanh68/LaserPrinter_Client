@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_content">
-                                <div class="col-md-6 col-sm-6 col-xs-6" ng-init="getAllBookStudent()">
+                                <div class="col-md-12 col-sm-12 col-xs-12" ng-init="getAllBookStudent()">
                                     <div class="x_panel">
                                         <div class="alert alert-success" ng-if="successBS">
                                             <strong>{{successMessage}}</strong>
@@ -112,7 +112,11 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Tên</th>
+                                                    <th>Ngày sinh</th>
                                                     <th>MSSV</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Giới tính</th>
+                                                    <th>Địa chỉ</th>
                                                     <th>Tên sách</th>
                                                     <th>Ngày mượn</th>
                                                     <th>Ngày hết hạn</th>
@@ -123,7 +127,11 @@
                                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
                                                     <td>{{$index+1}}</td>
                                                     <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.student.studentCode}}</td>
+                                                    <td>{{data.student.birthday}}</td>
+                                                    <td>{{data.student.studentCode}}</td>
+                                                    <td>{{data.student.phoneNumber}}</td>
+                                                    <td>{{data.student.desire}}</td>
+                                                    <td>{{data.student.address}}</td>
                                                     <td>{{data.book.bookName}}</td>
                                                     <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
                                                     <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
@@ -135,7 +143,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="x_panel">
                                         <div class="alert alert-success" ng-if="success">
                                             <strong>{{successMessage}}</strong>
@@ -182,7 +190,11 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Tên</th>
+                                                    <th>Ngày sinh</th>
                                                     <th>MSSV</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Giới tính</th>
+                                                    <th>Địa chỉ</th>
                                                     <th>Thời gian</th>
                                                 </tr>
                                             </thead>
@@ -191,7 +203,11 @@
                                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
                                                     <td>{{$index+1}}</td>
                                                     <td id="contactName_{{contact.id}}">{{data.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.studentCode}}</td>
+                                                    <td>{{data.student.birthday}}</td>
+                                                    <td>{{data.student.studentCode}}</td>
+                                                    <td>{{data.student.phoneNumber}}</td>
+                                                    <td>{{data.student.desire}}</td>
+                                                    <td>{{data.student.address}}</td>
                                                     <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
                                                     <td ng-if="data.address != 'NF'">
                                                         <input type="radio" name="tich" ng-click="selectStudent(data)">
