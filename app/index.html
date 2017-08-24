@@ -99,50 +99,6 @@
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_content">
-                                <div class="col-md-12 col-sm-12 col-xs-12" ng-init="getAllBookStudent()">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successBS">
-                                            <strong>{{successMessage}}</strong>
-                                        </div>
-                                        <div class="alert alert-danger" ng-if="dangerBS">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>Ngày sinh</th>
-                                                    <th>MSSV</th>
-                                                    <th>Số điện thoại</th>
-                                                    <th>Giới tính</th>
-                                                    <th>Địa chỉ</th>
-                                                    <th>Tên sách</th>
-                                                    <th>Ngày mượn</th>
-                                                    <th>Ngày hết hạn</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="data in allBookStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
-                                                    <td>{{data.student.birthday}}</td>
-                                                    <td>{{data.student.studentCode}}</td>
-                                                    <td>{{data.student.phoneNumber}}</td>
-                                                    <td>{{data.student.desire}}</td>
-                                                    <td>{{data.student.address}}</td>
-                                                    <td>{{data.book.bookName}}</td>
-                                                    <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
-                                                    <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="x_panel">
                                         <div class="alert alert-success" ng-if="success">
@@ -196,6 +152,9 @@
                                                     <th>Giới tính</th>
                                                     <th>Địa chỉ</th>
                                                     <th>Thời gian</th>
+                                                    <th ng-if="response.length != 0">
+                                                        <button type="submit" class="btn btn-success" ng-click="clearAll()">Xóa tất cả</button>
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -211,6 +170,50 @@
                                                     <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
                                                     <td ng-if="data.address != 'NF'">
                                                         <input type="radio" name="tich" ng-click="selectStudent(data)">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12" ng-init="getAllBookStudent()">
+                                    <div class="x_panel">
+                                        <div class="alert alert-success" ng-if="successBS">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-danger" ng-if="dangerBS">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>Ngày sinh</th>
+                                                    <th>MSSV</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Giới tính</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Tên sách</th>
+                                                    <th>Ngày mượn</th>
+                                                    <th>Ngày hết hạn</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in allBookStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
+                                                    <td>{{data.student.birthday}}</td>
+                                                    <td>{{data.student.studentCode}}</td>
+                                                    <td>{{data.student.phoneNumber}}</td>
+                                                    <td>{{data.student.desire}}</td>
+                                                    <td>{{data.student.address}}</td>
+                                                    <td>{{data.book.bookName}}</td>
+                                                    <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                    <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                                    <td class=" ">
+                                                        <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
