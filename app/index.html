@@ -233,6 +233,33 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày sinh: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.birthday">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.phoneNumber">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Giới tính: </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="radio" name="gioitinh" ng-checked="inputStudent
+                                                    .desire = 'Nam'">Nam
+                                                    <input type="radio" name="gioitinh" ng-checked="inputStudent
+                                                    .desire = 'Nữ'">Nữ
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                     <button type="submit" class="btn btn-success" ng-click="addStudent()">Thêm</button>
                                                 </div>
@@ -278,15 +305,23 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Tên</th>
+                                                    <th>Ngày sinh</th>
                                                     <th>MSSV</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Giới tính</th>
+                                                    <th>Địa chỉ</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="student in allStudent | orderBy:'-id'">
                                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
                                                     <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{student.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{student.studentCode}}</td>
+                                                    <td>{{student.fullName}}</td>
+                                                    <td>{{student.birthday}}</td>
+                                                    <td>{{student.studentCode}}</td>
+                                                    <td>{{student.phoneNumber}}</td>
+                                                    <td>{{student.desire}}</td>
+                                                    <td>{{student.address}}</td>
                                                     <td class=" ">
                                                         <a class="cursor" ng-click="confirmDelete(student.id, student.fullName)" data-toggle="modal" data-target="#delete_student"><i class="fa fa-trash"></i></a>
                                                     </td>
