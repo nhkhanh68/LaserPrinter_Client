@@ -24,8 +24,24 @@
             getAllHealthRecords: getAllHealthRecords,
             createHealthRecords : createHealthRecords,
             deletePatient: deletePatient,
-            deleteHealth: deleteHealth
+            deleteHealth: deleteHealth,
+            getAllBookStudentOfStudent: getAllBookStudentOfStudent,
+            getAllHealthRecordsOfPatient: getAllHealthRecordsOfPatient
         };
+
+        function getAllHealthRecordsOfPatient(patientId) {
+            return $http({
+                url: $rootScope.serverAdd + '/healthRecords/' + patientId,
+                method: 'GET'
+            })
+        }
+
+        function getAllBookStudentOfStudent(studentId) {
+            return $http({
+                url: $rootScope.serverAdd + '/bookStudent/' + studentId,
+                method: 'GET'
+            })
+        }
 
         function deleteHealth(id){
             return $http({

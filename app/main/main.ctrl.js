@@ -7,6 +7,15 @@
                 $rootScope.response = [];
                 $scope.socket = [];
                 $scope.inputHealth = {};
+                $scope.input = [];  
+                $scope.sach = "themsach";
+                $scope.bv = "themba";
+                $scope.chonsach = function(string){
+                    $scope.sach = string;
+                }
+                $scope.chonbv = function(string){
+                    $scope.bv = string;
+                }
                 // $scope.inputPatient = {
                 //     name: '1',
                 //     patientCode: '1',
@@ -50,11 +59,30 @@
                         console.log($scope.show)
                     }
                     $scope.show = $rootScope.role;
-
                 } else {
 
                     $rootScope.loggedIn = false;
                     $location.path('/login');
+                }
+
+                $scope.getAllHealthRecordsOfPatient = function(id){
+                    userServices.getAllHealthRecordsOfPatient(id)
+                        .then(function(response){
+                            console.log(response.data);
+                            $scope.allHealthRecordsOfPatient = response.data;
+                        }, function(error){
+                            console.log(error);
+                        })
+                }
+
+                $scope.getAllBookStudentOfStudent = function(id){
+                    userServices.getAllBookStudentOfStudent(id)
+                        .then(function(response){
+                            console.log(response.data);
+                            $scope.allBookStudentOfStudent = response.data;
+                        }, function(error){
+                            console.log(error);
+                        })
                 }
 
                 $scope.deleteHealth = function(id) {
@@ -81,6 +109,8 @@
 
                 $scope.clearAll = function() {
                     $scope.response = [];
+                    $scope.student = undefined;
+                    $scope.patient = undefined;
                 }
 
                 $scope.selectPatient = function(data) {
@@ -116,6 +146,7 @@
                                     $scope.response.splice(index, 1);
 
                                 }
+                                $scope.alertSuccess("Thêm thành công!", "");
                                 $scope.inputHealth = {};
                                 $scope.patient = undefined;
                             }, function(error) {
@@ -168,6 +199,7 @@
                     $scope.req.studentId = $scope.student.id;
                     $scope.req.bookId = $scope.input.bookId;
                     $scope.req.expiryDate = $scope.input.expiryDate;
+                    console.log($scope.req)
                     userServices.borrowBook($scope.req)
                         .then(function(response) {
                             console.log(response.data);

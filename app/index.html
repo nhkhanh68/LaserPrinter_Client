@@ -53,9 +53,16 @@
                         <div class="menu_section">
                             <!-- <h3>General</h3> -->
                             <ul class="nav side-menu">
-                                <li class="cursor" ng-if="role == 'admin-st'"><a><i class="fa fa-gear"></i> Thiết đặt </a>
+                                <!-- <li class="cursor" ng-if="role == 'admin-st'"><a><i class="fa fa-gear"></i> Thiết đặt </a>
+                                </li> -->
+                                <li ng-class="{active : sach == 'themsach'}" ng-click="chonsach('themsach')" class="cursor" ng-if="role == 'client-student'"><a><i class="fa fa-book"></i> Sách </a>
                                 </li>
-                                <li ng-click="show = true" class="cursor" ng-if="role == 'client-student'"><a><i class="fa fa-book"></i> Sách </a></li>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonsach('tatca')" class="cursor" ng-if="role == 'client-student'"><a><i class="fa fa-book"></i> Tất cả </a>
+                                </li>
+                                <li ng-class="{active : sach == 'themsach'}" ng-click="chonbv('themba')" class="cursor" ng-if="role == 'client-patient'"><a><i class="fa fa-book"></i> Thêm </a>
+                                </li>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatca')" class="cursor" ng-if="role == 'client-patient'"><a><i class="fa fa-book"></i> Tất cả </a>
+                                </li>
                                 <!-- <li class="active"><a>Đối tác <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: block;">
                                         <li ng-class="{active : currentUrl == '/contract'}" ng-click="currentUrl = '/contract'"><a href="/#/partner/contract"><i class="fa fa-archive"></i> Hợp Đồng </a></li>
@@ -94,227 +101,290 @@
             </div>
             <div class="right_col" role="main" ng-init="getAllBook()">
                 <!-- client student -->
-                <div class="" ng-show="show == 'client-student'">
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="col-md-6 col-sm-6 col-xs-6" ng-init="getAllBookStudent()">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successBS">
-                                            <strong>{{successMessage}}</strong>
-                                        </div>
-                                        <div class="alert alert-danger" ng-if="dangerBS">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>MSSV</th>
-                                                    <th>Tên sách</th>
-                                                    <th>Ngày mượn</th>
-                                                    <th>Ngày hết hạn</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="data in allBookStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.student.studentCode}}</td>
-                                                    <td>{{data.book.bookName}}</td>
-                                                    <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
-                                                    <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="success">
-                                            <strong>{{successMessage}}</strong>
-                                        </div>
-                                        <div class="alert alert-danger" ng-if="danger">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <form class="form-horizontal form-label-left" id="add_follow_student">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sinh viên:
-                                                </label>
-                                                <div class="col-md-9 col-sm-12 col-xs-12">
-                                                    <label class="btn btn-default" ng-if="student != undefined">
-                                                        {{student.fullName}}
-                                                        <span id="span_{{student.id}}" ng-show="student.show">x</span>
+                <div ng-if="show == 'client-student' || show == 'admin-st'">
+                    <div class="" ng-show="show == 'client-student'">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="sach == 'themsach'">
+                                        <div class="x_panel">
+                                            <form class="form-horizontal form-label-left" id="add_follow_student">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sinh viên:
                                                     </label>
+                                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                                        <label class="btn btn-default" ng-if="student != undefined">
+                                                            {{student.fullName}}
+                                                            <span id="span_{{student.id}}" ng-show="student.show">x</span>
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên sách:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="form-control" ng-model="input.bookId">
-                                                        <option ng-repeat="book in allBook" value="{{book.id}}">
-                                                            {{book.bookName}}
-                                                        </option>
-                                                    </select>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tên sách:</label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <select class="form-control" ng-model="input.bookId">
+                                                            <option ng-repeat="book in allBook" value="{{book.id}}">
+                                                                {{book.bookName}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày hết hạn: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="date" class="form-control col-md-7 col-xs-12" ng-model="input.expiryDate" value="{{input.expiryDate}}">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày hết hạn: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="date" class="form-control col-md-7 col-xs-12" ng-model="input.expiryDate" value="{{input.expiryDate}}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-success" ng-click="borrowBook()">Thêm</button>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                        <button type="submit" class="btn btn-success" ng-click="borrowBook()">Thêm</button>
+                                                    </div>
                                                 </div>
+                                                <div class="divider-dashed"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="sach == 'themsach'">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="success">
+                                                <strong>{{successMessage}}</strong>
                                             </div>
-                                            <div class="divider-dashed"></div>
-                                        </form>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>MSSV</th>
-                                                    <th>Thời gian</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{data.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.studentCode}}</td>
-                                                    <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
-                                                    <td ng-if="data.address != 'NF'">
-                                                        <input type="radio" name="tich" ng-click="selectStudent(data)">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                            <div class="alert alert-danger" ng-if="danger">
+                                                <strong>{{errorMessage}}</strong>
+                                            </div>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên</th>
+                                                        <th>Ngày sinh</th>
+                                                        <th>MSSV</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Giới tính</th>
+                                                        <th>Địa chỉ</th>
+                                                        <th>Thời gian</th>
+                                                        <th ng-if="response.length != 0">
+                                                            <button type="submit" class="btn btn-success" ng-click="clearAll()">Xóa tất cả</button>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
+                                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                        <td>{{$index+1}}</td>
+                                                        <td id="contactName_{{contact.id}}">{{data.fullName}}</td>
+                                                        <td>{{data.student.birthday}}</td>
+                                                        <td>{{data.student.studentCode}}</td>
+                                                        <td>{{data.student.phoneNumber}}</td>
+                                                        <td>{{data.student.desire}}</td>
+                                                        <td>{{data.student.address}}</td>
+                                                        <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                        <td ng-if="data.address != 'NF'">
+                                                            <a class="cursor" ng-click="getAllBookStudentOfStudent(data.id)" data-toggle="modal" data-target="#book_student_of_student">Lịch sử mưọn sách</i></a>
+                                                        </td>
+                                                        <td ng-if="data.address != 'NF'">
+                                                            <input type="radio" name="tich" ng-click="selectStudent(data)">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="sach == 'tatca'" ng-init="getAllBookStudent()">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="successBS">
+                                                <strong>{{successMessage}}</strong>
+                                            </div>
+                                            <div class="alert alert-danger" ng-if="dangerBS">
+                                                <strong>{{errorMessage}}</strong>
+                                            </div>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên</th>
+                                                        <th>Ngày sinh</th>
+                                                        <th>MSSV</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Giới tính</th>
+                                                        <th>Địa chỉ</th>
+                                                        <th>Tên sách</th>
+                                                        <th>Ngày mượn</th>
+                                                        <th>Ngày hết hạn</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="data in allBookStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
+                                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                        <td>{{$index+1}}</td>
+                                                        <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
+                                                        <td>{{data.student.birthday}}</td>
+                                                        <td>{{data.student.studentCode}}</td>
+                                                        <td>{{data.student.phoneNumber}}</td>
+                                                        <td>{{data.student.desire}}</td>
+                                                        <td>{{data.student.address}}</td>
+                                                        <td>{{data.book.bookName}}</td>
+                                                        <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                        <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                                        <td class=" ">
+                                                            <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- admin student -->
-                <div class="" ng-show="show == 'admin-st'">
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="col-md6 col-sm6 col-xs-6">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successStudent">
-                                            <strong>{{successMessage}}</strong>
+                    <!-- admin student -->
+                    <div class="" ng-show="show == 'admin-st'">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md6 col-sm6 col-xs-6">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="successStudent">
+                                                <strong>{{successMessage}}</strong>
+                                            </div>
+                                            <div class="alert alert-danger" ng-if="dangerStudent">
+                                                <strong>{{errorMessage}}</strong>
+                                            </div>
+                                            <form class="form-horizontal form-label-left" id="add_follow_student">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.fullName">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số sinh viên: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.studentCode">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày sinh: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.birthday">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.phoneNumber">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.address">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Giới tính: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="radio" name="gioitinh" ng-model="inputStudent
+                                                    .desire" value="Nam">Nam
+                                                        <input type="radio" name="gioitinh" ng-model="inputStudent
+                                                    .desire" value="Nữ">Nữ
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                        <button type="submit" class="btn btn-success" ng-click="addStudent()">Thêm</button>
+                                                    </div>
+                                                </div>
+                                                <div class="divider-dashed"></div>
+                                            </form>
                                         </div>
-                                        <div class="alert alert-danger" ng-if="dangerStudent">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <form class="form-horizontal form-label-left" id="add_follow_student">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.fullName">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số sinh viên: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputStudent.studentCode">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-success" ng-click="addStudent()">Thêm</button>
-                                                </div>
-                                            </div>
-                                            <div class="divider-dashed"></div>
-                                        </form>
                                     </div>
-                                </div>
-                                <div class="col-md6 col-sm6 col-xs-6">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successBook">
-                                            <strong>{{successMessage}}</strong>
-                                        </div>
-                                        <div class="alert alert-danger" ng-if="dangerBook">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <form class="form-horizontal form-label-left">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên sách: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputBook.bookName">
-                                                </div>
+                                    <div class="col-md6 col-sm6 col-xs-6">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="successBook">
+                                                <strong>{{successMessage}}</strong>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-success" ng-click="addBook()">Thêm</button>
-                                                </div>
+                                            <div class="alert alert-danger" ng-if="dangerBook">
+                                                <strong>{{errorMessage}}</strong>
                                             </div>
-                                            <div class="divider-dashed"></div>
-                                        </form>
+                                            <form class="form-horizontal form-label-left">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tên sách: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputBook.bookName">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                        <button type="submit" class="btn btn-success" ng-click="addBook()">Thêm</button>
+                                                    </div>
+                                                </div>
+                                                <div class="divider-dashed"></div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="col-md6 col-sm6 col-xs-6" ng-init="getAllStudent()">
-                                    <div class="x_panel">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>MSSV</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="student in allStudent | orderBy:'-id'">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{student.fullName}}</td>
-                                                    <td id="email_{{contact.id}}">{{student.studentCode}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(student.id, student.fullName)" data-toggle="modal" data-target="#delete_student"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md6 col-sm6 col-xs-6" ng-init="getAllStudent()">
+                                        <div class="x_panel">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên</th>
+                                                        <th>Ngày sinh</th>
+                                                        <th>MSSV</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Giới tính</th>
+                                                        <th>Địa chỉ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="student in allStudent | orderBy:'-id'">
+                                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{student.fullName}}</td>
+                                                        <td>{{student.birthday}}</td>
+                                                        <td>{{student.studentCode}}</td>
+                                                        <td>{{student.phoneNumber}}</td>
+                                                        <td>{{student.desire}}</td>
+                                                        <td>{{student.address}}</td>
+                                                        <td class=" ">
+                                                            <a class="cursor" ng-click="confirmDelete(student.id, student.fullName)" data-toggle="modal" data-target="#delete_student"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md6 col-sm6 col-xs-6">
-                                    <div class="x_panel">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên sách</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="book in allBook | orderBy:'-id'">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{book.bookName}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(book.id, book.bookName)" data-toggle="modal" data-target="#delete_book"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md6 col-sm6 col-xs-6">
+                                        <div class="x_panel">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên sách</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="book in allBook | orderBy:'-id'">
+                                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                        <td>{{$index+1}}</td>
+                                                        <td id="contactName_{{contact.id}}">{{book.bookName}}</td>
+                                                        <td class=" ">
+                                                            <a class="cursor" ng-click="confirmDelete(book.id, book.bookName)" data-toggle="modal" data-target="#delete_book"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -322,212 +392,188 @@
                     </div>
                 </div>
                 <!-- admin patient -->
-                <div class="" ng-show="show == 'admin-pa'">
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="col-md6 col-sm6 col-xs-6" ng-init="getAllPatient()">
-                                    <div class="x_panel">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>Mã số</th>
-                                                    <th>Địa chỉ</th>
-                                                    <th>Năm sinh</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="patient in allPatient | orderBy:'-id'">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{patient.name}}</td>
-                                                    <td>{{patient.patientCode}}</td>
-                                                    <td>{{patient.address}}</td>
-                                                    <td>{{patient.dateOfBirth}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(patient.id, patient.name)" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-md6 col-sm6 col-xs-6">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successStudent">
-                                            <strong>{{successMessage}}</strong>
+                <div ng-if="show == 'client-patient' || show == 'admin-pa'">
+                    <div class="" ng-show="show == 'admin-pa'">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md6 col-sm6 col-xs-6">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="successStudent">
+                                                <strong>{{successMessage}}</strong>
+                                            </div>
+                                            <div class="alert alert-danger" ng-if="dangerStudent">
+                                                <strong>{{errorMessage}}</strong>
+                                            </div>
+                                            <form class="form-horizontal form-label-left" id="add_follow_student">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.name = ''">
+                                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số bệnh nhân: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.patientCode = ''">
+                                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.patientCode">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.address = ''">
+                                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.address">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày tháng năm sinh: </label>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+                                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.dateOfBirth">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                        <button type="submit" class="btn btn-success" ng-click="addPatient()">Thêm</button>
+                                                    </div>
+                                                </div>
+                                                <div class="divider-dashed"></div>
+                                            </form>
                                         </div>
-                                        <div class="alert alert-danger" ng-if="dangerStudent">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <form class="form-horizontal form-label-left" id="add_follow_student">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.name = ''">
-                                                    <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.name">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số bệnh nhân: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.patientCode = ''">
-                                                    <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.patientCode">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.address = ''">
-                                                    <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.address">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày tháng năm sinh: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
-                                                    <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.dateOfBirth">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-success" ng-click="addPatient()">Thêm</button>
-                                                </div>
-                                            </div>
-                                            <div class="divider-dashed"></div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- client patient -->
-                <div class="" ng-show="show == 'client-patient'">
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_content">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                <button type="submit" class="btn btn-success" data-toggle="collapse" data-target=".show-col" class="cursor">Thêm bệnh án</button>
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="success">
-                                            <strong>{{successMessage}}</strong>
-                                        </div>
-                                        <div class="alert alert-danger" ng-if="danger">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <div class="collapse show-col">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>Mã số</th>
-                                                    <th>Địa chỉ</th>
-                                                    <th>Thời gian</th>
-                                                    <th ng-if="response.length != 0">
-                                                        <button type="submit" class="btn btn-success" ng-click="clearAll()">Xóa tất cả</button>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td id="contactName_{{contact.id}}">{{data.name}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.patientCode}}</td>
-                                                    <td id="email_{{contact.id}}">{{data.address}}</td>
-                                                    <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
-                                                    <td>
-                                                        <input type="radio" name="tich" ng-click="selectPatient(data)">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <form class="form-horizontal form-label-left" id="add_follow_student">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và Tên:
-                                                </label>
-                                                <div class="col-md-9 col-sm-12 col-xs-12">
-                                                    <label class="btn btn-default" ng-if="patient != undefined">
-                                                        {{patient.name}}
-                                                        <span id="span_{{student.id}}" ng-show="student.show">x</span>
-                                                    </label>
-                                                </div>
+                    <!-- client patient -->
+                    <div class="" ng-show="show == 'client-patient'">
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_content">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="bv == 'themba'">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="success">
+                                                <strong>{{successMessage}}</strong>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do đến khám:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea class="form-control" rows="5" ng-model="inputHealth.lyDoKham"></textarea>
-                                                </div>
+                                            <div class="alert alert-danger" ng-if="danger">
+                                                <strong>{{errorMessage}}</strong>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuẩn đoán bệnh:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea class="form-control" rows="5" ng-model="inputHealth.content"></textarea>
-                                                </div>
+                                            <div class="show-col">
+                                                <form class="form-horizontal form-label-left" id="add_follow_student">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và Tên:
+                                                        </label>
+                                                        <div class="col-md-9 col-sm-12 col-xs-12">
+                                                            <label class="btn btn-default" ng-if="patient != undefined">
+                                                                {{patient.name}}
+                                                                <span id="span_{{student.id}}" ng-show="student.show">x</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do đến khám:</label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <textarea class="form-control" rows="5" ng-model="inputHealth.lyDoKham"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuẩn đoán bệnh:</label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <textarea class="form-control" rows="5" ng-model="inputHealth.content"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Phương pháp điều trị:</label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <textarea class="form-control" rows="5" ng-model="inputHealth.ppDieuTri"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày khám lại: </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input type="date" class="form-control col-md-7 col-xs-12" ng-model="inputHealth.ngayKhamLai">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                            <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="divider-dashed"></div>
+                                                </form>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Tên</th>
+                                                            <th>Mã số</th>
+                                                            <th>Địa chỉ</th>
+                                                            <th>Thời gian</th>
+                                                            <th ng-if="response.length != 0">
+                                                                <button type="submit" class="btn btn-success" ng-click="clearAll()">Xóa tất cả</button>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
+                                                            <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                            <td>{{$index+1}}</td>
+                                                            <td id="contactName_{{contact.id}}">{{data.name}}</td>
+                                                            <td id="email_{{contact.id}}">{{data.patientCode}}</td>
+                                                            <td id="email_{{contact.id}}">{{data.address}}{{data.patientId}}</td>
+                                                            <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                            <td class=" ">
+                                                                <a class="cursor" ng-click="getAllHealthRecordsOfPatient(data.patientId)" data-toggle="modal" data-target="#ba">Lịch sử khám</a>
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="tich" ng-click="selectPatient(data)">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Phương pháp điều trị:</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea class="form-control" rows="5" ng-model="inputHealth.ppDieuTri"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày khám lại: </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="date" class="form-control col-md-7 col-xs-12" ng-model="inputHealth.ngayKhamLai">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
-                                                </div>
-                                            </div>
-                                            <div class="divider-dashed"></div>
-                                        </form>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-6" ng-init="getAllHealthRecords()">
-                                    <div class="x_panel">
-                                        <div class="alert alert-success" ng-if="successBS">
-                                            <strong>{{successMessage}}</strong>
+                                    <div class="col-md-12 col-sm-12 col-xs-6" ng-init="getAllHealthRecords()" ng-show="bv == 'tatca'">
+                                        <div class="x_panel">
+                                            <div class="alert alert-success" ng-if="successBS">
+                                                <strong>{{successMessage}}</strong>
+                                            </div>
+                                            <div class="alert alert-danger" ng-if="dangerBS">
+                                                <strong>{{errorMessage}}</strong>
+                                            </div>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Tên</th>
+                                                        <th>Mã số</th>
+                                                        <th>Lý do khám</th>
+                                                        <th>Chuẩn đoán</th>
+                                                        <th>Phưong pháp điều trị</th>
+                                                        <th>Ngày khám</th>
+                                                        <th>Ngày khám lại</th>
+                                                        <th>Xoa</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="data in allHealthRecords | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{data.patient.name}}</td>
+                                                        <td>{{data.patient.patientCode}}</td>
+                                                        <td ng-bind-html="data.lyDoKham"></td>
+                                                        <td ng-bind-html="data.content"></td>
+                                                        <td ng-bind-html="data.ppDieuTri"></td>
+                                                        <td>{{data.date}}</td>
+                                                        <td>{{data.ngayKhamLai}}</td>
+                                                        <td class=" ">
+                                                            <a class="cursor" ng-click="confirmDelete(data.id, data.patient.name)" data-toggle="modal" data-target="#delete_health"><i class="fa fa-trash"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="alert alert-danger" ng-if="dangerBS">
-                                            <strong>{{errorMessage}}</strong>
-                                        </div>
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Tên</th>
-                                                    <th>Mã số</th>
-                                                    <th>Lý do khám</th>
-                                                    <th>Chuẩn đoán</th>
-                                                    <th>Phưong pháp điều trị</th>
-                                                    <th>Ngày khám</th>
-                                                    <th>Ngày khám lại</th>
-                                                    <th>Xoa</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="data in allHealthRecords | orderBy:'-id'" id="tr_contact_{{contact.id}}">
-                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{data.patient.name}}</td>
-                                                    <td>{{data.patient.patientCode}}</td>
-                                                    <td ng-bind-html="data.lyDoKham"></td>
-                                                    <td ng-bind-html="data.content"></td>
-                                                    <td ng-bind-html="data.ppDieuTri"></td>
-                                                    <td>{{data.date}}</td>
-                                                    <td>{{data.ngayKhamLai}}</td>
-                                                    <td class=" ">
-                                                        <a class="cursor" ng-click="confirmDelete(data.id, data.patient.name)" data-toggle="modal" data-target="#delete_health"><i class="fa fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -606,6 +652,102 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
                                 <button type="button" class="btn btn-primary" ng-click="deleteBookStudent(confirmDeleteId)">Xóa</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="book_student_of_student">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" ng-if="danger_edit">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <div class="alert alert-success" ng-if="successdelete_edit">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên</th>
+                                        <th>MSSV</th>
+                                        <th>Tên sách</th>
+                                        <th>Ngày mượn</th>
+                                        <th>Ngày hết hạn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in allBookStudentOfStudent | orderBy:'-borrowedDate'" id="tr_contact_{{contact.id}}">
+                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                        <td>{{$index+1}}</td>
+                                        <td id="contactName_{{contact.id}}">{{data.student.fullName}}</td>
+                                        <td id="email_{{contact.id}}">{{data.student.studentCode}}</td>
+                                        <td>{{data.book.bookName}}</td>
+                                        <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                        <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-primary" ng-click="saveOne()">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="ba">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" ng-if="danger_edit">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <div class="alert alert-success" ng-if="successdelete_edit">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên</th>
+                                        <th>Mã số</th>
+                                        <th>Lý do khám</th>
+                                        <th>Chuẩn đoán</th>
+                                        <th>Phưong pháp điều trị</th>
+                                        <th>Ngày khám</th>
+                                        <th>Ngày khám lại</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in allHealthRecordsOfPatient | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                        <td>{{$index+1}}</td>
+                                        <td>{{data.patient.name}}</td>
+                                        <td>{{data.patient.patientCode}}</td>
+                                        <td ng-bind-html="data.lyDoKham"></td>
+                                        <td ng-bind-html="data.content"></td>
+                                        <td ng-bind-html="data.ppDieuTri"></td>
+                                        <td>{{data.date}}</td>
+                                        <td>{{data.ngayKhamLai}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-primary" ng-click="saveOne()">Lưu thay đổi</button>
                         </div>
                     </div>
                 </div>
