@@ -26,8 +26,17 @@
             deletePatient: deletePatient,
             deleteHealth: deleteHealth,
             getAllBookStudentOfStudent: getAllBookStudentOfStudent,
-            getAllHealthRecordsOfPatient: getAllHealthRecordsOfPatient
+            getAllHealthRecordsOfPatient: getAllHealthRecordsOfPatient,
+            traSach: traSach
         };
+
+        function traSach(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/traSach',
+                method: 'POST',
+                data: data
+            })
+        }
 
         function getAllHealthRecordsOfPatient(patientId) {
             return $http({

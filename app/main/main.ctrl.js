@@ -7,13 +7,14 @@
                 $rootScope.response = [];
                 $scope.socket = [];
                 $scope.inputHealth = {};
-                $scope.input = [];  
+                $scope.input = [];
+                $scope.inputPatient = {};
                 $scope.sach = "themsach";
                 $scope.bv = "themba";
-                $scope.chonsach = function(string){
+                $scope.chonsach = function(string) {
                     $scope.sach = string;
                 }
-                $scope.chonbv = function(string){
+                $scope.chonbv = function(string) {
                     $scope.bv = string;
                 }
                 // $scope.inputPatient = {
@@ -22,22 +23,38 @@
                 //     address: '1',
                 //     date: '1'
                 // };
+                $scope.partner = {
+                    partner: {
+                        id: 1
+                    }
+                }
+                console.log($scope.partner);
                 $scope.count = 0;
                 console.log(1);
                 $scope.reconnect = function() {
                     setTimeout($scope.initSockets, 10000);
                 };
                 $scope.initSockets = function() {
+                    console.log($scope.name);
                     $scope.socket.client = new SockJS($rootScope.serverAdd + '/uet');
                     $scope.socket.stomp = Stomp.over($scope.socket.client);
                     $scope.socket.stomp.connect({}, function() {
                         $scope.socket.stomp.subscribe("/user/" + $scope.name + "/**", function(message) {
                             var response = JSON.parse(message.body);
-                            response.time = new Date().getTime();
-                            response.index = $scope.count;
-                            $scope.count++;
-                            $rootScope.response.push(response);
-                            console.log($rootScope.response);
+                            // response.time = new Date().getTime();
+                            // response.index = $scope.count;
+                            // $scope.count++;
+                            // $rootScope.response.push(response);
+                            // console.log($rootScope.response);
+                            if ($scope.name == "patient") {
+                                $scope.selectPatient(response);
+                                console.log(response.patientId);
+                                $scope.getAllHealthRecordsOfPatient(response.patientId);
+                            } else if ($scope.name == "student") {
+                                $scope.selectStudent(response);
+                                $scope.getAllBookStudentOfStudent(response.id);
+                                console.log(response);
+                            }
                             $rootScope.$apply();
                         });
                     });
@@ -65,22 +82,58 @@
                     $location.path('/login');
                 }
 
-                $scope.getAllHealthRecordsOfPatient = function(id){
-                    userServices.getAllHealthRecordsOfPatient(id)
-                        .then(function(response){
-                            console.log(response.data);
-                            $scope.allHealthRecordsOfPatient = response.data;
+                $scope.listTraSach = [];
+
+                $scope.addTraSach = function(data) {
+                    var index = $scope.listTraSach.findIndex(x => x.id === data.id);
+                    if (index != -1) {
+                        $scope.listTraSach.splice(index, 1);
+                    } else {
+
+                        $scope.listTraSach.push({
+                            id: data.id
+                        });
+                    }
+                }
+
+                $scope.traSach = function() {
+                    console.log($scope.listTraSach);
+                    userServices.traSach($scope.listTraSach)
+                        .then(function(){
+                            angular.forEach($scope.listTraSach, function(data){
+                                $('#status_' + data.id).text("Đã trả");
+                                $('#checkbox_' + data.id).trigger("click");
+                                $('#checkbox_' + data.id).hide();
+                                console.log(data.id);
+                            })
+                            $scope.listTraSach = [];
                         }, function(error){
                             console.log(error);
                         })
                 }
 
-                $scope.getAllBookStudentOfStudent = function(id){
+                $scope.convert = function(data) {
+                    if ($scope.patient.patient.tieuSuBenh != undefined) {
+                        $scope.patient.patient.tieuSuBenh = $scope.patient.patient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                }
+
+                $scope.getAllHealthRecordsOfPatient = function(id) {
+                    userServices.getAllHealthRecordsOfPatient(id)
+                        .then(function(response) {
+                            console.log(response.data);
+                            $scope.allHealthRecordsOfPatient = response.data;
+                        }, function(error) {
+                            console.log(error);
+                        })
+                }
+
+                $scope.getAllBookStudentOfStudent = function(id) {
                     userServices.getAllBookStudentOfStudent(id)
-                        .then(function(response){
+                        .then(function(response) {
                             console.log(response.data);
                             $scope.allBookStudentOfStudent = response.data;
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                         })
                 }
@@ -124,6 +177,8 @@
                         $scope.inputHealth.content = $scope.inputHealth.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         $scope.inputHealth.ppDieuTri = $scope.inputHealth.ppDieuTri.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         $scope.inputHealth.lyDoKham = $scope.inputHealth.lyDoKham.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $scope.inputHealth.chiSoCoBan = $scope.inputHealth.chiSoCoBan.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $scope.inputHealth.notice = $scope.inputHealth.notice.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         var date = new Date();
                         var curr_date = date.getDate();
                         var curr_month = date.getMonth() + 1; //Months are zero based
@@ -141,11 +196,11 @@
                         userServices.createHealthRecords($scope.inputHealth)
                             .then(function(response) {
                                 $scope.allHealthRecords.push(response.data);
-                                var index = $scope.response.findIndex(x => x.index === $scope.patient.index);
-                                if (index != -1) {
-                                    $scope.response.splice(index, 1);
+                                // var index = $scope.response.findIndex(x => x.index === $scope.patient.index);
+                                // if (index != -1) {
+                                //     $scope.response.splice(index, 1);
 
-                                }
+                                // }
                                 $scope.alertSuccess("Thêm thành công!", "");
                                 $scope.inputHealth = {};
                                 $scope.patient = undefined;
@@ -173,6 +228,7 @@
                         // var curr_year = date.getFullYear();
                         // $scope.inputPatient.dateOfBirth = curr_date + "-" + curr_month + "-" + curr_year;
                         // console.log($scope.inputPatient.dateOfBirth);
+                        $scope.inputPatient.tieuSuBenh = $scope.inputPatient.tieuSuBenh.replace(/(?:\r\n|\r|\n)/g, '<br />');
                         userServices.createPatient($scope.inputPatient)
                             .then(function(response) {
                                 $scope.allPatient.push(response.data);
@@ -202,14 +258,15 @@
                     console.log($scope.req)
                     userServices.borrowBook($scope.req)
                         .then(function(response) {
-                            console.log(response.data);
-                            $scope.alertSuccess("Thêm thành công!", '');
-                            var index = $scope.response.findIndex(x => x.index === $scope.student.index);
-                            if (index != -1) {
-                                $scope.response.splice(index, 1);
+                            // console.log(response.data);
+                            // $scope.alertSuccess("Thêm thành công!", '');
+                            // var index = $scope.response.findIndex(x => x.index === $scope.student.index);
+                            // if (index != -1) {
+                            //     $scope.response.splice(index, 1);
 
-                            }
+                            // }
                             $scope.allBookStudent.push(response.data);
+                            $scope.allBookStudentOfStudent.push(response.data);
                             // $scope.$apply();
                             $scope.input.bookId = undefined;
                             $scope.input.expiryDate = undefined;
