@@ -21,13 +21,21 @@ config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProv
         } else {
             // $urlRouterProvider.otherwise('/partner/contract');
             $stateProvider
-                .state('/404', {
-                    url: '/404',
-                    templateUrl: '404.html'
+                .state('/student', {
+                    url: '/student',
+                    templateUrl: 'main/student.html'
                 })
-                .state('/table', {
-                    url: '/table',
-                    templateUrl: '/main/views/table/table.html'
+                .state('/patient', {
+                    url: '/patient',
+                    templateUrl: 'main/patient.html'
+                })
+                .state('/guixe', {
+                    url: '/guixe',
+                    templateUrl: 'main/guixe.html'
+                })
+                .state('/nhanvien', {
+                    url: '/nhanvien',
+                    templateUrl: 'main/nhanvien.html'
                 })
         }
     }]);

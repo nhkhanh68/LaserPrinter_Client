@@ -1,0 +1,304 @@
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row" ng-show="nhanvien == 'quanly'">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_content">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="x_panel">
+                        <div class="alert alert-success" ng-if="successStudent">
+                            <strong>{{successMessage}}</strong>
+                        </div>
+                        <div class="alert alert-danger" ng-if="dangerStudent">
+                            <strong>{{errorMessage}}</strong>
+                        </div>
+                        <form class="form-horizontal form-label-left" id="add_follow_student">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputNhanVien.fullName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputNhanVien.maNhanVien">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày sinh: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputNhanVien.birthday">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputNhanVien.phoneNumber">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputNhanVien.address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Giới tính: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="radio" name="gioitinh" ng-model="inputNhanVien
+                                                    .desire" value="Nam">Nam
+                                    <input type="radio" name="gioitinh" ng-model="inputNhanVien
+                                                    .desire" value="Nữ">Nữ
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                    <button type="submit" class="btn btn-success" ng-click="addNhanVien()">Thêm</button>
+                                </div>
+                            </div>
+                            <div class="divider-dashed"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="nhanvien == 'quanly'">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_content">
+                <div class="col-md-12 col-sm-12 col-xs-12" ng-init="getAllNhanVien()">
+                    <div class="x_panel">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>MS</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Giới tính</th>
+                                    <th>Địa chỉ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="nhanvien in allNhanVien | orderBy:'-id'">
+                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                    <td>{{$index+1}}</td>
+                                    <td>{{nhanvien.fullName}}</td>
+                                    <td>{{nhanvien.birthday}}</td>
+                                    <td>{{nhanvien.maNhanVien}}</td>
+                                    <td>{{nhanvien.phoneNumber}}</td>
+                                    <td>{{nhanvien.desire}}</td>
+                                    <td>{{nhanvien.address}}</td>
+                                    <td class=" ">
+                                        <a class="cursor" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" data-toggle="modal" data-target="#delete_nhanvien"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="delete_nhanvien">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close_modal_delete_nhanvien"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel2">Bạn có chắc muốn xóa nhân viên {{confirmDeleteName}}</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                                        <button type="button" class="btn btn-primary" ng-click="deleteNhanVien()">Xóa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md6 col-sm6 col-xs-6">
+                    <div class="x_panel">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên sách</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="book in allBook | orderBy:'-id'">
+                                    <th scope="row">{{typeContract.id}}</th>
+                                    <td>{{$index+1}}</td>
+                                    <td id="contactName_{{contact.id}}">{{book.bookName}}</td>
+                                    <td class=" ">
+                                        <a class="cursor" ng-click="confirmDelete(book.id, book.bookName)" data-toggle="modal" data-target="#delete_book"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="nhanvien == 'quanlyravao'">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_content">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="x_panel">
+                        <div class="alert alert-success" ng-if="successBook">
+                            <strong>{{successMessage}}</strong>
+                        </div>
+                        <div class="alert alert-danger" ng-if="dangerBook">
+                            <strong>{{errorMessage}}</strong>
+                        </div>
+                        <table ng-init="getAllStudentClass()">
+                            <tr>
+                                <td>
+                                    <select class="form-control" ng-model="type" style="border-radius:25px; border: 1px solid rgba(221,226,232,.49); box-shadow: inset 0 1px 0 rgba(0,0,0,.075);" ng-change="changeShowType(type)">
+                                        <option value=""> Chọn kiểu xem </option>
+                                        <option value="date"> Xem theo ngày </option>
+                                        <option value="month"> Xem theo tháng </option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <form class="form-horizontal form-label-left" ng-show="type == 'date'">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="date" class="form-control col-md-7 col-xs-12" ng-model="input.chonNgay">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                    <button type="submit" class="btn btn-success" ng-click="getCheckInTheoNgay()">Chọn</button>
+                                </div>
+                            </div>
+                            <div class="divider-dashed"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" ng-show="type == 'date'">
+                    <div class="x_panel">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên</th>
+                                    <th>Mã Số</th>
+                                    <th>Giờ vào</th>
+                                    <th>Giờ ra</th>
+                                    <th>Trạng Thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="checkin in checkInTheoNgay | orderBy:'-id'">
+                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                    <td>{{$index+1}}</td>
+                                    <td>{{checkin.nhanVien.fullName}}</td>
+                                    <td>{{checkin.nhanVien.maNhanVien}}</td>
+                                    <td>{{checkin.checkin | date:'hh:mm:ss'}}</td>
+                                    <td>{{checkin.checkout | date:'hh:mm:ss'}}</td>
+                                    <td>{{checkin.status}}</td>
+                                    <!-- <td class=" ">
+                                        <a class="củo" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" dât-toggle="modal" dât-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12" ng-show="type == 'month'">
+                    <div class="x_panel">
+                        <div class="alert alert-success" ng-if="success">
+                            <strong>{{successMessage}}</strong>
+                        </div>
+                        <div class="alert alert-danger" ng-if="danger">
+                            <strong>{{errorMessage}}</strong>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên</th>
+                                    <th>Ngày sinh</th>
+                                    <th>MS</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Giới tính</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Số ngày muộn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="nhanvien in allNhanVien | orderBy:'-id'">
+                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                    <td>{{$index+1}}</td>
+                                    <td>{{nhanvien.fullName}}</td>
+                                    <td>{{nhanvien.birthday}}</td>
+                                    <td>{{nhanvien.maNhanVien}}</td>
+                                    <td>{{nhanvien.phoneNumber}}</td>
+                                    <td>{{nhanvien.desire}}</td>
+                                    <td>{{nhanvien.address}}</td>
+                                    <td>
+                                        {{nhanvien.status}}
+                                        <span ng-if="nhanvien.status != 0" data-toggle="modal" data-target="#checkin" class="cursor" ng-click="showCheckin(nhanvien)">
+                                         - Chi Tiết
+                                        </span>
+                                    </td>
+                                    <td class=" ">
+                                        <a class="cursor" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" data-toggle="modal" data-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="checkin">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="alert alert-danger" ng-if="danger_edit">
+                                            <strong>{{errorMessage}}</strong>
+                                        </div>
+                                        <div class="alert alert-success" ng-if="successdelete_edit">
+                                            <strong>{{successMessage}}</strong>
+                                        </div>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>Mã Số</th>
+                                                    <th>Giờ vào</th>
+                                                    <th>Giờ ra</th>
+                                                    <th>Ngày</th>
+                                                    <th>Trạng Thái</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="checkin in nhanvien_details.checkin | orderBy:'-id'" ng-show="checkin.checkin != null">
+                                                    <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{checkin.nhanVien.fullName}}</td>
+                                                    <td>{{checkin.nhanVien.maNhanVien}}</td>
+                                                    <td>{{checkin.checkin | date:'hh:mm:ss'}}</td>
+                                                    <td>{{checkin.checkout | date:'hh:mm:ss'}}</td>
+                                                    <td>{{checkin.ngayThang}}</td>
+                                                    <td>{{checkin.status}}</td>
+                                                    <!-- <td class=" ">
+                                        <a class="củo" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" dât-toggle="modal" dât-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
+                                    </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,8 @@
                 $scope.inputHealth = {};
                 $scope.input = [];
                 $scope.inputPatient = {};
+                $scope.inputGuiXe = {};
+                $scope.inputNhanVien = {};
                 $scope.sach = "themsach";
                 $scope.bv = "themba";
                 $scope.chonsach = function(string) {
@@ -16,6 +18,12 @@
                 }
                 $scope.chonbv = function(string) {
                     $scope.bv = string;
+                }
+                $scope.chonguixe = function(string) {
+                    $scope.guixe = 'quanly';
+                }
+                $scope.chonnhanvien = function(string) {
+                    $scope.nhanvien = string;
                 }
                 // $scope.inputPatient = {
                 //     name: '1',
@@ -28,6 +36,8 @@
                         id: 1
                     }
                 }
+                i = 100;
+                console.log(i);
                 console.log($scope.partner);
                 $scope.count = 0;
                 console.log(1);
@@ -39,24 +49,40 @@
                     $scope.socket.client = new SockJS($rootScope.serverAdd + '/uet');
                     $scope.socket.stomp = Stomp.over($scope.socket.client);
                     $scope.socket.stomp.connect({}, function() {
-                        $scope.socket.stomp.subscribe("/user/" + $scope.name + "/**", function(message) {
-                            var response = JSON.parse(message.body);
-                            // response.time = new Date().getTime();
-                            // response.index = $scope.count;
-                            // $scope.count++;
-                            // $rootScope.response.push(response);
-                            // console.log($rootScope.response);
-                            if ($scope.name == "patient") {
-                                $scope.selectPatient(response);
-                                console.log(response.patientId);
-                                $scope.getAllHealthRecordsOfPatient(response.patientId);
-                            } else if ($scope.name == "student") {
-                                $scope.selectStudent(response);
-                                $scope.getAllBookStudentOfStudent(response.id);
-                                console.log(response);
-                            }
-                            $rootScope.$apply();
-                        });
+                        if ($scope.name.length == 3) {
+                            angular.forEach($scope.name, function(data) {
+                                $scope.socket.stomp.subscribe("/user/" + data.name + "/**", function(message) {
+                                    var response = JSON.parse(message.body);
+                                    console.log(response);
+                                    if (data.name == 'guixe') {
+                                        $scope.selectStudent(response);
+                                    }
+                                    $rootScope.$apply();
+                                });
+                            })
+                        } else {
+                            $scope.socket.stomp.subscribe("/user/" + $scope.name + "/**", function(message) {
+                                var response = JSON.parse(message.body);
+                                // response.time = new Date().getTime();
+                                // response.index = $scope.count;
+                                // $scope.count++;
+                                // $rootScope.response.push(response);
+                                // console.log($rootScope.response);
+                                if ($scope.name == "patient") {
+                                    $scope.selectPatient(response);
+                                    console.log(response.patientId);
+                                    $scope.getAllHealthRecordsOfPatient(response.patientId);
+                                } else if ($scope.name == "student") {
+                                    $scope.selectStudent(response);
+                                    $scope.getAllBookStudentOfStudent(response.id);
+                                    console.log(response);
+                                } else if ($scope.name == 'guixe') {
+
+                                }
+                                $rootScope.$apply();
+                            });
+                        }
+
                     });
                     $scope.socket.client.onclose = $scope.reconnect;
                 };
@@ -68,11 +94,30 @@
                     if ($rootScope.role == 'client-student') {
                         $scope.name = 'student';
                         $scope.initSockets();
+                        $location.path('/student');
                     } else if ($rootScope.role == 'client-patient') {
                         $scope.name = 'patient';
                         $scope.initSockets();
-                    } else {
+                        $location.path('/patient');
+                    } else if ($rootScope.role == 'guixe') {
+                        $scope.name = [{
+                                name: 'guixe/checkinGuiXe'
+                            },
+                            {
+                                name: 'guixe/checkoutGuiXe'
+                            },
+                            {
+                                name: 'guixe'
+                            }
+                        ]
+                        $scope.initSockets();
+                        $location.path('/guixe');
+                        console.log($scope.name);
+                    } else if ($rootScope.role == "nhanvien") {
                         // $scope.name = "student";
+                        $scope.name = 'nhanvien';
+                        $scope.initSockets();
+                        $location.path('/nhanvien');
                         console.log($scope.show)
                     }
                     $scope.show = $rootScope.role;
@@ -80,6 +125,66 @@
 
                     $rootScope.loggedIn = false;
                     $location.path('/login');
+                }
+
+                $scope.mucTienGuiXe = function() {
+                    userServices.mucTienGuiXe()
+                        .then(function(response) {
+                            $scope.tienGuiXe = response.data.password;
+                            console.log(response.data);
+                        }, function(error) {
+                            console.log(error)
+                        })
+                }
+
+                $scope.input = {};
+                $scope.thayDoiMucTienGuiXe = function() {
+                    if ($scope.input.mucTienMoi != "" || $scope.input.mucTienMoi != undefined) {
+                        userServices.thayDoiMucTienGuiXe($scope.input.mucTienMoi)
+                            .then(function() {
+                                $scope.tienGuiXe = $scope.input.mucTienMoi;
+                                $scope.input.mucTienMoi = "";
+                            }, function(error) {
+                                console.log(error);
+                            })
+                    }
+                }
+
+                $scope.napTien = function() {
+                    // $scope.selectStudent(response);
+                    if ($scope.inputGuiXe.cash != null && $scope.student != undefined) {
+                        if ($scope.student.student.cash == null) {
+                            $scope.student.student.cash = 0;
+                        }
+                        $scope.inputGuiXe.cash = parseInt($scope.inputGuiXe.cash) + parseInt($scope.student.student.cash)
+                        $scope.req = {
+                            id: $scope.student.student.id,
+                            cash: $scope.inputGuiXe.cash
+                        }
+                        console.log($scope.req);
+                        userServices.napTien($scope.req)
+                            .then(function() {
+                                $scope.alertSuccess("Thêm tiền thành công!", '');
+                                $scope.student.student.cash = $scope.inputGuiXe.cash;
+                                $scope.inputGuiXe.cash = 0;
+                            }, function(error) {
+                                console.log(error);
+                            })
+                    }
+                }
+                // $scope.checkinGuiXe = function(){
+
+                // }
+                // $scope.checkoutGuiXe = function(){
+
+                // }
+                $scope.getAllGuiXe = function() {
+                    userServices.getAllGuiXe()
+                        .then(function(response) {
+                            $scope.allGuiXe = response.data;
+                        }, function(error) {
+                            console.log(error);
+                        })
                 }
 
                 $scope.listTraSach = [];
@@ -99,15 +204,15 @@
                 $scope.traSach = function() {
                     console.log($scope.listTraSach);
                     userServices.traSach($scope.listTraSach)
-                        .then(function(){
-                            angular.forEach($scope.listTraSach, function(data){
+                        .then(function() {
+                            angular.forEach($scope.listTraSach, function(data) {
                                 $('#status_' + data.id).text("Đã trả");
                                 $('#checkbox_' + data.id).trigger("click");
                                 $('#checkbox_' + data.id).hide();
                                 console.log(data.id);
                             })
                             $scope.listTraSach = [];
-                        }, function(error){
+                        }, function(error) {
                             console.log(error);
                         })
                 }
@@ -282,6 +387,18 @@
                     $scope.confirmDeleteId = id;
                 }
 
+                $scope.deleteNhanVien = function() {
+                    userServices.deleteNhanVien($scope.confirmDeleteId)
+                        .then(function() {
+                            $scope.alertSuccess("Xóa nhân viên " + $scope.confirmDeleteName + " thành công!", '');
+                            var index = $scope.allNhanVien.findIndex(x => x.id === $scope.confirmDeleteId);
+                            if (index != -1) {
+                                $scope.allNhanVien.splice(index, 1);
+                            }
+                            $("#close_modal_delete_nhanvien").trigger("click");
+                        })
+                }
+
                 $scope.deleteStudent = function(id) {
                     $('#close_modal_delete_student').trigger('click');
                     userServices.deleteStudent(id)
@@ -321,6 +438,25 @@
                         })
                 }
 
+                $scope.changeShowType = function(type) {
+                    if (type == 'month') {
+                        angular.forEach($scope.allNhanVien, function(nhanvien) {
+                            nhanvien.status = 0;
+                            userServices.getAllCheckInOfNhanVien(nhanvien.id)
+                                .then(function(response) {
+                                    // console.log(response.data);
+                                    nhanvien.checkin = response.data;
+                                    angular.forEach(response.data, function(data) {
+                                        if (data.status == 'Muộn') {
+                                            nhanvien.status++;
+                                            // alert(1)
+                                        }
+                                    })
+                                })
+                        })
+                    }
+                }
+
                 $scope.addBook = function() {
                     if ($scope.inputBook.bookName != undefined || $scope.inputBook.bookName != "") {
                         userServices.addBook($scope.inputBook)
@@ -333,6 +469,49 @@
                     }
                 }
 
+                $scope.showCheckin = function(nhanvien) {
+                    console.log(nhanvien);
+                    $scope.nhanvien_details = nhanvien;
+                }
+
+                $scope.input = {};
+                $scope.getCheckInTheoNgay = function() {
+                    date = $scope.input.chonNgay.getDate();
+                    userServices.getCheckInTheoNgay(date)
+                        .then(function(response) {
+                            $scope.checkInTheoNgay = response.data;
+                            console.log(response.data);
+                            angular.forEach($scope.checkInTheoNgay, function(data) {
+
+                            })
+                        })
+                }
+
+                $scope.getAllNhanVien = function() {
+                    userServices.getAllNhanVien()
+                        .then(function(response) {
+                            $scope.allNhanVien = response.data;
+                        }, function(error) {
+                            console.log(error);
+                        })
+                }
+
+                $scope.addNhanVien = function() {
+                    console.log($scope.inputNhanVien);
+                    if ($scope.inputNhanVien.fullName != undefined || $scope.inputNhanVien.fullName != "" || $scope.inputNhanVien.studentCode != undefined || $scope.inputNhanVien.studentCode != "") {
+                        userServices.addNhanVien($scope.inputNhanVien)
+                            .then(function(response) {
+                                response.data.status = 0;
+                                $scope.allNhanVien.push(response.data);
+                                $scope.inputNhanVien = {};
+                            }, function(error) {
+                                console.log(error);
+                                $scope.alertDanger(error.data.message, "dangerStudent");
+                            })
+                    }
+                }
+
+                $scope.inputStudent = {};
                 $scope.addStudent = function() {
                     if ($scope.inputStudent.fullName != undefined || $scope.inputStudent.fullName != "" || $scope.inputStudent.studentCode != undefined || $scope.inputStudent.studentCode != "") {
                         userServices.addStudent($scope.inputStudent)
