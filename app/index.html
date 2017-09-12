@@ -32,6 +32,9 @@
     .cursor {
         cursor: pointer;
     }
+    .muon {
+        background-color: #f0ad4e;
+    }
     </style>
 </head>
 <div ng-view ng-if="loggedIn != true"></div>
@@ -67,7 +70,7 @@
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonguixe('quanly')" class="cursor" ng-if="role == 'guixe'"><a><i class="fa fa-book"></i> Quản lý </a>
                                 </li>
                                 <!-- nhanvien -->
-                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonnhanvien('quanly')" class="cursor" ng-if="role == 'nhanvien'"><a><i class="fa fa-book"></i> Quản lý </a>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonnhanvien('quanly')" class="cursor" ng-if="role == 'nhanvien'"><a><i class="fa fa-book"></i> Thêm </a>
                                 </li>
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonnhanvien('quanlyravao')" class="cursor" ng-if="role == 'nhanvien'"><a><i class="fa fa-book"></i> Quản lý ra vào </a>
                                 </li>
@@ -185,7 +188,6 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-danger" ng-if="danger_edit">
@@ -231,7 +233,6 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-danger" ng-if="danger_edit">

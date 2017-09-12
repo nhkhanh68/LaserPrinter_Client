@@ -25,22 +25,10 @@
                 $scope.chonnhanvien = function(string) {
                     $scope.nhanvien = string;
                 }
-                // $scope.inputPatient = {
-                //     name: '1',
-                //     patientCode: '1',
-                //     address: '1',
-                //     date: '1'
-                // };
-                $scope.partner = {
-                    partner: {
-                        id: 1
-                    }
-                }
-                i = 100;
-                console.log(i);
-                console.log($scope.partner);
+
+                // var d = new Date();
+                // console.log(d.getDay());
                 $scope.count = 0;
-                console.log(1);
                 $scope.reconnect = function() {
                     setTimeout($scope.initSockets, 10000);
                 };
@@ -276,6 +264,45 @@
                     $scope.inputHealth.patientId = data.patientId;
                 }
 
+                $scope.addAttr = function(attr, className) {
+                    $('.' + className).attr(attr, attr);
+                }
+
+                $scope.removeAttr = function(attr, className) {
+                    $('.' + className).removeAttr(attr);
+                }
+
+                $scope.hide = false;
+
+                $scope.editPatient = function() {
+                    $scope.request = {
+                        address: $scope.patient.patient.address,
+                        patientId: $scope.patient.patient.id,
+                        dateOfBirth: $scope.patient.patient.dateOfBirth,
+                        phone: $scope.patient.patient.phone,
+                        tieuSuBenh: $scope.patient.patient.tieuSuBenh.replace(/(?:\r\n|\r|\n)/g, '<br />')
+                    }
+                    userServices.editPatient($scope.request)
+                        .then(function(response) {
+                            $scope.alertSuccess("Chỉnh sửa thành công!", '');
+                            // $scope.addAttr('readonly', 'patient');
+                            // $('#huy').trigger('click');
+                            $scope.hide = false;
+                            // $scope.patient.patient = undefined;
+                            $scope.patient.patient = response.data;
+                            $scope.convert();
+                            var index = $scope.allPatient.findIndex(x => x.id === $scope.request.patientId);
+                            if (index != -1) {
+                                $scope.allPatient[index] = response.data;
+                            } else {
+                                $scope.getAllPatient();
+                            }
+                        }, function(error) {
+                            console.log(error);
+                        })
+                    // $scope.$apply();
+                }
+
                 $scope.createHealthRecords = function() {
                     // $scope.inputHealth.patientId = $scope.patient.id;
                     if ($scope.inputHealth.content != undefined && $scope.inputHealth.patientId != undefined && $scope.inputHealth.ppDieuTri != undefined && $scope.inputHealth.lyDoKham != undefined) {
@@ -438,13 +465,24 @@
                         })
                 }
 
+                $scope.sort = function(sortType) {
+                    // $scope.filter = "-" + sortType;
+                    $scope.reverse = ($scope.filter === sortType) ? !$scope.reverse : false;
+                    $scope.filter = sortType;
+                }
+                $scope.sortInModal = function(sortType) {
+                    // $scope.filter = "-" + sortType;
+                    $scope.reverseInModal = ($scope.filterInModal === sortType) ? !$scope.reverseInModal : false;
+                    $scope.filterInModal = sortType;
+                }
+
                 $scope.changeShowType = function(type) {
                     if (type == 'month') {
                         angular.forEach($scope.allNhanVien, function(nhanvien) {
                             nhanvien.status = 0;
                             userServices.getAllCheckInOfNhanVien(nhanvien.id)
                                 .then(function(response) {
-                                    // console.log(response.data);
+                                    console.log(response.data);
                                     nhanvien.checkin = response.data;
                                     angular.forEach(response.data, function(data) {
                                         if (data.status == 'Muộn') {

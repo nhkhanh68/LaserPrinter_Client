@@ -133,6 +133,7 @@
                                         <th>Tên sách</th>
                                         <th>Ngày mượn</th>
                                         <th>Ngày hết hạn</th>
+                                        <th>Trạng thái</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -146,8 +147,9 @@
                                         <td>{{data.student.desire}}</td>
                                         <td>{{data.student.address}}</td>
                                         <td>{{data.book.bookName}}</td>
-                                        <td>{{data.borrowedDate | date:'dd:MM:yyyy hh:mm:ss'}}</td>
-                                        <td>{{data.expiryDate | date:'dd:MM:yyyy'}}</td>
+                                        <td>{{data.borrowedDate | date:'dd-MM-yyyy hh:mm:ss'}}</td>
+                                        <td>{{data.expiryDate | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{data.status}}</td>
                                         <td class=" ">
                                             <a class="cursor" ng-click="confirmDelete(data.id, data.student.fullName)" data-toggle="modal" data-target="#delete_book_student"><i class="fa fa-trash"></i></a>
                                         </td>

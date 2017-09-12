@@ -36,6 +36,6 @@ config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProv
                 .state('/nhanvien', {
                     url: '/nhanvien',
                     templateUrl: 'main/nhanvien.html'
-                })
+                });
         }
     }]);

@@ -36,9 +36,17 @@
             getAllNhanVien: getAllNhanVien,
             getCheckInTheoNgay: getCheckInTheoNgay,
             getAllCheckInOfNhanVien: getAllCheckInOfNhanVien,
-            deleteNhanVien: deleteNhanVien
+            deleteNhanVien: deleteNhanVien,
+            editPatient: editPatient
         };
 
+        function editPatient(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/patient/edit',
+                method: 'POST',
+                data: data
+            })
+        }
         function deleteNhanVien(id) {
             return $http({
                 url: $rootScope.serverAdd + '/deleteNhanVien/' + id,

@@ -186,17 +186,20 @@
                                     <th>Mã Số</th>
                                     <th>Giờ vào</th>
                                     <th>Giờ ra</th>
-                                    <th>Trạng Thái</th>
+                                    <th ng-click="sort('status')" class="cursor">
+                                        Số ngày muộn
+                                        <i ng-show="filter == 'status'" ng-class="{'fa-sort-desc': reverse == true, 'fa-sort-up' : reverse == false}" class="fa"></i>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="checkin in checkInTheoNgay | orderBy:'-id'">
+                                <tr ng-repeat="checkin in checkInTheoNgay | orderBy:filter:reverse">
                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
                                     <td>{{$index+1}}</td>
                                     <td>{{checkin.nhanVien.fullName}}</td>
                                     <td>{{checkin.nhanVien.maNhanVien}}</td>
-                                    <td>{{checkin.checkin | date:'hh:mm:ss'}}</td>
-                                    <td>{{checkin.checkout | date:'hh:mm:ss'}}</td>
+                                    <td>{{checkin.checkin | date:'hh:mm'}}</td>
+                                    <td>{{checkin.checkout | date:'hh:mm'}}</td>
                                     <td>{{checkin.status}}</td>
                                     <!-- <td class=" ">
                                         <a class="củo" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" dât-toggle="modal" dât-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
@@ -218,17 +221,22 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Tên</th>
+                                    <th>
+                                        Tên
+                                    </th>
                                     <th>Ngày sinh</th>
-                                    <th>MS</th>
+                                    <th>Mã số</th>
                                     <th>Số điện thoại</th>
                                     <th>Giới tính</th>
                                     <th>Địa chỉ</th>
-                                    <th>Số ngày muộn</th>
+                                    <th ng-click="sort('status')" class="cursor">
+                                        Số ngày muộn
+                                        <i ng-show="filter == 'status'" ng-class="{'fa-sort-desc': reverse == true, 'fa-sort-up' : reverse == false}" class="fa"></i>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="nhanvien in allNhanVien | orderBy:'-id'">
+                                <tr ng-repeat="nhanvien in allNhanVien | orderBy:filter:reverse">
                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
                                     <td>{{$index+1}}</td>
                                     <td>{{nhanvien.fullName}}</td>
@@ -243,9 +251,6 @@
                                          - Chi Tiết
                                         </span>
                                     </td>
-                                    <td class=" ">
-                                        <a class="cursor" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" data-toggle="modal" data-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -255,7 +260,6 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" id="close_modal_edit"><span aria-hidden="true">×</span>
                                         </button>
-                                        <h4 class="modal-title" id="myModalLabel">Chỉnh thông tin sinh viên</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="alert alert-danger" ng-if="danger_edit">
@@ -272,20 +276,26 @@
                                                     <th>Mã Số</th>
                                                     <th>Giờ vào</th>
                                                     <th>Giờ ra</th>
-                                                    <th>Ngày</th>
-                                                    <th>Trạng Thái</th>
+                                                    <th ng-click="sortInModal('checkin')" class="cursor">
+                                                        Ngày
+                                                        <i ng-show="filterInModal == 'checkin'" ng-class="{'fa-sort-desc': reverseInModal == true, 'fa-sort-up' : reverseInModal == false}" class="fa"></i>
+                                                    </th>
+                                                    <th ng-click="sortInModal('status')" class="cursor">
+                                                        Trạng thái
+                                                        <i ng-show="filterInModal == 'status'" ng-class="{'fa-sort-desc': reverseInModal == false, 'fa-sort-up' : reverseInModal == true}" class="fa"></i>
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr ng-repeat="checkin in nhanvien_details.checkin | orderBy:'-id'" ng-show="checkin.checkin != null">
+                                                <tr ng-repeat="checkin in nhanvien_details.checkin | orderBy:filterInModal:reverseInModal" ng-show="checkin.checkin != null" ng-init="index = 1">
                                                     <!-- <th scope="row">{{typeContract.id}}</th> -->
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{checkin.nhanVien.fullName}}</td>
-                                                    <td>{{checkin.nhanVien.maNhanVien}}</td>
-                                                    <td>{{checkin.checkin | date:'hh:mm:ss'}}</td>
-                                                    <td>{{checkin.checkout | date:'hh:mm:ss'}}</td>
-                                                    <td>{{checkin.ngayThang}}</td>
-                                                    <td>{{checkin.status}}</td>
+                                                    <td>{{checkin.ngay - 3}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.nhanVien.fullName}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.nhanVien.maNhanVien}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.checkin | date:'hh:mm'}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.checkout | date:'hh:mm'}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.ngayThang}} - {{checkin.checkin | date:'hh:mm'}}</td>
+                                                    <td ng-class="{muon : checkin.status == 'Muộn'}">{{checkin.status}}</td>
                                                     <!-- <td class=" ">
                                         <a class="củo" ng-click="confirmDelete(nhanvien.id, nhanvien.fullName)" dât-toggle="modal" dât-target="#delete_snhanvien"><i class="fa fa-trash"></i></a>
                                     </td> -->

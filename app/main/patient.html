@@ -113,41 +113,66 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và Tên:
                                         </label>
-                                        <div class="col-md-9 col-sm-12 col-xs-12">
-                                            <label class="btn btn-default cursor" ng-if="patient != undefined">
-                                                {{patient.name}}
-                                            </label>
-                                            <span ng-if="patient != undefined" id="span_{{student.id" data-toggle="collapse" data-target="#patient-details" ng-click="convert(patient.patient.tieuSuBenh)">
-                                                                Chi tiết
-                                                                <i class="fa fa-chevron-down"></i>
-                                                            </span>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table>
+                                                <th>
+                                                    <label class="btn btn-default cursor" ng-if="patient != undefined">
+                                                        {{patient.name}}
+                                                    </label>
+                                                </th>
+                                                <th>
+                                                    <span class="cursor" ng-if="patient != undefined" id="span_{{student.id" data-toggle="collapse" data-target=".patient-details" ng-click="convert(patient.patient.tieuSuBenh)">
+                                                        Chi tiết
+                                                        <i class="fa fa-chevron-down"></i>
+                                                    </span>
+                                                </th>
+                                                <th style="padding-left: 20px;">
+                                                    <button ng-show="hide == true" id="huy" class="btn btn-default collapse patient-details" ng-click="addAttr('readonly', 'patient'); hide = false; ">Hủy</button>
+                                                </th>
+                                                <th style="padding-left: 20px;" ng-init="hide = false">
+                                                    <span ng-show="hide == false" class="collapse patient-details cursor" ng-click="removeAttr('readonly', 'patient'); hide = true">
+                                                        Chỉnh sửa thông tin
+                                                        <i class="fa fa-edit"></i>
+                                                    </span>
+                                                    <button ng-show="hide == true" type="submit" class="btn btn-success collapse patient-details" ng-click="editPatient()">Lưu</button>
+                                                </th>
+                                            </table>
+                                            <!-- <div class="patient-details collapse"> -->
+                                            <!-- <button type="submit" class="patient-details collapse btn btn-success pull-right">Chỉnh sửa thông tin</button> -->
+                                            <!-- </div> -->
                                         </div>
                                     </div>
-                                    <div class="collapse" id="patient-details">
+                                    <div class="collapse patient-details" id="patient-details">
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh:</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" ng-model="patient.patient.dateOfBirth" readonly="readonly">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.dateOfBirth" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ:</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" ng-model="patient.patient.address" readonly="readonly">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.address" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại:</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" class="form-control col-md-7 col-xs-12" ng-model="patient.patient.phone" readonly="readonly">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.phone" readonly="readonly">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiền sử bệnh:</label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <textarea class="form-control" rows="5" ng-model="patient.patient.tieuSuBenh" readonly="readonly"></textarea>
+                                                <textarea class="form-control patient" rows="5" ng-model="patient.patient.tieuSuBenh" readonly="readonly"></textarea>
                                             </div>
                                         </div>
+                                        <!-- <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                                            </div>
+                                        </div>
+                                        <div class="divider-dashed"></div> -->
                                     </div>
                                     <div>
                                         <div class="form-group">
