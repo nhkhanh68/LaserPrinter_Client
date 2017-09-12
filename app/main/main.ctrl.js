@@ -13,6 +13,11 @@
                 $scope.inputNhanVien = {};
                 $scope.sach = "themsach";
                 $scope.bv = "themba";
+                $scope.showX_panel = function() {
+                    $timeout(function() {
+                        $scope.x_panel = $('#x_panel').width();
+                    });
+                }
                 $scope.chonsach = function(string) {
                     $scope.sach = string;
                 }
@@ -20,12 +25,12 @@
                     $scope.bv = string;
                 }
                 $scope.chonguixe = function(string) {
-                    $scope.guixe = 'quanly';
+                    $scope.guixe = string;
                 }
                 $scope.chonnhanvien = function(string) {
                     $scope.nhanvien = string;
                 }
-
+                // console.log = function(){};
                 // var d = new Date();
                 // console.log(d.getDay());
                 $scope.count = 0;
@@ -42,7 +47,18 @@
                                 $scope.socket.stomp.subscribe("/user/" + data.name + "/**", function(message) {
                                     var response = JSON.parse(message.body);
                                     console.log(response);
-                                    if (data.name == 'guixe') {
+                                    if (data.name == 'checkinGuiXe') {
+                                        var time = new Date(response.checkIn);
+                                        var arr = time.toString().split(" ");
+                                        response.checkIn = arr[4];
+
+                                        if (response.checkout != null) {
+                                            var time = new Date(response.checkout);
+                                            var arr = time.toString().split(" ");
+                                            response.checkout = arr[4];
+                                        }
+                                        $scope.checkinGuiXe = response;
+                                    } else if (data.name == 'guixe') {
                                         $scope.selectStudent(response);
                                     }
                                     $rootScope.$apply();
@@ -64,9 +80,7 @@
                                     $scope.selectStudent(response);
                                     $scope.getAllBookStudentOfStudent(response.id);
                                     console.log(response);
-                                } else if ($scope.name == 'guixe') {
-
-                                }
+                                } else if ($scope.name == 'guixe') {}
                                 $rootScope.$apply();
                             });
                         }
@@ -89,7 +103,7 @@
                         $location.path('/patient');
                     } else if ($rootScope.role == 'guixe') {
                         $scope.name = [{
-                                name: 'guixe/checkinGuiXe'
+                                name: 'checkinGuiXe'
                             },
                             {
                                 name: 'guixe/checkoutGuiXe'
@@ -106,7 +120,6 @@
                         $scope.name = 'nhanvien';
                         $scope.initSockets();
                         $location.path('/nhanvien');
-                        console.log($scope.show)
                     }
                     $scope.show = $rootScope.role;
                 } else {
@@ -482,7 +495,7 @@
                             nhanvien.status = 0;
                             userServices.getAllCheckInOfNhanVien(nhanvien.id)
                                 .then(function(response) {
-                                    console.log(response.data);
+                                    // console.log(response.data);
                                     nhanvien.checkin = response.data;
                                     angular.forEach(response.data, function(data) {
                                         if (data.status == 'Muộn') {

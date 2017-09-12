@@ -69,6 +69,8 @@
                                 <!-- guixe -->
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonguixe('quanly')" class="cursor" ng-if="role == 'guixe'"><a><i class="fa fa-book"></i> Quản lý </a>
                                 </li>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonguixe('checkin'); showX_panel()" class="cursor" ng-if="role == 'guixe'"><a><i class="fa fa-book"></i> Ra vào </a>
+                                </li>
                                 <!-- nhanvien -->
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonnhanvien('quanly')" class="cursor" ng-if="role == 'nhanvien'"><a><i class="fa fa-book"></i> Thêm </a>
                                 </li>
