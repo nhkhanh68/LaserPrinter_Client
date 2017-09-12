@@ -11,8 +11,10 @@
                 $scope.inputPatient = {};
                 $scope.inputGuiXe = {};
                 $scope.inputNhanVien = {};
+                $scope.allLogTienStudent = [];
                 $scope.sach = "themsach";
                 $scope.bv = "themba";
+                $scope.reverse = true;
                 $scope.showX_panel = function() {
                     $timeout(function() {
                         $scope.x_panel = $('#x_panel').width();
@@ -48,6 +50,15 @@
                                     var response = JSON.parse(message.body);
                                     console.log(response);
                                     if (data.name == 'checkinGuiXe') {
+                                        if (response.status == 'Thành công') {
+                                            var arr = response;
+                                            arr.status = 'Thẻ';
+                                            $scope.allGuiXe.push(arr);
+                                        } else if (response.status == 'Không đủ tiền!') {
+                                            var arr = response;
+                                            arr.status = 'Tiền mặt';
+                                            $scope.allGuiXe.push(arr);
+                                        }
                                         var time = new Date(response.checkIn);
                                         var arr = time.toString().split(" ");
                                         response.checkIn = arr[4];
@@ -60,6 +71,12 @@
                                         $scope.checkinGuiXe = response;
                                     } else if (data.name == 'guixe') {
                                         $scope.selectStudent(response);
+                                        userServices.getLogTienStudent(response.id)
+                                            .then(function(response) {
+                                                $scope.allLogTienStudent = response.data;
+                                            }, function(error) {
+                                                console.log(error);
+                                            })
                                     }
                                     $rootScope.$apply();
                                 });
@@ -128,6 +145,7 @@
                     $location.path('/login');
                 }
 
+
                 $scope.mucTienGuiXe = function() {
                     userServices.mucTienGuiXe()
                         .then(function(response) {
@@ -168,6 +186,12 @@
                                 $scope.alertSuccess("Thêm tiền thành công!", '');
                                 $scope.student.student.cash = $scope.inputGuiXe.cash;
                                 $scope.inputGuiXe.cash = 0;
+                                userServices.getLogTienStudent($scope.req.id)
+                                    .then(function(response) {
+                                        $scope.allLogTienStudent = response.data;
+                                    }, function(error) {
+                                        console.log(error);
+                                    })
                             }, function(error) {
                                 console.log(error);
                             })
@@ -182,6 +206,7 @@
                 $scope.getAllGuiXe = function() {
                     userServices.getAllGuiXe()
                         .then(function(response) {
+                            console.log(response)
                             $scope.allGuiXe = response.data;
                         }, function(error) {
                             console.log(error);

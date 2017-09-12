@@ -37,8 +37,16 @@
             getCheckInTheoNgay: getCheckInTheoNgay,
             getAllCheckInOfNhanVien: getAllCheckInOfNhanVien,
             deleteNhanVien: deleteNhanVien,
-            editPatient: editPatient
+            editPatient: editPatient,
+            getLogTienStudent: getLogTienStudent
         };
+
+        function getLogTienStudent(id) {
+            return $http({
+                url: $rootScope.serverAdd + '/logtien/' + id,
+                method: 'GET'
+            })
+        }
 
         function editPatient(data) {
             return $http({
