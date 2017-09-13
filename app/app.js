@@ -10,7 +10,8 @@ angular.module('myApp', [
     'angular-md5',
     'ngSanitize'
 ]).
-config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
+config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider',
+    function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.hashPrefix('');
         if (sessionStorage["User-Data"] == null) {
             $routeProvider
@@ -23,19 +24,32 @@ config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProv
             $stateProvider
                 .state('/student', {
                     url: '/student',
-                    templateUrl: 'main/student.html'
+                    templateUrl: 'main/student.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý thư viện";
+                    }
                 })
                 .state('/patient', {
                     url: '/patient',
-                    templateUrl: 'main/patient.html'
+                    templateUrl: 'main/patient.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý khám bệnh";
+                    }
                 })
                 .state('/guixe', {
                     url: '/guixe',
-                    templateUrl: 'main/guixe.html'
+                    templateUrl: 'main/guixe.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý gửi xe";
+                    }
                 })
                 .state('/nhanvien', {
                     url: '/nhanvien',
-                    templateUrl: 'main/nhanvien.html'
+                    templateUrl: 'main/nhanvien.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý gửi xe";
+                    }
                 });
         }
-    }]);
+    }
+]);

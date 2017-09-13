@@ -8,8 +8,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Quản Lý Thư viện</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" ng-cloak>
+    <title>{{title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -39,7 +39,7 @@
 </head>
 <div ng-view ng-if="loggedIn != true"></div>
 
-<body class="nav-sm" ng-controller="mainCtrl" ng-cloak>
+<body class="nav-sm" ng-controller="mainCtrl">
     <div class="container body" ng-show="loggedIn">
         <div class="main_container">
             <div class="col-md-3 left_col">

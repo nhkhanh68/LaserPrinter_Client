@@ -97,7 +97,9 @@
                                     $scope.selectStudent(response);
                                     $scope.getAllBookStudentOfStudent(response.id);
                                     console.log(response);
-                                } else if ($scope.name == 'guixe') {}
+                                } else if ($scope.name == 'nhanvien') {
+                                    console.log(response);
+                                }
                                 $rootScope.$apply();
                             });
                         }
@@ -112,10 +114,14 @@
                     $rootScope.role = sessionStorage["role"];
                     if ($rootScope.role == 'client-student') {
                         $scope.name = 'student';
+                        // $scope.title = "Quản lý thư viên";
+                        // if (current.hasOwnProperty('$$route')) {}
                         $scope.initSockets();
                         $location.path('/student');
                     } else if ($rootScope.role == 'client-patient') {
                         $scope.name = 'patient';
+                        // $scope.title = "Quản lý khám bệnh";
+                        // if (current.hasOwnProperty('$$route')) {}
                         $scope.initSockets();
                         $location.path('/patient');
                     } else if ($rootScope.role == 'guixe') {
@@ -129,12 +135,15 @@
                                 name: 'guixe'
                             }
                         ]
+                        // $scope.title = "Quản lý gửi xe";
                         $scope.initSockets();
                         $location.path('/guixe');
                         console.log($scope.name);
                     } else if ($rootScope.role == "nhanvien") {
                         // $scope.name = "student";
                         $scope.name = 'nhanvien';
+                        // $scope.title = "Quản lý nhân viên";
+                        // if (current.hasOwnProperty('$$route')) {}
                         $scope.initSockets();
                         $location.path('/nhanvien');
                     }
@@ -142,6 +151,7 @@
                 } else {
 
                     $rootScope.loggedIn = false;
+                    $rootScope.title = 'Đăng nhập';
                     $location.path('/login');
                 }
 
