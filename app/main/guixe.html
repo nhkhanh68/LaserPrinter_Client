@@ -1,0 +1,232 @@
+<div ng-if="show == 'guixe'" ng-init="getAllGuiXe()">
+    <div class="" ng-init="mucTienGuiXe()">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle cursor" data-toggle="collapse" data-target="#chinhtienguixe" role="button">Điều chỉnh tiền gửi xe <i class="fa fa-wrench"></i></a>
+                        <!-- <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a dât-toggle="collapse" dât-target="#create_internship" class="củo"> Tạo internship cho sinh viên </a>
+                                            </li>
+                                        </ul> -->
+                    </li>
+                </ul>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 collapse" id="chinhtienguixe">
+                            <div class="x_panel">
+                                <div class="alert alert-success" ng-if="success">
+                                    <strong>{{successMessage}}</strong>
+                                </div>
+                                <div class="alert alert-danger" ng-if="danger">
+                                    <strong>{{errorMessage}}</strong>
+                                </div>
+                                <form class="form-horizontal form-label-left">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mức tiền hiện tại: </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="tienGuiXe" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mức tiền mới: </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="input.mucTienMoi">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                            <button type="submit" class="btn btn-success" ng-click="thayDoiMucTienGuiXe()">Thay đổi</button>
+                                        </div>
+                                    </div>
+                                    <div class="divider-dashed"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'quanly'">
+                        <div class="x_panel">
+                            <div class="alert alert-success" ng-if="success">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <div class="alert alert-danger" ng-if="danger">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <form class="form-horizontal form-label-left" id="add_follow_student">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sinh viên:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="student.student.fullName" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Địa chỉ:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="student.student.address" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sinh nhật:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="student.student.birthday" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã số sinh viên:
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="student.student.studentCode" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số tiền hiện có: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="student.student.cash" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Thêm tiền: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control col-md-7 col-xs-12" ng-model="inputGuiXe.cash">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success" ng-click="napTien()">Thêm</button>
+                                    </div>
+                                </div>
+                                <div class="divider-dashed"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'quanly'">
+                        <div class="x_panel">
+                            <button class="btn btn-default" data-toggle="collapse" data-target="#chi_tiet_thanh_toan">Hiển thị lịch sử thanh toán</button>
+                            <div class="collapse" id="chi_tiet_thanh_toan">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Thời gian</th>
+                                            <th>Số tiền</th>
+                                            <th>Loại thanh toán</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="data in allLogTienStudent | orderBy:'id'" id="tr_contact_{{contact.id}}">
+                                            <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                            <td>{{$index+1}}</td>
+                                            <td>{{data.time | date:'dd-MM-yyyy hh:mm:ss' }}</td>
+                                            <td>{{data.cash}}</td>
+                                            <td>{{data.status}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'checkin'">
+                            <div class="x_panel">
+                                <form class="form-horizontal form-label-left">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="checkinGuiXe.student.fullName" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giờ vào:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="checkinGuiXe.checkIn" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Giờ ra:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="checkinGuiXe.checkout" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Biển số:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="checkinGuiXe.bienSo" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Thanh toán:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control col-md-7 col-xs-12" ng-model="checkinGuiXe.status" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="divider-dashed"></div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'checkin'">
+                            <div class="x_panel">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'checkin'">
+                                        <h3>Hình ảnh vào </h3>
+                                        <div class="x_panel" style="height: {{x_panel}}px;" id="x_panel" ng-click="showX_panel()">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6" ng-show="guixe == 'checkin'">
+                                        <h3>Hình ảnh ra</h3>
+                                        <div class="x_panel" style="height: {{x_panel}}px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12" ng-show="guixe == 'tatca'">
+                            <div class="x_panel">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên</th>
+                                            <th>Mã Số</th>
+                                            <th>Biển số</th>
+                                            <th ng-click="sort('checkin')" class="cursor">
+                                                Giờ vào
+                                                <i ng-show="filter == 'checkin'" ng-class="{'fa-sort-desc': reverse == true, 'fa-sort-up' : reverse == false}" class="fa"></i>
+                                            </th>
+                                            <th ng-click="sort('checkout')" class="cursor">
+                                                Giờ ra
+                                                <i ng-show="filter == 'checkout'" ng-class="{'fa-sort-desc': reverse == false, 'fa-sort-up' : reverse == true}" class="fa"></i>
+                                            </th>
+                                            <th ng-click="sort('status')" class="cursor">
+                                                Trả tiền
+                                                <i ng-show="filter == 'status'" ng-class="{'fa-sort-desc': reverse == false, 'fa-sort-up' : reverse == true}" class="fa"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="guixe in allGuiXe | orderBy:filter:reverse" ng-init="index = 1">
+                                            <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                            <td>{{$index+1}}</td>
+                                            <td>{{guixe.student.fullName}}</td>
+                                            <td>{{guixe.student.studentCode}}</td>
+                                            <td>{{guixe.bienSo}}</td>
+                                            <td>{{guixe.checkIn | date:'dd-MM-yyyy H:mm:ss'}}</td>
+                                            <td>{{guixe.checkout | date:'dd-MM-yyyy H:mm:ss'}}</td>
+                                            <td>{{guixe.status}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

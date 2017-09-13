@@ -1,0 +1,330 @@
+<div ng-if="show == 'client-patient' || show == 'admin-pa'">
+    <div class="" ng-show="bv == 'them'">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="alert alert-success" ng-if="successStudent">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <div class="alert alert-danger" ng-if="dangerStudent">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <form class="form-horizontal form-label-left" id="add_follow_student">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.name = ''">
+                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số bệnh nhân: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.patientCode = ''">
+                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.patientCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.address = ''">
+                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.address">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày tháng năm sinh: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.dateOfBirth">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+                                        <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.phone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiểu sử bệnh:</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea class="form-control" rows="5" ng-model="inputPatient.tieuSuBenh"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                        <button type="submit" class="btn btn-success" ng-click="addPatient()">Thêm</button>
+                                    </div>
+                                </div>
+                                <div class="divider-dashed"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md12 col-sm12 col-xs-12" ng-init="getAllPatient()">
+                        <div class="x_panel">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Mã Số</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Tiểu sử bệnh</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="patient in allPatient | orderBy:'-id'">
+                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                        <td>{{$index+1}}</td>
+                                        <td>{{patient.name}}</td>
+                                        <td>{{patient.dateOfBirth}}</td>
+                                        <td>{{patient.patientCode}}</td>
+                                        <td>{{patient.address}}</td>
+                                        <td>{{patient.phone}}</td>
+                                        <td ng-bind-html="patient.tieuSuBenh"></td>
+                                        <td class=" ">
+                                            <a class="cursor" ng-click="confirmDelete(student.id, student.fullName)" data-toggle="modal" data-target="#delete_student"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- client patient -->
+    <div class="" ng-show="show == 'client-patient'">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_content">
+                    <div class="col-md-12 col-sm-12 col-xs-12" ng-show="bv == 'themba'">
+                        <div class="x_panel">
+                            <div class="alert alert-success" ng-if="success">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <div class="alert alert-danger" ng-if="danger">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <div class="show-col">
+                                <form class="form-horizontal form-label-left" id="add_follow_student">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và Tên:
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <table>
+                                                <th>
+                                                    <label class="btn btn-default cursor" ng-if="patient != undefined">
+                                                        {{patient.name}}
+                                                    </label>
+                                                </th>
+                                                <th>
+                                                    <span class="cursor" ng-if="patient != undefined" id="span_{{student.id" data-toggle="collapse" data-target=".patient-details" ng-click="convert(patient.patient.tieuSuBenh)">
+                                                        Chi tiết
+                                                        <i class="fa fa-chevron-down"></i>
+                                                    </span>
+                                                </th>
+                                                <th style="padding-left: 20px;">
+                                                    <button ng-show="hide == true" id="huy" class="btn btn-default collapse patient-details" ng-click="addAttr('readonly', 'patient'); hide = false; ">Hủy</button>
+                                                </th>
+                                                <th style="padding-left: 20px;" ng-init="hide = false">
+                                                    <span ng-show="hide == false" class="collapse patient-details cursor" ng-click="removeAttr('readonly', 'patient'); hide = true">
+                                                        Chỉnh sửa thông tin
+                                                        <i class="fa fa-edit"></i>
+                                                    </span>
+                                                    <button ng-show="hide == true" type="submit" class="btn btn-success collapse patient-details" ng-click="editPatient()">Lưu</button>
+                                                </th>
+                                            </table>
+                                            <!-- <div class="patient-details collapse"> -->
+                                            <!-- <button type="submit" class="patient-details collapse btn btn-success pull-right">Chỉnh sửa thông tin</button> -->
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="collapse patient-details" id="patient-details">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.dateOfBirth" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.address" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.phone" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiền sử bệnh:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control patient" rows="5" ng-model="patient.patient.tieuSuBenh" readonly="readonly"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                                            </div>
+                                        </div>
+                                        <div class="divider-dashed"></div> -->
+                                    </div>
+                                    <div class="collapse patient-details">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do đến khám:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control" rows="5" ng-model="inputHealth.lyDoKham"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tình trạng sức khỏe chung:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control" rows="5" ng-model="inputHealth.chiSoCoBan"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuẩn đoán bệnh:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control" rows="5" ng-model="inputHealth.content"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Phương pháp điều trị:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control" rows="5" ng-model="inputHealth.ppDieuTri"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Lưu ý:</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control" rows="5" ng-model="inputHealth.notice"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày khám lại: </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="date" class="form-control col-md-7 col-xs-12" ng-model="inputHealth.ngayKhamLai">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="divider-dashed"></div>
+                                </form>
+                                <!-- <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Tên</th>
+                                                            <th>Mã số</th>
+                                                            <th>Địa chỉ</th>
+                                                            <th>Thời gian</th>
+                                                            <th ng-if="response.length != 0">
+                                                                <button type="submit" class="btn btn-success" ng-click="clearAll()">Xóa tất cả</button>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="data in response | orderBy:'-time'" id="tr_contact_{{contact.id}}">
+                                                            <td>{{$index+1}}</td>
+                                                            <td id="contactName_{{contact.id}}">{{data.name}}</td>
+                                                            <td id="email_{{contact.id}}">{{data.patientCode}}</td>
+                                                            <td id="email_{{contact.id}}">{{data.address}}{{data.patientId}}</td>
+                                                            <td>{{data.time | date:'dd:MM:yyyy hh:mm:ss'}}</td>
+                                                            <td class=" ">
+                                                                <a class="cursor" ng-click="getAllHealthRecordsOfPatient(data.patientId)" data-toggle="modal" data-target="#ba">Lịch sử khám</a>
+                                                            </td>
+                                                            <td>
+                                                                <input type="radio" name="tich" ng-click="selectPatient(data)">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Tên</th>
+                                            <th>Mã số</th>
+                                            <th>Lý do khám</th>
+                                            <th>Tình trạng sức khỏe chung</th>
+                                            <th>Chuẩn đoán</th>
+                                            <th>Phưong pháp điều trị</th>
+                                            <th>Lưu ý</th>
+                                            <th>Ngày khám</th>
+                                            <th>Ngày khám lại</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="data in allHealthRecordsOfPatient | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                                            <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                            <td>{{$index+1}}</td>
+                                            <td>{{data.patient.name}}</td>
+                                            <td>{{data.patient.patientCode}}</td>
+                                            <td ng-bind-html="data.lyDoKham"></td>
+                                            <td ng-bind-html="data.chiSoCoBan"></td>
+                                            <td ng-bind-html="data.content"></td>
+                                            <td ng-bind-html="data.ppDieuTri"></td>
+                                            <td ng-bind-html="data.notice"></td>
+                                            <td>{{data.date}}</td>
+                                            <td>{{data.ngayKhamLai}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-6" ng-init="getAllHealthRecords()" ng-show="bv == 'tatca'">
+                        <div class="x_panel">
+                            <div class="alert alert-success" ng-if="successBS">
+                                <strong>{{successMessage}}</strong>
+                            </div>
+                            <div class="alert alert-danger" ng-if="dangerBS">
+                                <strong>{{errorMessage}}</strong>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên</th>
+                                        <th>Mã số</th>
+                                        <th>Lý do khám</th>
+                                        <th>Chuẩn đoán</th>
+                                        <th>Phưong pháp điều trị</th>
+                                        <th>Ngày khám</th>
+                                        <th>Ngày khám lại</th>
+                                        <th>Xoa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in allHealthRecords | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                                        <td>{{$index+1}}</td>
+                                        <td>{{data.patient.name}}</td>
+                                        <td>{{data.patient.patientCode}}</td>
+                                        <td ng-bind-html="data.lyDoKham"></td>
+                                        <td ng-bind-html="data.content"></td>
+                                        <td ng-bind-html="data.ppDieuTri"></td>
+                                        <td>{{data.date}}</td>
+                                        <td>{{data.ngayKhamLai}}</td>
+                                        <td class=" ">
+                                            <a class="cursor" ng-click="confirmDelete(data.id, data.patient.name)" data-toggle="modal" data-target="#delete_health"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

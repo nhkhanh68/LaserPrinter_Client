@@ -10,7 +10,8 @@ angular.module('myApp', [
     'angular-md5',
     'ngSanitize'
 ]).
-config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
+config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider',
+    function($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
         $locationProvider.hashPrefix('');
         if (sessionStorage["User-Data"] == null) {
             $routeProvider
@@ -21,13 +22,34 @@ config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProv
         } else {
             // $urlRouterProvider.otherwise('/partner/contract');
             $stateProvider
-                .state('/404', {
-                    url: '/404',
-                    templateUrl: '404.html'
+                .state('/student', {
+                    url: '/student',
+                    templateUrl: 'main/student.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý thư viện";
+                    }
                 })
-                .state('/table', {
-                    url: '/table',
-                    templateUrl: '/main/views/table/table.html'
+                .state('/patient', {
+                    url: '/patient',
+                    templateUrl: 'main/patient.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý khám bệnh";
+                    }
                 })
+                .state('/guixe', {
+                    url: '/guixe',
+                    templateUrl: 'main/guixe.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý gửi xe";
+                    }
+                })
+                .state('/nhanvien', {
+                    url: '/nhanvien',
+                    templateUrl: 'main/nhanvien.html',
+                    controller: function($rootScope) {
+                        $rootScope.title = "Quản lý gửi xe";
+                    }
+                });
         }
-    }]);
+    }
+]);

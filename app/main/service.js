@@ -1,13 +1,13 @@
- (function () {
+(function() {
     'use strict';
 
     angular.module('services')
-        .factory('userServices',userServices);
+        .factory('userServices', userServices);
 
     userServices.$inject = ['$log', '$http', '$q', '$rootScope'];
 
-    function userServices($log, $http, $q,$rootScope) {
-        return{
+    function userServices($log, $http, $q, $rootScope) {
+        return {
             login: login,
             logout: logout,
             getAllBook: getAllBook,
@@ -22,12 +22,112 @@
             getAllPatient: getAllPatient,
             createPatient: createPatient,
             getAllHealthRecords: getAllHealthRecords,
-            createHealthRecords : createHealthRecords,
+            createHealthRecords: createHealthRecords,
             deletePatient: deletePatient,
             deleteHealth: deleteHealth,
             getAllBookStudentOfStudent: getAllBookStudentOfStudent,
-            getAllHealthRecordsOfPatient: getAllHealthRecordsOfPatient
+            getAllHealthRecordsOfPatient: getAllHealthRecordsOfPatient,
+            traSach: traSach,
+            napTien: napTien,
+            getAllGuiXe: getAllGuiXe,
+            mucTienGuiXe: mucTienGuiXe,
+            thayDoiMucTienGuiXe: thayDoiMucTienGuiXe,
+            addNhanVien: addNhanVien,
+            getAllNhanVien: getAllNhanVien,
+            getCheckInTheoNgay: getCheckInTheoNgay,
+            getAllCheckInOfNhanVien: getAllCheckInOfNhanVien,
+            deleteNhanVien: deleteNhanVien,
+            editPatient: editPatient,
+            getLogTienStudent: getLogTienStudent
         };
+
+        function getLogTienStudent(id) {
+            return $http({
+                url: $rootScope.serverAdd + '/logtien/' + id,
+                method: 'GET'
+            })
+        }
+
+        function editPatient(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/patient/edit',
+                method: 'POST',
+                data: data
+            })
+        }
+        function deleteNhanVien(id) {
+            return $http({
+                url: $rootScope.serverAdd + '/deleteNhanVien/' + id,
+                method: 'DELETE'
+            })
+        }
+
+        function getAllCheckInOfNhanVien(id) {
+            return $http({
+                url: $rootScope.serverAdd + '/checkIn/nhanvien/' + id,
+                method: 'GET'
+            })
+        }
+
+        function getCheckInTheoNgay(ngay) {
+            return $http({
+                url: $rootScope.serverAdd + '/checkIn/nhanvien/ngay/' + ngay,
+                method: 'GET'
+            })
+        }
+
+        function getAllNhanVien() {
+            return $http({
+                url: $rootScope.serverAdd + '/nhanvien',
+                method: 'GET'
+            })
+        }
+
+        function addNhanVien(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/nhanvien/add',
+                method: 'POST',
+                data: data
+            })
+        }
+
+        function mucTienGuiXe() {
+            return $http({
+                url: $rootScope.serverAdd + '/muctienguixe',
+                method: 'GET'
+            })
+        }
+
+        function thayDoiMucTienGuiXe(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/thayDoiMucTienGuiXe/' + data,
+                method: 'POST',
+                data: data
+            })
+        }
+
+        function getAllGuiXe() {
+            return $http({
+                url: $rootScope.serverAdd + '/guiXe',
+                method: 'GET'
+            })
+        }
+
+        function napTien(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/tienXe/them',
+                method: 'POST',
+                data: data
+            })
+        }
+
+        function traSach(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/traSach',
+                method: 'POST',
+                data: data
+            })
+        }
 
         function getAllHealthRecordsOfPatient(patientId) {
             return $http({
@@ -43,14 +143,14 @@
             })
         }
 
-        function deleteHealth(id){
+        function deleteHealth(id) {
             return $http({
                 url: $rootScope.serverAdd + '/healthrecords/' + id + '/delete',
                 method: 'DELETE'
             })
         }
 
-        function deletePatient(id){
+        function deletePatient(id) {
             return $http({
                 url: $rootScope.serverAdd + '/patient/' + id + '/delete',
                 method: 'DELETE'
@@ -100,6 +200,7 @@
                 method: 'DELETE'
             })
         }
+
         function deleteBook(bookId) {
             return $http({
                 url: $rootScope.serverAdd + '/book/' + bookId + '/delete',
@@ -159,7 +260,7 @@
                 method: 'GET'
             })
         }
-        
+
         function getAllBook() {
             return $http({
                 url: $rootScope.serverAdd + '/book',
