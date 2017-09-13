@@ -47,7 +47,7 @@ config(['$locationProvider', '$routeProvider', '$stateProvider', '$urlRouterProv
                     url: '/nhanvien',
                     templateUrl: 'main/nhanvien.html',
                     controller: function($rootScope) {
-                        $rootScope.title = "Quản lý gửi xe";
+                        $rootScope.title = "Quản lý nhân viên";
                     }
                 });
         }
