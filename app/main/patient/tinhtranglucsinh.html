@@ -1,0 +1,42 @@
+<div class="x_title" ng-init="tinhtranglucsinh = true">
+    <h4 data-target=".tinhtranglucsinh" data-toggle="collapse" class="cursor" ng-click="tinhtranglucsinh = !tinhtranglucsinh" id="tinhtranglucsinh">
+        1. Tình trạng lúc sinh 
+        <i class="fa" ng-class="{'fa-chevron-down' : tinhtranglucsinh == true, 'fa-chevron-up' : tinhtranglucsinh == false}"></i>
+    </h4>
+</div>
+<div class="collapse tinhtranglucsinh themThongTin">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <!-- <h4></h4> -->
+        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+            <!-- <div class="x_panel"> -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="radio" name="de" ng-model="inputPatient
+                                                    .deThuong" value="true">Đẻ thưòng</th>
+                        <th>
+                            <input type="radio" name="de" ng-model="inputPatient
+                                                    .deMo" value="true">Đẻ mổ</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="biNgatLucDe" ng-model="inputPatient
+                                                    .biNgatLucDe" value="true">Bị ngạt lúc đẻ</th>
+                        <th>
+                            <input type="checkbox" name="deThieuThang" ng-model="inputPatient
+                                                    .deThieuThang" value="true">Đẻ thiếu tháng</th>
+                    </tr>
+                    <tr>
+                        <th>Cân nặng lúc đẻ</th>
+                        <th>
+                            <input type="text" class="form-control" style="width: 50%;" ng-model="inputPatient.canNangLucDe">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <!-- </div> -->
+        </div>
+        <!-- <div class="divider-dashed"></div> -->
+    </form>
+</div>

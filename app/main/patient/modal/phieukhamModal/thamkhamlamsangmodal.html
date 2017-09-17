@@ -1,0 +1,170 @@
+<div class="x_title" ng-init="thamkhamlamsang = true">
+    <h4 data-target=".thamkhamlamsang" data-toggle="collapse" class="cursor" ng-click="thamkhamlamsang = !thamkhamlamsang" id="thamkhamlamsang">
+            2. Thăm khám lâm sàng
+            <i class="fa" ng-class="{'fa-chevron-down' : thamkhamlamsang == true, 'fa-chevron-up' : thamkhamlamsang == false}"></i>
+    </h4>
+</div>
+<div class="collapse thamkhamlamsang phieuKham">
+    <h4>2.1 Dấu hiệu sinh tồn, chỉ số nhân trắc học</h4>
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th style="border: 1px solid;">
+                    Hen suyễn
+                </th>
+                <th style="border: 1px solid;">
+                    Bệnh phổi mãn tính
+                </th>
+                <th style="border: 1px solid;">
+                    Bệnh tim mạch
+                </th>
+                <th style="border: 1px solid;">
+                    Viêm gan
+                </th>
+                <th style="border: 1px solid;">
+                    Tâm thần
+                </th>
+                <th style="border: 1px solid;">
+                    Bướu cổ
+                </th>
+                <th style="border: 1px solid;">
+                    Động kinh
+                </th>
+                <th style="border: 1px solid;">
+                    Tự kỉ
+                </th>
+                <th style="border: 1px solid;">
+                    Bệnh dạ dày
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.heSuyen" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.benhPhoiManTinh" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.benhTimMach" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.viemGan" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.tamThan" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.buouCo" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.dongKinh" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.tuKi" value="true" style="width: 100%; border: 0px;">
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="checkbox" ng-model="inputHealthModal.benhDaDay" value="true" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <h4>2.2 Khám lâm sàng</h4>
+    <h5 style="padding-left: 10px;">2.2.1 Toàn thân</h5>
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Da:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.da"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Niêm mạc:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.niemMac"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Khác:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.lamSangKhac"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+    <h5 style="padding-left: 10px;">2.2.2 Cơ quan</h5>
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tim mạch:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.timMach"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tiết niệu:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.tietNien"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tiêu hóa:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.tieuHoa"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Hô hấp:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.hohap"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tai mũi họng:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.taiMuiHong"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Răng hàm mặt:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.rangHamMat"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Mắt:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.mat"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Cơ xương khớp:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.coXuongKhop"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Dinh dưõng:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.dinhDuong"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Nội tiết:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.noiTiet"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Thần kinh:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.coQuanThanhKinh"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Cơ quan khác:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealthModal.coQuanKhac"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>

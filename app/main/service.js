@@ -159,7 +159,7 @@
 
         function createHealthRecords(data) {
             return $http({
-                url: $rootScope.serverAdd + '/healthRecords/create',
+                url: $rootScope.serverAdd + '/healthRecords/create/' + data.patientId,
                 method: 'POST',
                 data: data
             })

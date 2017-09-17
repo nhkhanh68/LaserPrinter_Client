@@ -1,0 +1,105 @@
+<div class="x_title" ng-init="tiensugiadinhModal = true">
+    <h4 data-target=".tiensugiadinhModal" data-toggle="collapse" class="cursor" ng-click="tiensugiadinhModal = !tiensugiadinhModal" id="tiensugiadinhModal">
+        5. Tiền sử gia đình 
+        <i class="fa" ng-class="{'fa-chevron-down' : tiensugiadinhModal == true, 'fa-chevron-up' : tiensugiadinhModal == false}"></i>
+    </h4>
+</div>
+<div class="collapse tiensugiadinhModal thongTinModal">
+    <form class="form-horizontal form-label-left">
+        <h4>- Dị ứng</h4>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Thuốc:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="modalPatient.tsgdDiUngThuoc"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Hóa chất:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="modalPatient.tsgdDiUngHoaChat"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Thực phẩm:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="modalPatient.tsgdDiUngThucPham"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Khác:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="modalPatient.tsgdDiUngKhac"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+    <h4>- Bệnh tật</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Hen suyễn
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdHenSuyen == 'true'" ng-model="modalPatient.tsgdHenSuyen" value="true">
+                </th>
+                <th>
+                    Bệnh phổi mãn tính
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdBenhPhoiManTinh == 'true'" ng-model="modalPatient.tsgdBenhPhoiManTinh" value="true">
+                </th>
+                <th>
+                    Bệnh tim mạch
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdBenhTimMach == 'true'" ng-model="modalPatient.tsgdBenhTimMach" value="true">
+                </th>
+                <th>
+                    Viêm gan
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdViemGan == 'true'" ng-model="modalPatient.tsgdViemGan" value="true">
+                </th>
+                <th>
+                    Tâm thần
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdTamThan == 'true'" ng-model="modalPatient.tsgdTamThan" value="true">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Bướu cổ
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdBuouCo == 'true'" ng-model="modalPatient.tsgdBuouCo" value="true">
+                </th>
+                <th>
+                    Động kinh
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdDongKinh == 'true'" ng-model="modalPatient.tsgdDongKinh" value="true">
+                </th>
+                <th>
+                    Tự kỉ
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdTuKi == 'true'" ng-model="modalPatient.tsgdTuKi" value="true">
+                </th>
+                <th>
+                    Bệnh dạ dày
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-checked="modalPatient.tsgdBenhDaDay == 'true'" ng-model="modalPatient.tsgdBenhDaDay" value="true">
+                </th>
+                <th style="border-left : 1px solid;">
+                    Bệnh đái tháo đưòng
+                </th>
+                <th>
+                    <input type="checkbox" ng-checked="modalPatient.tsgddaiThaoDuong == 'true'" ng-model="modalPatient.tsgddaiThaoDuong" value="true">
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,71 @@
+<form class="form-horizontal form-label-left" id="add_follow_student">
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên:</label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.name = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.name" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Giới tính: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="radio" name="gioitinh" ng-model="inputPatient
+                                                    .gioiTinh" value="Nam">Nam
+            <input type="radio" name="gioitinh" ng-model="inputPatient
+                                                    .gioiTinh" value="Nữ">Nữ
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mã số BHYT: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.patientCode = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.patientCode" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Địa chỉ: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.address = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.address" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày tháng năm sinh: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.dateOfBirth" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nơi sinh: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.address = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.noiSinh" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số điện thoại: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.phone" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số CMND: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.cmnd" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Dân tộc: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.danToc" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Quốc Tịch: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.quocTich" ng-requied="true">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-init="inputPatient.date = ''">
+            <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.email" ng-requied="true">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,119 @@
+<div class="x_title" ng-init="chuandoan = true">
+    <h4 data-target=".chuandoan" data-toggle="collapse" class="cursor" ng-click="chuandoan = !chuandoan" id="chuandoan">
+            4. Chuẩn đoán/ Kết luận
+            <i class="fa" ng-class="{'fa-chevron-down' : chuandoan == true, 'fa-chevron-up' : chuandoan == false}"></i>
+    </h4>
+</div>
+<div class="collapse chuandoan phieuKham">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-1 col-sm-1 col-xs-12"></label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealth.chuanDoanKetLuan"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>
+<div class="x_title" ng-init="tuvan = true">
+    <h4 data-target=".tuvan" data-toggle="collapse" class="cursor" ng-click="tuvan = !tuvan">
+            5. Tư vấn/ Điều trị
+            <i class="fa" ng-class="{'fa-chevron-down' : tuvan == true, 'fa-chevron-up' : tuvan == false}"></i>
+    </h4>
+</div>
+<div class="collapse tuvan phieuKham">
+    <h4>5.1 Đơn thuốc</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="border: 1px solid;">
+                    STT
+                </th>
+                <th style="border: 1px solid;">
+                    Tên thuốc hàm lưọng, nồng độ
+                </th>
+                <th style="border: 1px solid;">
+                    Số lưọng
+                </th>
+                <th style="border: 1px solid;">
+                    Liều dùng trong ngày
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    1
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.tenThuoc1" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.soLuong1" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.lieuDung1" style="width: 100%; border: 0px;"></textarea>
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    2
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.tenThuoc2" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.soLuong2" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.lieuDung2" style="width: 100%; border: 0px;"></textarea>
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    3
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.tenThuoc3" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.soLuong3" style="width: 100%; border: 0px;"></textarea>
+                </th>
+                </th>
+                <th style="border: 1px solid;">
+                    <textarea rows="2" ng-model="inputHealth.lieuDung3" style="width: 100%; border: 0px;"></textarea>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <h4>5.2 Tư vấn - Điều trị</h4>
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-1 col-sm-1 col-xs-12">Phương pháp điều trị</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealth.ppDieuTri"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-1 col-sm-1 col-xs-12">Lưu ý</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputHealth.tuVan"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">Ngày khám lại: </label>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                <input type="date" class="form-control col-md-7 col-xs-12" ng-model="inputHealth.ngayKhamLai">
+            </div>
+        </div>
+        <div class="form-group" ng-hide="modal == true">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>
