@@ -8,8 +8,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" ng-cloak>
-    <title>{{title}}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-if="title == undefined">Đăng nhập</title>
+    <title ng-if="title != undefined">{{title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -28,18 +29,68 @@
     <script src="app.js"></script>
     <script src="main/main.ctrl.js"></script>
     <script src="main/service.js"></script>
+    <script type="text/javascript">
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+        document.documentElement.scrollTop = 0; // For IE and Firefox
+    }
+    </script>
     <style>
     .cursor {
         cursor: pointer;
     }
+
     .muon {
         background-color: #f0ad4e;
+    }
+
+    #myBtn {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Fixed/sticky position */
+        bottom: 20px;
+        /* Place the button at the bottom of the page */
+        right: 30px;
+        /* Place the button 30px from the right */
+        z-index: 99;
+        /* Make sure it does not overlap */
+        border: none;
+        /* Remove borders */
+        outline: none;
+        /* Remove outline */
+        background-color: #73879C;
+        /* Set a background color */
+        color: white;
+        /* Text color */
+        cursor: pointer;
+        /* Add a mouse pointer on hover */
+        padding: 15px;
+        /* Some padding */
+        border-radius: 10px;
+        /* Rounded corners */
+    }
+
+    #myBtn:hover {
+        background-color: #555;
+        /* Add a dark-grey background on hover */
     }
     </style>
 </head>
 <div ng-view ng-if="loggedIn != true"></div>
 
-<body class="nav-sm" ng-controller="mainCtrl">
+<body class="nav-sm" ng-controller="mainCtrl" ng-cloak>
     <div class="container body" ng-show="loggedIn">
         <div class="main_container">
             <div class="col-md-3 left_col">
@@ -62,9 +113,11 @@
                                 <!-- patient -->
                                 <li ng-class="{active : sach == 'them'}" ng-click="chonbv('them')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm </a>
                                 </li>
-                                <li ng-class="{active : sach == 'themsach'}" ng-click="chonbv('themba')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm bệnh án </a>
+                                <li ng-click="chonbv('themba')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm phiếu khám </a>
                                 </li>
-                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatca')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả </a>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatca')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả phiếu khám</a>
+                                </li>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatcabenhnhan')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả bệnh nhân </a>
                                 </li>
                                 <!-- guixe -->
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonguixe('quanly')" class="cursor" ng-if="role == 'guixe'"><a><i class="fa fa-book"></i> Thêm </a>
@@ -110,6 +163,7 @@
                 <!-- guixe -->
                 <!-- nhanvien -->
                 <div ui-view></div>
+                <i onclick="topFunction()" id="myBtn" class="fa fa-long-arrow-up" title="Go to top"></i>
                 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="delete_health">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">

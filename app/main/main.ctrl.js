@@ -13,7 +13,7 @@
                 $scope.inputNhanVien = {};
                 $scope.allLogTienStudent = [];
                 $scope.sach = "themsach";
-                $scope.bv = "themba";
+                // $scope.bv = "themba";
                 $scope.reverse = true;
                 $scope.showX_panel = function() {
                     $timeout(function() {
@@ -32,6 +32,209 @@
                 $scope.chonnhanvien = function(string) {
                     $scope.nhanvien = string;
                 }
+                $scope.phieuKham = true;
+                $scope.benhsu = true;
+                $scope.canlamsang = true;
+                $scope.chuandoan = true;
+                $scope.thamkhamlamsang = true;
+                $scope.collapse = function(className, v) {
+                    if (v == true) {
+                        if (className == 'phieuKham') {
+                            if (!$('.benhsu').is(':visible')) {
+                                $timeout(function() {
+                                    $('#benhsu').trigger('click');
+                                });
+                            }
+                            if (!$('.canlamsang').is(':visible')) {
+                                $timeout(function() {
+                                    $('#canlamsang').trigger('click');
+                                });
+                            }
+                            if (!$('.chuandoan').is(':visible')) {
+                                $timeout(function() {
+                                    $('#chuandoan').trigger('click');
+                                });
+                            }
+                            if (!$('.thamkhamlamsang').is(':visible')) {
+                                $timeout(function() {
+                                    $('#thamkhamlamsang').trigger('click');
+                                });
+                            }
+                        } else if (className == 'themThongTin') {
+                            if (!$('.tinhtranglucsinh').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tinhtranglucsinh').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensubenhtat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensubenhtat').trigger('click');
+                                });
+                            }
+                            if (!$('.khuyettat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#khuyettat').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensuphauthuat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensuphauthuat').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensugiadinh').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensugiadinh').trigger('click');
+                                });
+                            }
+                            if (!$('.suckhoesinhsan').is(':visible')) {
+                                $timeout(function() {
+                                    $('#suckhoesinhsan').trigger('click');
+                                });
+                            }
+                            if (!$('.cacbenhkhac').is(':visible')) {
+                                $timeout(function() {
+                                    $('#cacbenhkhac').trigger('click');
+                                });
+                            }
+                        } else if (className == 'thongTinModal') {
+                            if (!$('.tinhtranglucsinhModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tinhtranglucsinhModal').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensubenhtatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensubenhtatModal').trigger('click');
+                                });
+                            }
+                            if (!$('.khuyettatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#khuyettatModal').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensuphauthuatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensuphauthuatModal').trigger('click');
+                                });
+                            }
+                            if (!$('.tiensugiadinhModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensugiadinhModal').trigger('click');
+                                });
+                            }
+                            if (!$('.suckhoesinhsanModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#suckhoesinhsanModal').trigger('click');
+                                });
+                            }
+                            if (!$('.cacbenhkhacModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#cacbenhkhacModal').trigger('click');
+                                });
+                            }
+                        }
+                    } else {
+                        if (className == 'phieuKham') {
+                            // console.log($scope.benhsu);
+                            if ($('.benhsu').is(':visible')) {
+                                $timeout(function() {
+                                    $('#benhsu').trigger('click');
+                                });
+                                // $scope.benhsu = false;
+                                // console.log($scope.benhsu)
+                            }
+                            if ($('.canlamsang').is(':visible')) {
+                                $timeout(function() {
+                                    $('#canlamsang').trigger('click');
+                                });
+                                // $('#canlamsang').trigger('click')
+                            }
+                            if ($('.chuandoan').is(':visible')) {
+                                $timeout(function() {
+                                    $('#chuandoan').trigger('click');
+                                });
+                                // $('#chuandoan').trigger('click')
+                            }
+                            if ($('.thamkhamlamsang').is(':visible')) {
+                                $timeout(function() {
+                                    $('#thamkhamlamsang').trigger('click');
+                                });
+                            }
+                        } else if (className == 'themThongTin') {
+                            if ($('.tinhtranglucsinh').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tinhtranglucsinh').trigger('click');
+                                });
+                            }
+                            if ($('.tiensubenhtat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensubenhtat').trigger('click');
+                                });
+                            }
+                            if ($('.khuyettat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#khuyettat').trigger('click');
+                                });
+                            }
+                            if ($('.tiensuphauthuat').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensuphauthuat').trigger('click');
+                                });
+                            }
+                            if ($('.tiensugiadinh').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensugiadinh').trigger('click');
+                                });
+                            }
+                            if ($('.suckhoesinhsan').is(':visible')) {
+                                $timeout(function() {
+                                    $('#suckhoesinhsan').trigger('click');
+                                });
+                            }
+                            if ($('.cacbenhkhac').is(':visible')) {
+                                $timeout(function() {
+                                    $('#cacbenhkhac').trigger('click');
+                                });
+                            }
+                        } else if (className == 'thongTinModal') {
+                            if ($('.tinhtranglucsinhModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tinhtranglucsinhModal').trigger('click');
+                                });
+                            }
+                            if ($('.tiensubenhtatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensubenhtatModal').trigger('click');
+                                });
+                            }
+                            if ($('.khuyettatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#khuyettatModal').trigger('click');
+                                });
+                            }
+                            if ($('.tiensuphauthuatModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensuphauthuatModal').trigger('click');
+                                });
+                            }
+                            if ($('.tiensugiadinhModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#tiensugiadinhModal').trigger('click');
+                                });
+                            }
+                            if ($('.suckhoesinhsanModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#suckhoesinhsanModal').trigger('click');
+                                });
+                            }
+                            if ($('.cacbenhkhacModal').is(':visible')) {
+                                $timeout(function() {
+                                    $('#cacbenhkhacModal').trigger('click');
+                                });
+                            }
+                        }
+                    }
+                }
                 // console.log = function(){};
                 // var d = new Date();
                 // console.log(d.getDay());
@@ -40,7 +243,7 @@
                     setTimeout($scope.initSockets, 10000);
                 };
                 $scope.initSockets = function() {
-                    console.log($scope.name);
+                    // console.log($scope.name);
                     $scope.socket.client = new SockJS($rootScope.serverAdd + '/uet');
                     $scope.socket.stomp = Stomp.over($scope.socket.client);
                     $scope.socket.stomp.connect({}, function() {
@@ -48,7 +251,7 @@
                             angular.forEach($scope.name, function(data) {
                                 $scope.socket.stomp.subscribe("/user/" + data.name + "/**", function(message) {
                                     var response = JSON.parse(message.body);
-                                    console.log(response);
+                                    // console.log(response);
                                     if (data.name == 'checkinGuiXe') {
                                         if (response.status == 'Thành công') {
                                             var arr = response;
@@ -75,7 +278,7 @@
                                             .then(function(response) {
                                                 $scope.allLogTienStudent = response.data;
                                             }, function(error) {
-                                                console.log(error);
+                                                // console.log(error);
                                             })
                                     }
                                     $rootScope.$apply();
@@ -91,14 +294,20 @@
                                 // console.log($rootScope.response);
                                 if ($scope.name == "patient") {
                                     $scope.selectPatient(response);
-                                    console.log(response.patientId);
+                                    if (!$('#thong_tin').is(':visible')) {
+                                        $timeout(function() {
+                                            $('#h3_thong_tin_benh_nhan').trigger('click');
+                                        });
+                                    }
+                                    // $('#h3_thong_tin_benh_nhan').trigger('click');
+                                    // console.log(response.patientId);
                                     $scope.getAllHealthRecordsOfPatient(response.patientId);
                                 } else if ($scope.name == "student") {
                                     $scope.selectStudent(response);
                                     $scope.getAllBookStudentOfStudent(response.id);
-                                    console.log(response);
+                                    // console.log(response);
                                 } else if ($scope.name == 'nhanvien') {
-                                    console.log(response);
+                                    // console.log(response);
                                 }
                                 $rootScope.$apply();
                             });
@@ -120,6 +329,7 @@
                         $location.path('/student');
                     } else if ($rootScope.role == 'client-patient') {
                         $scope.name = 'patient';
+                        $rootScope.title = "Quản lý khám bệnh";
                         // $scope.title = "Quản lý khám bệnh";
                         // if (current.hasOwnProperty('$$route')) {}
                         $scope.initSockets();
@@ -138,7 +348,7 @@
                         // $scope.title = "Quản lý gửi xe";
                         $scope.initSockets();
                         $location.path('/guixe');
-                        console.log($scope.name);
+                        // console.log($scope.name);
                     } else if ($rootScope.role == "nhanvien") {
                         // $scope.name = "student";
                         $scope.name = 'nhanvien';
@@ -160,9 +370,9 @@
                     userServices.mucTienGuiXe()
                         .then(function(response) {
                             $scope.tienGuiXe = response.data.password;
-                            console.log(response.data);
+                            // console.log(response.data);
                         }, function(error) {
-                            console.log(error)
+                            // console.log(error)
                         })
                 }
 
@@ -174,7 +384,7 @@
                                 $scope.tienGuiXe = $scope.input.mucTienMoi;
                                 $scope.input.mucTienMoi = "";
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                             })
                     }
                 }
@@ -190,7 +400,7 @@
                             id: $scope.student.student.id,
                             cash: $scope.inputGuiXe.cash
                         }
-                        console.log($scope.req);
+                        // console.log($scope.req);
                         userServices.napTien($scope.req)
                             .then(function() {
                                 $scope.alertSuccess("Thêm tiền thành công!", '');
@@ -200,10 +410,10 @@
                                     .then(function(response) {
                                         $scope.allLogTienStudent = response.data;
                                     }, function(error) {
-                                        console.log(error);
+                                        // console.log(error);
                                     })
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                             })
                     }
                 }
@@ -216,10 +426,10 @@
                 $scope.getAllGuiXe = function() {
                     userServices.getAllGuiXe()
                         .then(function(response) {
-                            console.log(response)
+                            // console.log(response)
                             $scope.allGuiXe = response.data;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -238,18 +448,18 @@
                 }
 
                 $scope.traSach = function() {
-                    console.log($scope.listTraSach);
+                    // console.log($scope.listTraSach);
                     userServices.traSach($scope.listTraSach)
                         .then(function() {
                             angular.forEach($scope.listTraSach, function(data) {
                                 $('#status_' + data.id).text("Đã trả");
                                 $('#checkbox_' + data.id).trigger("click");
                                 $('#checkbox_' + data.id).hide();
-                                console.log(data.id);
+                                // console.log(data.id);
                             })
                             $scope.listTraSach = [];
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -259,23 +469,168 @@
                     }
                 }
 
+
+                $scope.selectHealthRecord = function(data) {
+                    $scope.inputHealthModal = data;
+                    // console.log(data.ngayKhamLai)
+                    var ar = data.ngayKhamLai.split('-');
+                    if (ar[1] < 10) {
+                        ar[1] = '0' + ar[1];
+                    }
+                    data.ngayKhamLai = ar[2] + '-' + ar[1] + '-' + ar[0];
+                    // console.log(data.ngayKhamLai)
+                    if ($scope.inputHealthModal.ppDieuTri != undefined) {
+                        $scope.inputHealthModal.ppDieuTri = $scope.inputHealthModal.ppDieuTri.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.lyDoKham != undefined) {
+                        $scope.inputHealthModal.lyDoKham = $scope.inputHealthModal.lyDoKham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.benhSu != undefined) {
+                        $scope.inputHealthModal.benhSu = $scope.inputHealthModal.benhSu.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.chuanDoanKetLuan != undefined) {
+                        $scope.inputHealthModal.chuanDoanKetLuan = $scope.inputHealthModal.chuanDoanKetLuan.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tenThuoc1 != undefined) {
+                        $scope.inputHealthModal.tenThuoc1 = $scope.inputHealthModal.tenThuoc1.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.soLuong1 != undefined) {
+                        $scope.inputHealthModal.soLuong1 = $scope.inputHealthModal.soLuong1.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.lieuDung1 != undefined) {
+                        $scope.inputHealthModal.lieuDung1 = $scope.inputHealthModal.lieuDung1.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tenThuoc2 != undefined) {
+                        $scope.inputHealthModal.tenThuoc2 = $scope.inputHealthModal.tenThuoc2.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.soLuong2 != undefined) {
+                        $scope.inputHealthModal.soLuong2 = $scope.inputHealthModal.soLuong2.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.lieuDung2 != undefined) {
+                        $scope.inputHealthModal.lieuDung2 = $scope.inputHealthModal.lieuDung2.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tenThuoc3 != undefined) {
+                        $scope.inputHealthModal.tenThuoc3 = $scope.inputHealthModal.tenThuoc3.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.soLuong3 != undefined) {
+                        $scope.inputHealthModal.soLuong3 = $scope.inputHealthModal.soLuong3.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.lieuDung3 != undefined) {
+                        $scope.inputHealthModal.lieuDung3 = $scope.inputHealthModal.lieuDung3.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tuVan != undefined) {
+                        $scope.inputHealthModal.tuVan = $scope.inputHealthModal.tuVan.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.da != undefined) {
+                        $scope.inputHealthModal.da = $scope.inputHealthModal.da.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.niemMac != undefined) {
+                        $scope.inputHealthModal.niemMac = $scope.inputHealthModal.niemMac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.lamSangKhac != undefined) {
+                        $scope.inputHealthModal.lamSangKhac = $scope.inputHealthModal.lamSangKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.timMach != undefined) {
+                        $scope.inputHealthModal.timMach = $scope.inputHealthModal.timMach.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tietNien != undefined) {
+                        $scope.inputHealthModal.tietNien = $scope.inputHealthModal.tietNien.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.tieuHoa != undefined) {
+                        $scope.inputHealthModal.tieuHoa = $scope.inputHealthModal.tieuHoa.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.hohap != undefined) {
+                        $scope.inputHealthModal.hohap = $scope.inputHealthModal.hohap.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.taiMuiHong != undefined) {
+                        $scope.inputHealthModal.taiMuiHong = $scope.inputHealthModal.taiMuiHong.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.rangHamMat != undefined) {
+                        $scope.inputHealthModal.rangHamMat = $scope.inputHealthModal.rangHamMat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.mat != undefined) {
+                        $scope.inputHealthModal.mat = $scope.inputHealthModal.mat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.coXuongKhop != undefined) {
+                        $scope.inputHealthModal.coXuongKhop = $scope.inputHealthModal.coXuongKhop.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.dinhDuong != undefined) {
+                        $scope.inputHealthModal.dinhDuong = $scope.inputHealthModal.dinhDuong.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.noiTiet != undefined) {
+                        $scope.inputHealthModal.noiTiet = $scope.inputHealthModal.noiTiet.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.coQuanThanhKinh != undefined) {
+                        $scope.inputHealthModal.coQuanThanhKinh = $scope.inputHealthModal.coQuanThanhKinh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($scope.inputHealthModal.coQuanKhac != undefined) {
+                        $scope.inputHealthModal.coQuanKhac = $scope.inputHealthModal.coQuanKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    // console.log($scope.inputHealth);
+                    // if ($scope.inputHealth.lyDoKham != undefined) {
+                    //     $scope.inputHealth.lyDoKham = $scope.inputHealth.lyDoKham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.diUngThuoc != undefined) {
+                    //     $scope.inputHealth.diUngThuoc = $scope.inputHealth.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.diUngHoaChat != undefined) {
+                    //     $scope.inputHealth.diUngHoaChat = $scope.inputHealth.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.diUngThucPham != undefined) {
+                    //     $scope.inputHealth.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.diUngKhac != undefined) {
+                    //     $scope.inputHealth.diUngKhac = $scope.inputHealth.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tieuSuBenh != undefined) {
+                    //     $scope.inputHealth.tieuSuBenh = $scope.inputHealth.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.khuyetTatKhac != undefined) {
+                    //     $scope.inputHealth.khuyetTatKhac = $scope.inputHealth.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tieuSuPhauThuat != undefined) {
+                    //     $scope.inputHealth.tieuSuPhauThuat = $scope.inputHealth.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsgdDiUngThuoc != undefined) {
+                    //     $scope.inputHealth.tsgdDiUngThuoc = $scope.inputHealth.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsgdDiUngHoaChat != undefined) {
+                    //     $scope.inputHealth.tsgdDiUngHoaChat = $scope.inputHealth.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsgdDiUngHoaChat != undefined) {
+                    //     $scope.inputHealth.tsgdDiUngHoaChat = $scope.inputHealth.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsgdDiUngThucPham != undefined) {
+                    //     $scope.inputHealth.tsgdDiUngThucPham = $scope.inputHealth.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsgdDiUngKhac != undefined) {
+                    //     $scope.inputHealth.tsgdDiUngKhac = $scope.inputHealth.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.tsspBenhKhac != undefined) {
+                    //     $scope.inputHealth.tsspBenhKhac = $scope.inputHealth.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($scope.inputHealth.ppDieuTri != undefined) {
+                    //     $scope.inputHealth.ppDieuTri = $scope.inputHealth.ppDieuTri.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                }
+
                 $scope.getAllHealthRecordsOfPatient = function(id) {
                     userServices.getAllHealthRecordsOfPatient(id)
                         .then(function(response) {
-                            console.log(response.data);
+                            // console.log(response.data);
                             $scope.allHealthRecordsOfPatient = response.data;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
                 $scope.getAllBookStudentOfStudent = function(id) {
                     userServices.getAllBookStudentOfStudent(id)
                         .then(function(response) {
-                            console.log(response.data);
+                            // console.log(response.data);
                             $scope.allBookStudentOfStudent = response.data;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -310,6 +665,58 @@
                 $scope.selectPatient = function(data) {
                     $scope.patient = data;
                     $scope.inputHealth.patientId = data.patientId;
+                    $rootScope.modalPatient = data.patient;
+                    // console.log($rootScope.modalPatient);
+                    // if ($rootScope.modalPatient.diUngThuoc != undefined) {
+                    //     $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngThucPham != undefined) {
+                    //     $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngKhac != undefined) {
+                    //     $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tieuSuBenh != undefined) {
+                    //     $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
+                    //     $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
+                    //     $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
+                    //     $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    userServices.getAllHealthRecordsOfPatient(data.patient.id)
+                        .then(function(response) {
+                            // console.log(response.data);
+                            $scope.allHealthRecordsOfPatient = response.data;
+                        }, function(error) {
+                            // console.log(error);
+                        })
+
+                    $timeout(function() {
+                        $rootScope.$apply();
+                    });
                 }
 
                 $scope.addAttr = function(attr, className) {
@@ -346,25 +753,106 @@
                                 $scope.getAllPatient();
                             }
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                     // $scope.$apply();
                 }
 
                 $scope.createHealthRecords = function() {
                     // $scope.inputHealth.patientId = $scope.patient.id;
-                    if ($scope.inputHealth.content != undefined && $scope.inputHealth.patientId != undefined && $scope.inputHealth.ppDieuTri != undefined && $scope.inputHealth.lyDoKham != undefined) {
-                        $scope.inputHealth.content = $scope.inputHealth.content.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                        $scope.inputHealth.ppDieuTri = $scope.inputHealth.ppDieuTri.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                        $scope.inputHealth.lyDoKham = $scope.inputHealth.lyDoKham.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                        $scope.inputHealth.chiSoCoBan = $scope.inputHealth.chiSoCoBan.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                        $scope.inputHealth.notice = $scope.inputHealth.notice.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                    if ($scope.inputHealth.lyDoKham != undefined) {
+                        if ($scope.inputHealth.lyDoKham != undefined) {
+                            $scope.inputHealth.lyDoKham = $scope.inputHealth.lyDoKham.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.benhSu != undefined) {
+                            $scope.inputHealth.benhSu = $scope.inputHealth.benhSu.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.chuanDoanKetLuan != undefined) {
+                            $scope.inputHealth.chuanDoanKetLuan = $scope.inputHealth.chuanDoanKetLuan.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tenThuoc1 != undefined) {
+                            $scope.inputHealth.tenThuoc1 = $scope.inputHealth.tenThuoc1.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.soLuong1 != undefined) {
+                            $scope.inputHealth.soLuong1 = $scope.inputHealth.soLuong1.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.lieuDung1 != undefined) {
+                            $scope.inputHealth.lieuDung1 = $scope.inputHealth.lieuDung1.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tenThuoc2 != undefined) {
+                            $scope.inputHealth.tenThuoc2 = $scope.inputHealth.tenThuoc2.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.soLuong2 != undefined) {
+                            $scope.inputHealth.soLuong2 = $scope.inputHealth.soLuong2.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.lieuDung2 != undefined) {
+                            $scope.inputHealth.lieuDung2 = $scope.inputHealth.lieuDung2.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tenThuoc3 != undefined) {
+                            $scope.inputHealth.tenThuoc3 = $scope.inputHealth.tenThuoc3.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.soLuong3 != undefined) {
+                            $scope.inputHealth.soLuong3 = $scope.inputHealth.soLuong3.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.lieuDung3 != undefined) {
+                            $scope.inputHealth.lieuDung3 = $scope.inputHealth.lieuDung3.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tuVan != undefined) {
+                            $scope.inputHealth.tuVan = $scope.inputHealth.tuVan.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.da != undefined) {
+                            $scope.inputHealth.da = $scope.inputHealth.da.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.niemMac != undefined) {
+                            $scope.inputHealth.niemMac = $scope.inputHealth.niemMac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.lamSangKhac != undefined) {
+                            $scope.inputHealth.lamSangKhac = $scope.inputHealth.lamSangKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.timMach != undefined) {
+                            $scope.inputHealth.timMach = $scope.inputHealth.timMach.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tietNien != undefined) {
+                            $scope.inputHealth.tietNien = $scope.inputHealth.tietNien.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.tieuHoa != undefined) {
+                            $scope.inputHealth.tieuHoa = $scope.inputHealth.tieuHoa.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.hohap != undefined) {
+                            $scope.inputHealth.hohap = $scope.inputHealth.hohap.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.taiMuiHong != undefined) {
+                            $scope.inputHealth.taiMuiHong = $scope.inputHealth.taiMuiHong.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.rangHamMat != undefined) {
+                            $scope.inputHealth.rangHamMat = $scope.inputHealth.rangHamMat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.mat != undefined) {
+                            $scope.inputHealth.mat = $scope.inputHealth.mat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.coXuongKhop != undefined) {
+                            $scope.inputHealth.coXuongKhop = $scope.inputHealth.coXuongKhop.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.dinhDuong != undefined) {
+                            $scope.inputHealth.dinhDuong = $scope.inputHealth.dinhDuong.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.noiTiet != undefined) {
+                            $scope.inputHealth.noiTiet = $scope.inputHealth.noiTiet.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.coQuanThanhKinh != undefined) {
+                            $scope.inputHealth.coQuanThanhKinh = $scope.inputHealth.coQuanThanhKinh.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputHealth.coQuanKhac != undefined) {
+                            $scope.inputHealth.coQuanKhac = $scope.inputHealth.coQuanKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+
+
                         var date = new Date();
                         var curr_date = date.getDate();
                         var curr_month = date.getMonth() + 1; //Months are zero based
                         var curr_year = date.getFullYear();
                         $scope.inputHealth.date = curr_date + "-" + curr_month + "-" + curr_year;
-                        console.log($scope.inputHealth.ngayKhamLai);
+                        // console.log($scope.inputHealth.ngayKhamLai);
                         if ($scope.inputHealth.ngayKhamLai != undefined || $scope.inputHealth.ngayKhamLai != null) {
                             var date = $scope.inputHealth.ngayKhamLai;
                             var curr_date = date.getDate();
@@ -372,7 +860,7 @@
                             var curr_year = date.getFullYear();
                             $scope.inputHealth.ngayKhamLai = curr_date + "-" + curr_month + "-" + curr_year;
                         }
-                        console.log($scope.inputHealth);
+                        // console.log($scope.inputHealth);
                         userServices.createHealthRecords($scope.inputHealth)
                             .then(function(response) {
                                 $scope.allHealthRecords.push(response.data);
@@ -385,7 +873,7 @@
                                 $scope.inputHealth = {};
                                 $scope.patient = undefined;
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                             })
                     }
                 }
@@ -395,27 +883,122 @@
                         .then(function(response) {
                             $scope.allHealthRecords = response.data;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
+                $scope.selectPatientModal = function(patient) {
+                    $rootScope.modalPatient = patient;
+                    // console.log($rootScope.modalPatient);
+                    // if ($rootScope.modalPatient.diUngThuoc != undefined) {
+                    //     $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngThucPham != undefined) {
+                    //     $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.diUngKhac != undefined) {
+                    //     $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tieuSuBenh != undefined) {
+                    //     $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
+                    //     $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
+                    //     $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
+                    //     $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
+                    //     $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    // if ($rootScope.modalPatient.ppDieuTri != undefined) {
+                    //     $rootScope.modalPatient.ppDieuTri = $rootScope.modalPatient.ppDieuTri.replace(/<br\s*[\/]?>/g, '\r\n');
+                    // }
+                    userServices.getAllHealthRecordsOfPatient(patient.id)
+                        .then(function(response) {
+                            // console.log(response.data);
+                            $scope.allHealthRecordsOfPatient = response.data;
+                        }, function(error) {
+                            // console.log(error);
+                        })
+
+                    $timeout(function() {
+                        $rootScope.$apply();
+                    });
+                }
+
                 $scope.addPatient = function() {
-                    console.log($scope.inputPatient);
+                    // console.log($scope.inputPatient);
                     if ($scope.inputPatient.name != undefined && $scope.inputPatient.patientCode != undefined && $scope.inputPatient.dateOfBirth != undefined && $scope.inputPatient.address != undefined) {
-                        // var date = $scope.inputPatient.date
-                        // var curr_date = date.getDate();
-                        // var curr_month = date.getMonth() + 1; //Months are zero based
-                        // var curr_year = date.getFullYear();
-                        // $scope.inputPatient.dateOfBirth = curr_date + "-" + curr_month + "-" + curr_year;
-                        // console.log($scope.inputPatient.dateOfBirth);
-                        $scope.inputPatient.tieuSuBenh = $scope.inputPatient.tieuSuBenh.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        if ($scope.inputPatient.diUngThuoc != undefined) {
+                            $scope.inputPatient.diUngThuoc = $scope.inputPatient.diUngThuoc.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.diUngHoaChat != undefined) {
+                            $scope.inputPatient.diUngHoaChat = $scope.inputPatient.diUngHoaChat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.diUngThucPham != undefined) {
+                            $scope.inputPatient.diUngThucPham = $scope.inputPatient.diUngThucPham.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.diUngKhac != undefined) {
+                            $scope.inputPatient.diUngKhac = $scope.inputPatient.diUngKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tieuSuBenh != undefined) {
+                            $scope.inputPatient.tieuSuBenh = $scope.inputPatient.tieuSuBenh.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.khuyetTatKhac != undefined) {
+                            $scope.inputPatient.khuyetTatKhac = $scope.inputPatient.khuyetTatKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tieuSuPhauThuat != undefined) {
+                            $scope.inputPatient.tieuSuPhauThuat = $scope.inputPatient.tieuSuPhauThuat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsgdDiUngThuoc != undefined) {
+                            $scope.inputPatient.tsgdDiUngThuoc = $scope.inputPatient.tsgdDiUngThuoc.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsgdDiUngHoaChat != undefined) {
+                            $scope.inputPatient.tsgdDiUngHoaChat = $scope.inputPatient.tsgdDiUngHoaChat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsgdDiUngHoaChat != undefined) {
+                            $scope.inputPatient.tsgdDiUngHoaChat = $scope.inputPatient.tsgdDiUngHoaChat.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsgdDiUngThucPham != undefined) {
+                            $scope.inputPatient.tsgdDiUngThucPham = $scope.inputPatient.tsgdDiUngThucPham.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsgdDiUngKhac != undefined) {
+                            $scope.inputPatient.tsgdDiUngKhac = $scope.inputPatient.tsgdDiUngKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.tsspBenhKhac != undefined) {
+                            $scope.inputPatient.tsspBenhKhac = $scope.inputPatient.tsspBenhKhac.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        if ($scope.inputPatient.ppDieuTri != undefined) {
+                            $scope.inputPatient.ppDieuTri = $scope.inputPatient.ppDieuTri.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        }
+                        // console.log($scope.inputPatient)
                         userServices.createPatient($scope.inputPatient)
                             .then(function(response) {
+                                $scope.alertSuccess("Thêm bệnh nhân thành công!", '');
                                 $scope.allPatient.push(response.data);
                                 $scope.inputPatient = {};
                             }, function(error) {
                                 // $scope.alertDanger(e)
-                                console.log(error);
+                                // console.log(error);
                             })
                     }
                 }
@@ -426,7 +1009,7 @@
                             $scope.allPatient = response.data;
                             $scope.inputPatient = {};
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -435,7 +1018,7 @@
                     $scope.req.studentId = $scope.student.id;
                     $scope.req.bookId = $scope.input.bookId;
                     $scope.req.expiryDate = $scope.input.expiryDate;
-                    console.log($scope.req)
+                    // console.log($scope.req)
                     userServices.borrowBook($scope.req)
                         .then(function(response) {
                             // console.log(response.data);
@@ -452,7 +1035,7 @@
                             $scope.input.expiryDate = undefined;
                             $scope.student = undefined;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                             $scope.alertDanger(error.data.message, '');
                         })
                 }
@@ -550,13 +1133,13 @@
                                 $scope.allBook.push(response.data);
                                 $scope.inputBook = {};
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                             })
                     }
                 }
 
                 $scope.showCheckin = function(nhanvien) {
-                    console.log(nhanvien);
+                    // console.log(nhanvien);
                     $scope.nhanvien_details = nhanvien;
                 }
 
@@ -566,7 +1149,7 @@
                     userServices.getCheckInTheoNgay(date)
                         .then(function(response) {
                             $scope.checkInTheoNgay = response.data;
-                            console.log(response.data);
+                            // console.log(response.data);
                             angular.forEach($scope.checkInTheoNgay, function(data) {
 
                             })
@@ -578,12 +1161,12 @@
                         .then(function(response) {
                             $scope.allNhanVien = response.data;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
                 $scope.addNhanVien = function() {
-                    console.log($scope.inputNhanVien);
+                    // console.log($scope.inputNhanVien);
                     if ($scope.inputNhanVien.fullName != undefined || $scope.inputNhanVien.fullName != "" || $scope.inputNhanVien.studentCode != undefined || $scope.inputNhanVien.studentCode != "") {
                         userServices.addNhanVien($scope.inputNhanVien)
                             .then(function(response) {
@@ -591,7 +1174,7 @@
                                 $scope.allNhanVien.push(response.data);
                                 $scope.inputNhanVien = {};
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                                 $scope.alertDanger(error.data.message, "dangerStudent");
                             })
                     }
@@ -605,7 +1188,7 @@
                                 $scope.allStudent.push(response.data);
                                 $scope.inputStudent = {};
                             }, function(error) {
-                                console.log(error);
+                                // console.log(error);
                                 $scope.alertDanger(error.data.message, "dangerStudent");
                             })
                     }
@@ -615,9 +1198,9 @@
                     userServices.getAllStudent()
                         .then(function(response) {
                             $scope.allStudent = response.data;
-                            console.log(response.data);
+                            // console.log(response.data);
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -625,9 +1208,9 @@
                     userServices.getAllBookStudent()
                         .then(function(response) {
                             $scope.allBookStudent = response.data;
-                            console.log(response.data);
+                            // console.log(response.data);
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -639,9 +1222,9 @@
                     userServices.getAllBook()
                         .then(function(response) {
                             $scope.allBook = response.data;
-                            console.log(response.data);
+                            // console.log(response.data);
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                         })
                 }
 
@@ -658,7 +1241,7 @@
                             sessionStorage.setItem("role", response.data.role);
                             $window.location.href = $rootScope.clientAdd;
                         }, function(error) {
-                            console.log(error);
+                            // console.log(error);
                             $scope.alertDanger(error.data.message, "");
                             // if (error.data.message("Wrong password") != -1) {
 

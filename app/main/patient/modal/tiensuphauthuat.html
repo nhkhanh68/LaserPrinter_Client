@@ -1,0 +1,17 @@
+<div class="x_title" ng-init="tiensuphauthuatModal = true">
+    <h4 data-target=".tiensuphauthuatModal" data-toggle="collapse" class="cursor" ng-click="tiensuphauthuatModal = !tiensuphauthuatModal" id="tiensuphauthuatModal">
+        4. Tiền sử phẫu thuật 
+        <i class="fa" ng-class="{'fa-chevron-down' : tiensuphauthuatModal == true, 'fa-chevron-up' : tiensuphauthuatModal == false}"></i>
+    </h4>
+</div>
+<div class="collapse tiensuphauthuatModal thongTinModal">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <!-- <label class="control-label col-md-2 col-sm-2 col-xs-12">Khác:</label> -->
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="3" ng-model="modalPatient.tieuSuPhauThuat"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>

@@ -1,0 +1,114 @@
+<div class="x_title" ng-init="tiensubenhtat = true">
+    <h4 data-target=".tiensubenhtat" data-toggle="collapse" class="cursor" ng-click="tiensubenhtat = !tiensubenhtat" id="tiensubenhtat">
+        2. Tiền sử bệnh tật 
+        <i class="fa" ng-class="{'fa-chevron-down' : tiensubenhtat == true, 'fa-chevron-up' : tiensubenhtat == false}"></i>
+    </h4>
+</div>
+<div class="collapse tiensubenhtat themThongTin">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <h4>- Dị ứng</h4>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Thuốc:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.diUngThuoc"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Hóa chất:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.diUngHoaChat"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Thực phẩm:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.diUngThucPham"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Khác:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.diUngKhac"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+    <h4>- Bệnh tật</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Hen suyễn
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.henSuyen" value="true">
+                </th>
+                <th>
+                    Bệnh phổi mãn tính
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.benhPhoiManTinh" value="true">
+                </th>
+                <th>
+                    Bệnh tim mạch
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.benhTimMach" value="true">
+                </th>
+                <th>
+                    Viêm gan
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.viemGan" value="true">
+                </th>
+                <th>
+                    Tâm thần
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.tamThan" value="true">
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Bướu cổ
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.benhBuouCo" value="true">
+                </th>
+                <th>
+                    Động kinh
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.dongKinh" value="true">
+                </th>
+                <th>
+                    Tự kỉ
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.tuKi" value="true">
+                </th>
+                <th>
+                    Bệnh dạ dày
+                </th>
+                <th style="border-right : 1px solid;">
+                    <input type="checkbox" ng-model="inputPatient.benhDaDay" value="true">
+                </th>
+                <th style="border-left : 1px solid;">
+                    Bệnh đái tháo đưòng
+                </th>
+                <th>
+                    <input type="checkbox" ng-model="inputPatient.daiThaoDuong" value="true">
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Chi tiết:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.tieuSuBenh"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>

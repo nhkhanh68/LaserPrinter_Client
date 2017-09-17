@@ -1,0 +1,38 @@
+<div class="x_title" ng-init="tinhtranglucsinhModal = true">
+    <h4 data-target=".tinhtranglucsinhModal" data-toggle="collapse" class="cursor" ng-click="tinhtranglucsinhModal = !tinhtranglucsinhModal" id="tinhtranglucsinhModal">
+        1. Tình trạng lúc sinh 
+        <i class="fa" ng-class="{'fa-chevron-down' : tinhtranglucsinhModal == true, 'fa-chevron-up' : tinhtranglucsinhModal == false}"></i>
+    </h4>
+</div>
+<div class="collapse tinhtranglucsinhModal thongTinModal">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <!-- <h4></h4> -->
+        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+            <!-- <div class="x_panel"> -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="radio" name="de" ng-model="modalPatient.deThuong" value="true">Đẻ thưòng</th>
+                        <th>
+                            <input type="radio" name="de" ng-model="modalPatient.deMo" value="true">Đẻ mổ</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="checkbox" name="biNgatLucDe" ng-model="modalPatient.biNgatLucDe" ng-checked="modalPatient.biNgatLucDe == 'true'">Bị ngạt lúc đẻ</th>
+                        <th>
+                            <input type="checkbox" name="deThieuThang" ng-model="modalPatient.deThieuThang" ng-checked="modalPatient.deThieuThang == 'true'">Đẻ thiếu tháng</th>
+                    </tr>
+                    <tr>
+                        <th>Cân nặng lúc đẻ</th>
+                        <th>
+                            <input type="text" class="form-control" style="width: 50%;" ng-model="modalPatient.canNangLucDe">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <!-- </div> -->
+        </div>
+        <!-- <div class="divider-dashed"></div> -->
+    </form>
+</div>

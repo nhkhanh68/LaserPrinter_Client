@@ -1,0 +1,79 @@
+<div class="x_title" ng-init="canlamsang = true">
+    <h4 data-target=".canlamsang" data-toggle="collapse" class="cursor" ng-click="canlamsang = !canlamsang" id="canlamsang">
+            3. Cận lâm sàng
+            <i class="fa" ng-class="{'fa-chevron-down' : canlamsang == true, 'fa-chevron-up' : canlamsang == false}"></i>
+    </h4>
+</div>
+<div class="collapse canlamsang phieuKham">
+    <h4>3.1 Dấu hiệu sinh tồn, chỉ số nhân trắc học</h4>
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th style="border: 1px solid;">
+                    STT
+                </th>
+                <th style="border: 1px solid;">
+                    Xét nghiệm
+                </th>
+                <th style="border: 1px solid;">
+                    Kết quả
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    1
+                </th>
+                <th style="border: 1px solid;">
+                    Huyết học
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="text" ng-model="inputHealth.huyetHoc" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    2
+                </th>
+                <th style="border: 1px solid;">
+                    Sinh học máu
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="text" ng-model="inputHealth.sinhHocMau" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    3
+                </th>
+                <th style="border: 1px solid;">
+                    X quang
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="text" ng-model="inputHealth.xQuang" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    4
+                </th>
+                <th style="border: 1px solid;">
+                    Siêu âm
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="text" ng-model="inputHealth.sieuAm" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid;">
+                    5
+                </th>
+                <th style="border: 1px solid;">
+                    Xét nghiệm khác
+                </th>
+                <th style="border: 1px solid;">
+                    <input type="text" ng-model="inputHealth.xetNghiemKhac" style="width: 100%; border: 0px;">
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>

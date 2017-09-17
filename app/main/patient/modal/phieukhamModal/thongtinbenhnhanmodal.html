@@ -1,0 +1,138 @@
+<div class="" role="tabpanel" data-example-id="togglable-tabs">
+    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+        <li role="presentation" class="active"><a class="cursor" data-target="#thongtinchung_phieukham" role="tab" data-toggle="tab" aria-expanded="false">Thông tin cá nhân</a>
+        </li>
+        <li role="presentation" ng-class="{active : currentUrl == '/information'}"><a data-target="#thongtinsuckhoe_phieukham" class="cursor" role="tab" data-toggle="tab" aria-expanded="true">Thông tin sức khỏe</a>
+        </li>
+        <li role="presentation" ng-class="{active : currentUrl == '/information'}"><a data-target="#lichsukham_phieukham" class="cursor" role="tab" data-toggle="tab" aria-expanded="true">Lịch sử khám bệnh</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="thongtinchung_phieukham" aria-labelledby="information-tab">
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12" id=""> -->
+            <!-- <div class="x_panel"> -->
+            <div class="alert alert-success" ng-if="successStudent">
+                <strong>{{successMessage}}</strong>
+            </div>
+            <div class="alert alert-danger" ng-if="dangerStudent">
+                <strong>{{errorMessage}}</strong>
+            </div>
+            <div ui-view="thongtincanhanModal"></div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="thongtinsuckhoe_phieukham" aria-labelledby="contract-tab">
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+            <!-- <div class="x_content"> -->
+            <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+            <!-- <div class="x_panel"> -->
+            <div class="alert alert-success" ng-if="successStudent">
+                <strong>{{successMessage}}</strong>
+            </div>
+            <div class="alert alert-danger" ng-if="dangerStudent">
+                <strong>{{errorMessage}}</strong>
+            </div>
+            <!-- <span class="pull-right cursor" data-toggle="collapse" data-target=".collapse" ng-click="i = !i">
+                                            Hiện tất cả 
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span> -->
+            <span ng-init="i = true" class="pull-right cursor" ng-click="i = !i">
+                <span ng-show="i == true" ng-click="collapse('thongTinModal', i)">
+                    Hiện tất cả 
+                    <i class="fa fa-chevron-down"></i>
+                </span>
+            <span ng-show="i == false" ng-click="collapse('thongTinModal', i)">
+                    Ẩn tất cả 
+                    <i class="fa fa-chevron-up"></i>
+                </span>
+            </span>
+            <div ui-view="tinhtranglucsinhModal"></div>
+            <div ui-view="tiensubenhtatModal"></div>
+            <div ui-view="khuyettatModal"></div>
+            <div ui-view="tiensuphauthuatModal"></div>
+            <div ui-view="tiensugiadinhModal"></div>
+            <div ui-view="suckhoesinhsanModal"></div>
+            <div ui-view="cacbenhkhacModal"></div>
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- </div> -->
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="lichsukham_phieukham" aria-labelledby="activity-tab">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Lý do khám</th>
+                        <th>Chuẩn đoán</th>
+                        <th>Phương pháp điều trị</th>
+                        <th>Lưu ý</th>
+                        <th>Ngày khám</th>
+                        <th>Ngày khám lại</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in allHealthRecordsOfPatient | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                        <!-- <th scope="row">{{typeContract.id}}</th> -->
+                        <td>{{$index+1}}</td>
+                        <td ng-bind-html="data.lyDoKham"></td>
+                        <td ng-bind-html="data.chuanDoanKetLuan"></td>
+                        <td ng-bind-html="data.ppDieuTri"></td>
+                        <td ng-bind-html="data.tuVan"></td>
+                        <td>{{data.date}}</td>
+                        <td>{{data.ngayKhamLai}}</td>
+                        <td data-toggle="modal" data-target="#phieu_kham_modal" class="cursor" ng-click="selectHealthRecord(data)">
+                            Chi tiết
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true" id="phieu_kham_modal">
+            <div class="modal-dialog" style="width: 80vw;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <button type="button" class="close" data-dismiss="modal" id="close_modal_show_partner_details"><span aria-hidden="true">×</span>
+                            </button> -->
+                        <h4 class="modal-title" id="myModalLabel">Thông tin khám bệnh nhân {{inputHealthModal.patient.name}} - mã số: {{inputHealthModal.patient.patientCode}} ngày {{inputHealthModal.date}} </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" ng-if="danger_edit">
+                            <strong>{{errorMessage}}</strong>
+                        </div>
+                        <div class="alert alert-success" ng-if="successdelete_edit">
+                            <strong>{{successMessage}}</strong>
+                        </div>
+                        <div class="show-col" ng-init="fa = true">
+                            <div>
+                                <!-- <h3 data-toggle="collapse" data-target="#phieu_kham" class="cursor" ng-click="fa = !fa">
+                            Phiếu khám 
+                            <i class="fa" ng-class="{'fa-chevron-down' : fa == true, 'fa-chevron-up': fa == false}"></i>
+                        </h3> -->
+                                <div class="clear-fix"></div>
+                            </div>
+                            <div class="" ng-init="i = true">
+                                <span class="pull-right cursor" ng-click="i = !i">
+                            <span ng-show="i == true" ng-click="collapse('phieuKham', i)">
+                                Hiện tất cả 
+                                <i class="fa fa-chevron-down"></i>
+                            </span>
+                                <span ng-show="i == false" ng-click="collapse('phieuKham', i)"> 
+                                Ẩn tất cả 
+                                <i class="fa fa-chevron-up"></i>
+                            </span>
+                                </span>
+                                <br />
+                                <div ui-view="benhsu"></div>
+                                <div ui-view="thamkhamlamsang"></div>
+                                <div ui-view="canlamsang"></div>
+                                <div ui-view="chuandoan"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer"> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

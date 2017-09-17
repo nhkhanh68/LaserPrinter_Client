@@ -1,0 +1,101 @@
+<div class="x_title" ng-init="suckhoesinhsan = true">
+    <h4 data-target=".suckhoesinhsan" data-toggle="collapse" class="cursor" ng-click="suckhoesinhsan = !suckhoesinhsan" id="suckhoesinhsan">
+        6. Sức khỏe sinh sản và kế hoạch hóa gia đình 
+        <i class="fa" ng-class="{'fa-chevron-down' : suckhoesinhsan == true, 'fa-chevron-up' : suckhoesinhsan == false}"></i>
+    </h4>
+</div>
+<div class="collapse suckhoesinhsan themThongTin">
+    <form class="form-horizontal form-label-left">
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tuổi bắt đầu có kinh nguyệt (đối với nữ): </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tuoiCoKinh">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tuổi mãn kinh (đối với nữ): </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tuoiManKinh">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tuổi bắt đầu quan hệ tình dục: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tuoiQuanHe">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biện pháp tránh thai đang dùng: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.bienPhapTranhThai">
+            </div>
+        </div>
+    </form>
+    <h4>- Tiền sử sản phụ khoa (đối với nữ):</h4>
+    <form class="form-horizontal form-label-left">
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số lần có thai: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.soLanCoThai">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số lần sảy thai: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.soLanSayThai">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số lần phá thai: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.soLanPhaThai">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số lần sinh đẻ: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.soLanSinhDe">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Đẻ thường: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tsspDeThuong">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Đẻ khó: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tsspDeKho">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số lần đẻ đủ tháng: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tsspDeDuThang">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Số con sống: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tsspSoConSong">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bệnh phụ khoa: </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" class="form-control col-md-8 col-xs-12" ng-model="inputPatient.tsspBenhPhuKhoa">
+            </div>
+        </div>
+    </form>
+    <h4>- Bệnh tật</h4>
+    <form class="form-horizontal form-label-left">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Chi tiết:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="inputPatient.tsspBenhKhac"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>

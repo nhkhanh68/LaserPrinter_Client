@@ -1,0 +1,183 @@
+<div class="x_panel">
+    <div class="x_title" ng-init="tt = true">
+        <h3 data-toggle="collapse" data-target="#thong_tin" class="cursor" ng-click="tt = !tt" id="h3_thong_tin_benh_nhan">
+            Thông tin bệnh nhân {{modalPatient.name}}
+            <i class="fa" ng-class="{'fa-chevron-down' : tt == true, 'fa-chevron-up': tt == false}"></i>
+        </h3>
+    </div>
+    <div class="collapse" id="thong_tin">
+        <div ui-view="thongtinbenhnhan"></div>
+    </div>
+</div>
+<hr>
+<div class="x_panel">
+    <div class="alert alert-success" ng-if="success">
+        <strong>{{successMessage}}</strong>
+    </div>
+    <div class="alert alert-danger" ng-if="danger">
+        <strong>{{errorMessage}}</strong>
+    </div>
+    <div class="show-col" ng-init="fa = true">
+        <div>
+            <h3 data-toggle="collapse" data-target="#phieu_kham" class="cursor" ng-click="fa = !fa">
+                Phiếu khám 
+                <i class="fa" ng-class="{'fa-chevron-down' : fa == true, 'fa-chevron-up': fa == false}"></i>
+            </h3>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="collapse" id="phieu_kham" ng-init="i = true">
+            <span class="pull-right cursor" ng-click="i = !i">
+            <span ng-show="i == true" ng-click="collapse('phieuKham', i)">
+                Hiện tất cả 
+                <i class="fa fa-chevron-down"></i>
+            </span>
+            <span ng-show="i == false" ng-click="collapse('phieuKham', i)"> 
+                Ẩn tất cả 
+                <i class="fa fa-chevron-up"></i>
+            </span>
+            </span>
+            <br />
+            <div ui-view="benhsu"></div>
+            <div ui-view="thamkhamlamsang"></div>
+            <div ui-view="canlamsang"></div>
+            <div ui-view="chuandoan"></div>
+        </div>
+        <!-- <form class="form-horizontal form-label-left" id="add_follow_student">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ và Tên:
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <table>
+                        <th>
+                            <label class="btn btn-default cursor" ng-if="patient != undefined">
+                                {{patient.name}}
+                            </label>
+                        </th>
+                        <th>
+                            <span class="cursor" ng-if="patient != undefined" id="span_{{student.id" data-toggle="collapse" data-target=".patient-details" ng-click="convert(patient.patient.tieuSuBenh)">
+                                                        Chi tiết
+                                                        <i class="fa fa-chevron-down"></i>
+                                                    </span>
+                        </th>
+                        <th style="padding-left: 20px;">
+                            <button ng-show="hide == true" id="huy" class="btn btn-default collapse patient-details" ng-click="addAttr('readonly', 'patient'); hide = false; ">Hủy</button>
+                        </th>
+                        <th style="padding-left: 20px;" ng-init="hide = false">
+                            <span ng-show="hide == false" class="collapse patient-details cursor" ng-click="removeAttr('readonly', 'patient'); hide = true">
+                                                        Chỉnh sửa thông tin
+                                                        <i class="fa fa-edit"></i>
+                                                    </span>
+                            <button ng-show="hide == true" type="submit" class="btn btn-success collapse patient-details" ng-click="editPatient()">Lưu</button>
+                        </th>
+                    </table>
+                </div>
+            </div>
+            <div class="collapse patient-details" id="patient-details">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh:</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.dateOfBirth" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ:</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.address" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Số điện thoại:</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" class="form-control col-md-7 col-xs-12 patient" ng-model="patient.patient.phone" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tiền sử bệnh:</label>
+                    <div class="col-md-6 col-8m-6 col-8s-12">
+                        <textarea class="form-control patient" rows="7" ng-model="patient.patient.tieuSuBenh" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                                            </div>
+                                        </div>
+                                        <div class="divider-dashed"></div>
+            </div>
+            <div class="collapse patient-details">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lý do đến khám:</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <textarea class="form-control" rows="7" ng-model="inputHealth.lyDoKham"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tình trạng sức khỏe chung:</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <textarea class="form-control" rows="7" ng-model="inputHealth.chiSoCoBan"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Chuẩn đoán bệnh:</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <textarea class="form-control" rows="7" ng-model="inputHealth.content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Phương pháp điều trị:</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <textarea class="form-control" rows="7" ng-model="inputHealth.ppDieuTri"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Lưu ý:</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <textarea class="form-control" rows="7" ng-model="inputHealth.notice"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ngày khám lại: </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="date" class="form-control col-md-7 col-xs-12" ng-model="inputHealth.ngayKhamLai">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                        <button type="submit" class="btn btn-success" ng-click="createHealthRecords()">Thêm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="divider-dashed"></div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên</th>
+                    <th>Mã số</th>
+                    <th>Lý do khám</th>
+                    <th>Tình trạng sức khỏe chung</th>
+                    <th>Chuẩn đoán</th>
+                    <th>Phưong pháp điều trị</th>
+                    <th>Lưu ý</th>
+                    <th>Ngày khám</th>
+                    <th>Ngày khám lại</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in allHealthRecordsOfPatient | orderBy:'-id'" id="tr_contact_{{contact.id}}">
+                    <td>{{$index+1}}</td>
+                    <td>{{data.patient.name}}</td>
+                    <td>{{data.patient.patientCode}}</td>
+                    <td ng-bind-html="data.lyDoKham"></td>
+                    <td ng-bind-html="data.chiSoCoBan"></td>
+                    <td ng-bind-html="data.content"></td>
+                    <td ng-bind-html="data.ppDieuTri"></td>
+                    <td ng-bind-html="data.notice"></td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.ngayKhamLai}}</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+</div>

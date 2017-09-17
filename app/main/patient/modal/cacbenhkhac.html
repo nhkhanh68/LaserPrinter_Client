@@ -1,0 +1,17 @@
+<div class="x_title" ng-init="cacbenhkhacModal = true">
+    <h4 data-target=".cacbenhkhac" data-toggle="collapse" class="cursor" ng-click="cacbenhkhacModal = !cacbenhkhacModal" id="cacbenhkhacModal">
+            7. Các bệnh khác 
+            <i class="fa" ng-class="{'fa-chevron-down' : cacbenhkhacModal == true, 'fa-chevron-up' : cacbenhkhacModal == false}"></i>
+    </h4>
+</div>
+<div class="collapse cacbenhkhacModal thongTinModal">
+    <form class="form-horizontal form-label-left" id="add_follow_student">
+        <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12">Chi tiết:</label>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <textarea class="form-control" rows="2" ng-model="modalPatient.tieuSuBenh"></textarea>
+            </div>
+        </div>
+        <div class="divider-dashed"></div>
+    </form>
+</div>
