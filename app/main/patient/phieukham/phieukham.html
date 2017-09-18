@@ -17,7 +17,7 @@
     <div class="alert alert-danger" ng-if="danger">
         <strong>{{errorMessage}}</strong>
     </div>
-    <div class="show-col" ng-init="fa = true">
+    <div class="show-col" ng-init="fa = false">
         <div>
             <h3 data-toggle="collapse" data-target="#phieu_kham" class="cursor" ng-click="fa = !fa">
                 Phiếu khám 
@@ -25,7 +25,7 @@
             </h3>
             <div class="clear-fix"></div>
         </div>
-        <div class="collapse" id="phieu_kham" ng-init="i = true">
+        <div class="collapse in" id="phieu_kham" ng-init="i = true">
             <span class="pull-right cursor" ng-click="i = !i">
             <span ng-show="i == true" ng-click="collapse('phieuKham', i)">
                 Hiện tất cả 
