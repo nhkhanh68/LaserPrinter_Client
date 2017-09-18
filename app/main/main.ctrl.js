@@ -25,6 +25,13 @@
                 }
                 $scope.chonbv = function(string) {
                     $scope.bv = string;
+                    if(string == 'themba'){
+                        $rootScope.modalPatient = undefined;
+                        // $timeout(function() {
+                        //     $scope.$apply();
+                        // });
+                        
+                    }
                 }
                 $scope.chonguixe = function(string) {
                     $scope.guixe = string;
@@ -667,45 +674,45 @@
                     $scope.inputHealth.patientId = data.patientId;
                     $rootScope.modalPatient = data.patient;
                     // console.log($rootScope.modalPatient);
-                    // if ($rootScope.modalPatient.diUngThuoc != undefined) {
-                    //     $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngThucPham != undefined) {
-                    //     $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngKhac != undefined) {
-                    //     $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tieuSuBenh != undefined) {
-                    //     $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
-                    //     $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
-                    //     $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
-                    //     $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
+                    if ($rootScope.modalPatient.diUngThuoc != undefined) {
+                        $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngHoaChat != undefined) {
+                        $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngThucPham != undefined) {
+                        $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngKhac != undefined) {
+                        $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tieuSuBenh != undefined) {
+                        $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
+                        $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
+                        $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
+                        $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
                     userServices.getAllHealthRecordsOfPatient(data.patient.id)
                         .then(function(response) {
                             // console.log(response.data);
@@ -890,48 +897,48 @@
                 $scope.selectPatientModal = function(patient) {
                     $rootScope.modalPatient = patient;
                     // console.log($rootScope.modalPatient);
-                    // if ($rootScope.modalPatient.diUngThuoc != undefined) {
-                    //     $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngThucPham != undefined) {
-                    //     $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.diUngKhac != undefined) {
-                    //     $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tieuSuBenh != undefined) {
-                    //     $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
-                    //     $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
-                    //     $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
-                    //     $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
-                    //     $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
-                    // if ($rootScope.modalPatient.ppDieuTri != undefined) {
-                    //     $rootScope.modalPatient.ppDieuTri = $rootScope.modalPatient.ppDieuTri.replace(/<br\s*[\/]?>/g, '\r\n');
-                    // }
+                    if ($rootScope.modalPatient.diUngThuoc != undefined) {
+                        $rootScope.modalPatient.diUngThuoc = $rootScope.modalPatient.diUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngHoaChat != undefined) {
+                        $rootScope.modalPatient.diUngHoaChat = $rootScope.modalPatient.diUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngThucPham != undefined) {
+                        $rootScope.modalPatient.diUngThucPham = $rootScope.modalPatient.diUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.diUngKhac != undefined) {
+                        $rootScope.modalPatient.diUngKhac = $rootScope.modalPatient.diUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tieuSuBenh != undefined) {
+                        $rootScope.modalPatient.tieuSuBenh = $rootScope.modalPatient.tieuSuBenh.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.khuyetTatKhac != undefined) {
+                        $rootScope.modalPatient.khuyetTatKhac = $rootScope.modalPatient.khuyetTatKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tieuSuPhauThuat != undefined) {
+                        $rootScope.modalPatient.tieuSuPhauThuat = $rootScope.modalPatient.tieuSuPhauThuat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngThuoc != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngThuoc = $rootScope.modalPatient.tsgdDiUngThuoc.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngHoaChat != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngHoaChat = $rootScope.modalPatient.tsgdDiUngHoaChat.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngThucPham != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngThucPham = $rootScope.modalPatient.tsgdDiUngThucPham.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsgdDiUngKhac != undefined) {
+                        $rootScope.modalPatient.tsgdDiUngKhac = $rootScope.modalPatient.tsgdDiUngKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.tsspBenhKhac != undefined) {
+                        $rootScope.modalPatient.tsspBenhKhac = $rootScope.modalPatient.tsspBenhKhac.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
+                    if ($rootScope.modalPatient.ppDieuTri != undefined) {
+                        $rootScope.modalPatient.ppDieuTri = $rootScope.modalPatient.ppDieuTri.replace(/<br\s*[\/]?>/g, '\r\n');
+                    }
                     userServices.getAllHealthRecordsOfPatient(patient.id)
                         .then(function(response) {
                             // console.log(response.data);

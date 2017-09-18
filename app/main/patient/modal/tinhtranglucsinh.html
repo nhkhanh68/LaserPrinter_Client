@@ -13,20 +13,20 @@
                 <thead>
                     <tr>
                         <th>
-                            <input type="radio" name="de" ng-model="modalPatient.deThuong" value="true">Đẻ thưòng</th>
+                            <input type="radio" name="de" disabled="disabled" ng-model="modalPatient.deThuong" value="true">Đẻ thưòng</th>
                         <th>
-                            <input type="radio" name="de" ng-model="modalPatient.deMo" value="true">Đẻ mổ</th>
+                            <input type="radio" name="de" disabled="disabled" ng-model="modalPatient.deMo" value="true">Đẻ mổ</th>
                     </tr>
                     <tr>
                         <th>
-                            <input type="checkbox" name="biNgatLucDe" ng-model="modalPatient.biNgatLucDe" ng-checked="modalPatient.biNgatLucDe == 'true'">Bị ngạt lúc đẻ</th>
+                            <input type="checkbox" name="biNgatLucDe" disabled="disabled" ng-model="modalPatient.biNgatLucDe" ng-checked="modalPatient.biNgatLucDe == 'true'">Bị ngạt lúc đẻ</th>
                         <th>
-                            <input type="checkbox" name="deThieuThang" ng-model="modalPatient.deThieuThang" ng-checked="modalPatient.deThieuThang == 'true'">Đẻ thiếu tháng</th>
+                            <input type="checkbox" name="deThieuThang" disabled="disabled" ng-model="modalPatient.deThieuThang" ng-checked="modalPatient.deThieuThang == 'true'">Đẻ thiếu tháng</th>
                     </tr>
                     <tr>
                         <th>Cân nặng lúc đẻ</th>
                         <th>
-                            <input type="text" class="form-control" style="width: 50%;" ng-model="modalPatient.canNangLucDe">
+                            <input type="text" class="form-control" style="width: 50%;" readonly="readonly" ng-model="modalPatient.canNangLucDe">
                         </th>
                     </tr>
                 </thead>

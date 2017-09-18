@@ -10,25 +10,25 @@
         <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Thuốc:</label>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <textarea class="form-control" rows="2" ng-model="modalPatient.diUngThuoc"></textarea>
+                <textarea class="form-control" rows="2" readonly="readonly" ng-model="modalPatient.diUngThuoc"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Hóa chất:</label>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <textarea class="form-control" rows="2" ng-model="modalPatient.diUngHoaChat"></textarea>
+                <textarea class="form-control" rows="2" readonly="readonly" ng-model="modalPatient.diUngHoaChat"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Thực phẩm:</label>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <textarea class="form-control" rows="2" ng-model="modalPatient.diUngThucPham"></textarea>
+                <textarea class="form-control" rows="2" readonly="readonly" ng-model="modalPatient.diUngThucPham"></textarea>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Khác:</label>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <textarea class="form-control" rows="2" ng-model="modalPatient.diUngKhac"></textarea>
+                <textarea class="form-control" rows="2" readonly="readonly" ng-model="modalPatient.diUngKhac"></textarea>
             </div>
         </div>
         <div class="divider-dashed"></div>
@@ -38,34 +38,34 @@
         <thead>
             <tr>
                 <th>
-                    Hen suyễn{{modalPatient.henSuyen}}
+                    Hen suyễn
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.henSuyen == 'true'" ng-model="modalPatient.henSuyen">
+                    <input type="checkbox" ng-checked="modalPatient.henSuyen == 'true'" disabled="disabled" ng-model="modalPatient.henSuyen">
                 </th>
                 <th>
-                    Bệnh phổi mãn tính {{benhPhoiManTinh}}
+                    Bệnh phổi mãn tính
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.benhPhoiManTinh == 'true'" ng-model="modalPatient.benhPhoiManTinh">
+                    <input type="checkbox" ng-checked="modalPatient.benhPhoiManTinh == 'true'" disabled="disabled" ng-model="modalPatient.benhPhoiManTinh">
                 </th>
                 <th>
                     Bệnh tim mạch
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.benhTimMach == 'true'" ng-model="modalPatient.benhTimMach">
+                    <input type="checkbox" ng-checked="modalPatient.benhTimMach == 'true'" disabled="disabled" ng-model="modalPatient.benhTimMach">
                 </th>
                 <th>
                     Viêm gan
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-model="modalPatient.viemGan" ng-checked="modalPatient.viemGan == 'true'">
+                    <input type="checkbox" readonly="readonly" ng-model="modalPatient.viemGan" ng-checked="modalPatient.viemGan == 'true'">
                 </th>
                 <th>
                     Tâm thần
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.tamThan == 'true'" ng-model="modalPatient.tamThan">
+                    <input type="checkbox" ng-checked="modalPatient.tamThan == 'true'" disabled="disabled" ng-model="modalPatient.tamThan">
                 </th>
             </tr>
             <tr>
@@ -73,31 +73,31 @@
                     Bướu cổ
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.benhBuouCo == 'true'" ng-model="modalPatient.benhBuouCo">
+                    <input type="checkbox" ng-checked="modalPatient.benhBuouCo == 'true'" disabled="disabled" ng-model="modalPatient.benhBuouCo">
                 </th>
                 <th>
                     Động kinh
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.dongKinh == 'true'" ng-model="modalPatient.dongKinh">
+                    <input type="checkbox" ng-checked="modalPatient.dongKinh == 'true'" disabled="disabled" ng-model="modalPatient.dongKinh">
                 </th>
                 <th>
                     Tự kỉ {{tuKi}}
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.tuKi == 'true'" ng-model="modalPatient.tuKi">
+                    <input type="checkbox" ng-checked="modalPatient.tuKi == 'true'" disabled="disabled" ng-model="modalPatient.tuKi">
                 </th>
                 <th>
                     Bệnh dạ dày
                 </th>
                 <th style="border-right : 1px solid;">
-                    <input type="checkbox" ng-checked="modalPatient.benhDaDay == 'true'" ng-model="modalPatient.benhDaDay">
+                    <input type="checkbox" ng-checked="modalPatient.benhDaDay == 'true'" disabled="disabled" ng-model="modalPatient.benhDaDay">
                 </th>
                 <th style="border-left : 1px solid;">
                     Bệnh đái tháo đưòng
                 </th>
                 <th>
-                    <input type="checkbox" ng-checked="modalPatient.daiThaoDuong == 'true'" ng-model="modalPatient.daiThaoDuong">
+                    <input type="checkbox" ng-checked="modalPatient.daiThaoDuong == 'true'" disabled="disabled" ng-model="modalPatient.daiThaoDuong">
                 </th>
             </tr>
         </thead>
@@ -106,7 +106,7 @@
         <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12">Chi tiết:</label>
             <div class="col-md-8 col-sm-8 col-xs-12">
-                <textarea class="form-control" rows="2" ng-model="modalPatient.tieuSuBenh"></textarea>
+                <textarea class="form-control" rows="2" readonly="readonly" ng-model="modalPatient.tieuSuBenh"></textarea>
             </div>
         </div>
         <div class="divider-dashed"></div>

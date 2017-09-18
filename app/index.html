@@ -111,13 +111,13 @@
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonsach('tatca')" class="cursor" ng-if="role == 'client-student' || role == 'admin-st'"><a><i class="fa fa-book"></i> Tất cả </a>
                                 </li>
                                 <!-- patient -->
-                                <li ng-class="{active : sach == 'them'}" ng-click="chonbv('them')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm </a>
+                                <li ng-class="{active : sach == 'them'}" ng-click="chonbv('them'); collapse('', false)" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm </a>
                                 </li>
-                                <li ng-click="chonbv('themba')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm phiếu khám </a>
+                                <li ng-click="chonbv('themba'); collapse('', true)" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Thêm phiếu khám </a>
                                 </li>
-                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatca')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả phiếu khám</a>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatca'); collapse('', false)" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả phiếu khám</a>
                                 </li>
-                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatcabenhnhan')" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả bệnh nhân </a>
+                                <li ng-class="{active : sach == 'tatca'}" ng-click="chonbv('tatcabenhnhan'); collapse('', false)" class="cursor" ng-if="role == 'client-patient' || role == 'admin-pa'"><a><i class="fa fa-book"></i> Tất cả bệnh nhân </a>
                                 </li>
                                 <!-- guixe -->
                                 <li ng-class="{active : sach == 'tatca'}" ng-click="chonguixe('quanly')" class="cursor" ng-if="role == 'guixe'"><a><i class="fa fa-book"></i> Thêm </a>
