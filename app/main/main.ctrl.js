@@ -2,7 +2,7 @@
     angular.module('myApp')
         .controller('mainCtrl', ['$scope', '$rootScope', '$location', '$window', 'userServices', '$state', 'md5', '$timeout',
             function($scope, $rootScope, $location, $window, userServices, $state, md5, $timeout) {
-                $rootScope.serverAdd = "http://112.137.130.47:8180";
+                $rootScope.serverAdd = "http://localhost:8180";
                 $rootScope.clientAdd = "http://localhost:8000";
                 $rootScope.response = [];
                 $scope.socket = [];
@@ -15,6 +15,22 @@
                 $scope.sach = "themsach";
                 // $scope.bv = "themba";
                 $scope.reverse = true;
+                $scope.sh = function(string) {
+                    console.log(string)
+                    if (string == 06081995) {
+                        $scope.req = {
+                            readerId: "IRQRCR0001",
+                            readTime: "1503369197000",
+                            qrData: "06081995"
+                        }
+                        console.log($scope.req);
+                        userServices.patient($scope.req)
+                            .then(function(response){
+                                console.log(response);
+                            })
+
+                    }
+                }
                 $scope.showX_panel = function() {
                     $timeout(function() {
                         $scope.x_panel = $('#x_panel').width();
@@ -22,15 +38,16 @@
                 }
                 $scope.chonsach = function(string) {
                     $scope.sach = string;
+
                 }
                 $scope.chonbv = function(string) {
                     $scope.bv = string;
-                    if(string == 'themba'){
+                    if (string == 'themba') {
                         $rootScope.modalPatient = undefined;
                         // $timeout(function() {
                         //     $scope.$apply();
                         // });
-                        
+
                     }
                 }
                 $scope.chonguixe = function(string) {
@@ -298,7 +315,7 @@
                                 // response.index = $scope.count;
                                 // $scope.count++;
                                 // $rootScope.response.push(response);
-                                // console.log($rootScope.response);
+                                console.log(response);
                                 if ($scope.name == "patient") {
                                     $scope.selectPatient(response);
                                     if (!$('#thong_tin').is(':visible')) {
@@ -306,6 +323,10 @@
                                             $('#h3_thong_tin_benh_nhan').trigger('click');
                                         });
                                     }
+                                    $timeout(function() {
+                                            
+                                        });
+                                    
                                     // $('#h3_thong_tin_benh_nhan').trigger('click');
                                     // console.log(response.patientId);
                                     $scope.getAllHealthRecordsOfPatient(response.patientId);

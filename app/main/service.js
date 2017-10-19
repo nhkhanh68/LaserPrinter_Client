@@ -38,8 +38,17 @@
             getAllCheckInOfNhanVien: getAllCheckInOfNhanVien,
             deleteNhanVien: deleteNhanVien,
             editPatient: editPatient,
-            getLogTienStudent: getLogTienStudent
+            getLogTienStudent: getLogTienStudent,
+            patient: patient
         };
+
+        function patient(data) {
+            return $http({
+                url: $rootScope.serverAdd + '/qrcode/patient',
+                method: 'POST',
+                data: data
+            })
+        }
 
         function getLogTienStudent(id) {
             return $http({
